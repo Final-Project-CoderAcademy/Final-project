@@ -1,15 +1,30 @@
 # MyWay
 ## About Application
-- Purpose
+- **Purpose**  
+
+- **Tech stack**  
+  This app is based on MERN stack. 
+- **Functionality / features**  
+  **a. For visitors without log in:**
+  1. Visitors can create their own account and update their details including 'name', 'email' and 'password' anytime.
+  2. Visitors can get information including map, descriptions and name of the sites recommended from the web app, but can't comment.
+  3. Visitors can check the weather of each city in Australia in each page.  
+
+  **b. For normal users already log in:**
+  1. Users can get information including map, descriptions and name of the sites recommended from the web app and comment these recommendations.
+  2. Users can post blogs and check all the blogs from themselves together in blogScreen. In addition, they can delete their blogs anytime. Each blog can be posted with one image.
+  3. Users can comment other users' blogs.
+  4. Users can check the weather of each city in Australia in each page.
+
+  **c. For admin users:**
+  1. Admin users have all the functions same as normal users.
+  2. Admin users can manage the site recommendations, they can delete, create and update the information of site recommendations. 
+  3. In addition, admin users can manage all the normal users. If admin users find some normal users post illegal information in their blogs, they are able to delete normal users. 
+  4. Admin users are able to delete blogs as well.
+- **Target audience**
 
 
-- Functionality / features
 
-
-- Target audience
-
-
-- Tech stack
 
 
 ## Dataflow Diagram
