@@ -1,9 +1,16 @@
 # MyWay
 ## About Application
 - **Purpose**  
+The purpose of this application is to help travelers make the best of their trip. It provides travelers with the best places to do what they want to do, and allows them to share and reflect on their memories by sharing blogs. It also has the ability to search the weather of a destination from any screen without logging in, which is not found in other applications.
+
+- **Target audience**  
+The target audience is people who like to travel.
 
 - **Tech stack**  
   This app is based on MERN stack. 
+  On the front-end side, a dynamic HTML web interface is created by React. 
+  The server-side development environment is Node.js, which enables the implementation of a JavaScript-based application backend. Express.js runs on Node.js and serves to simplify the processing of URL requests. MongoDB is the application's database, which manages data such as storing, updating, referencing, and deleting data in the application.
+
 - **Functionality / features**  
   **a. For visitors without log in:**
   1. Visitors can create their own account and update their details including 'name', 'email' and 'password' anytime.
@@ -20,20 +27,21 @@
   1. Admin users have all the functions same as normal users.
   2. Admin users can manage the site recommendations, they can delete, create and update the information of site recommendations. 
   3. In addition, admin users can manage all the normal users. If admin users find some normal users post illegal information in their blogs, they are able to delete normal users. 
-  4. Admin users are able to delete blogs as well.
-- **Target audience**
+  4. Admin users are able to delete blogs as well.    
 
-
-
-
-
+---
+      
 ## Dataflow Diagram
-![dataflow diagram](./docs/Dataflow_Diagram.jpeg)  
+![dataflow diagram](./docs/Dataflow_Diagram.jpeg)   
   
+---  
+
 ## Application Architecture Diagram
 ![application architecture diagram](./docs/Application_Architecture_Diagram.jpeg)  
+   
+---
   
-## User Stories  
+## User Stories   
 [Excel sheet for user story](https://onedrive.live.com/view.aspx?resid=6E0FC3D2BFB74104!129&ithint=file%2cxlsx&authkey=!AG1EELNirMpapYc)
 
 - As a traveler, I want to be able to securely log in, log out and change details of my account so my information only accessed for me.  
@@ -50,34 +58,35 @@
 - As an admin of this web app, I want to be authorized to be able to delete common users so I can delete the user who posts a blog as an advertisement of illegal information.
 - As an admin of this web app, I want to have the same features as a common user so I can do anything like them.
 
-
-## Wireframes  
+---  
+  
+## Wireframes   
 **Humburger menu for movile**  
-- When the user hasn't log in    
-![humburger menu when user hasn't login](./docs/Wireframe/iPhone-humburger(when%20user%20didn't%20log%20in)%20.jpg) 
+- When the user hasn't log in  
+![humburger menu when user hasn't login](./docs/Wireframe/iPhone-humburger(when%20user%20didn't%20log%20in)%20.jpg)  
 
 - When the user logged in  
 ![humburger menu when user logged in](./docs/Wireframe/iPhone-humburger(when%20the%20user%20log%20in).png)  
 
 - When the admin user logged in  
-![humburger menu when admin logged in](./docs/Wireframe/iPhone-humburger(when%20the%20admin%20log%20in).jpg)
+![humburger menu when admin logged in](./docs/Wireframe/iPhone-humburger(when%20the%20admin%20log%20in).jpg)  
 
 **Sign up form**   
 - movile  
-![sign up form for movile](./docs/Wireframe/iPhone-Sign%20up%20form.jpg)   
+![sign up form for movile](./docs/Wireframe/iPhone-Sign%20up%20form.jpg)  
  
-- Tablet    
-![sign up form for tablet](./docs/Wireframe/iPad-Sign%20up%20form.jpg)   
+- Tablet  
+![sign up form for tablet](./docs/Wireframe/iPad-Sign%20up%20form.jpg)  
 
-- Desktop    
+- Desktop  
 ![sign up form for desktop](./docs/Wireframe/Desktop%20-Sign%20up%20form.jpg)  
 
 
 **Log in form**  
-- movile   
-![log in form for movile](./docs/Wireframe/iPhone-Log%20in%20form.jpg)   
+- movile  
+![log in form for movile](./docs/Wireframe/iPhone-Log%20in%20form.jpg)  
 
-- Tablet   
+- Tablet  
 ![log in form for tablet](./docs/Wireframe/iPad-Log%20in%20form.jpg)  
 
 - Desktop  
@@ -86,66 +95,66 @@
 
 **Top Page**  
 - movile   
-![top page for movile](./docs/Wireframe/iPhone-Top%20Page.jpg)   
+![top page for movile](./docs/Wireframe/iPhone-Top%20Page.jpg)  
   
-- Tablet   
-![top page for tablet](./docs/Wireframe/iPad-Top%20Page.jpg)   
+- Tablet  
+![top page for tablet](./docs/Wireframe/iPad-Top%20Page.jpg)  
  
 - Desktop  
 ![top page for desktop](./docs/Wireframe/Desktop-Top%20Page.jpg)  
 
 **Site list Page**  
-- movile   
-![Site list Page for movile](./docs/Wireframe/iPhone-Sites%20Page.jpg)   
+- movile  
+![Site list Page for movile](./docs/Wireframe/iPhone-Sites%20Page.jpg)  
 
 - Tablet  
 ![Site list Page for tablet](./docs/Wireframe/iPad-Sites%20Page.jpg)  
 
-- Desktop   
+- Desktop  
 ![Site list Page for desktop](./docs/Wireframe/Desktop%20-Sites%20Page.jpg)  
  
 
 **Site Page**  
 - movile  
-![Site Page for movile](./docs/Wireframe/iPhone-Site%20Page.jpg)   
+![Site Page for movile](./docs/Wireframe/iPhone-Site%20Page.jpg)  
 
-- Tablet   
-![Site Page for tablet](./docs/Wireframe/iPad-Site%20Page.jpg)   
+- Tablet  
+![Site Page for tablet](./docs/Wireframe/iPad-Site%20Page.jpg)  
 
-- Desktop   
-![Site Page for desktop](./docs/Wireframe/Desktop-Site%20Page.jpg)   
+- Desktop  
+![Site Page for desktop](./docs/Wireframe/Desktop-Site%20Page.jpg)  
 
 
 **Site create form**  
-- movile   
+- movile  
 ![Site create form for movile](./docs/Wireframe/iPhone-Site%20create%20form.jpg)  
 
 - Tablet  
 ![Site create form for tablet](./docs/Wireframe/iPad-Site%20create%20form.jpg)  
 
-- Desktop   
+- Desktop  
 ![Site create form for desktop](./docs/Wireframe/Desktop-Site%20create%20form.jpg)  
 
 
-**Site update form**   
+**Site update form**  
 - movile (Tablets and desktops are the same as the creation form except for the buttons, so the wireframes are mobile only.)  
-![Site update form for movile](./docs/Wireframe/iPhone-Site%20update%20form.jpg)   
+![Site update form for movile](./docs/Wireframe/iPhone-Site%20update%20form.jpg)  
 
 
-**Blog list Page**   
-- movile   
+**Blog list Page**  
+- movile  
 ![Blog list Page for movile](./docs/Wireframe/iPhone-Blog%20Page.jpg)  
 
 - Tablet  
-![Blog list Page for tablet](./docs/Wireframe/iPad-Blog%20Page.jpg)   
+![Blog list Page for tablet](./docs/Wireframe/iPad-Blog%20Page.jpg)  
 
-- Desktop   
+- Desktop  
 ![Blog list Page for desktop](./docs/Wireframe/Desktop-Blog%20Page.jpg)  
 
 
 **Blog article Page**  
 - movile  
-![Blog article Page for movile](./docs/Wireframe/iPhone-Blog%20Article.jpg)   
+![Blog article Page for movile](./docs/Wireframe/iPhone-Blog%20Article.jpg)  
 
 - Tablet  
 ![Blog article Page for tablet](./docs/Wireframe/iPad-Blog%20Article.jpg)  
@@ -154,11 +163,11 @@
 ![Blog article Page for desktop](./docs/Wireframe/Desktop%20-Blog%20Article.jpg)  
 
 
-**Blog create post form**   
-- movile   
-![Blog create post form for movile](./docs/Wireframe/iPhone-Blog%20create%20form.jpg)   
+**Blog create post form**  
+- movile  
+![Blog create post form for movile](./docs/Wireframe/iPhone-Blog%20create%20form.jpg)  
 
-- Tablet   
+- Tablet  
 ![Blog create post form for tablet](./docs/Wireframe/iPad-Blog%20create%20form.jpg)  
 
 - Desktop  
@@ -167,10 +176,10 @@
  
 **Blog update post form**  
 - movile (Tablets and desktops are the same as the creation form except for the buttons, so the wireframes are mobile only.)  
-![Blog update post form for movile](./docs/Wireframe/iPhone-Blog%20update%20form.jpg)   
+![Blog update post form for movile](./docs/Wireframe/iPhone-Blog%20update%20form.jpg)  
 
 **My Home Page**   
-- movile   
+- movile  
 ![My Home Page for movile](./docs/Wireframe/iPhone-My%20HOME.jpg)  
 
 - Tablet  
@@ -181,24 +190,24 @@
 
 
 **(For Admin) Site management Page**  
-- movile   
+- movile  
 ![(For Admin) Site management Page for movile](./docs/Wireframe/iPhone-admin(SITE%20LIST).jpg)  
 
-- Tablet   
+- Tablet  
 ![(For Admin) Site management Page for tablet](./docs/Wireframe/iPhone-admin(SITE%20LIST).jpg)  
 
 - Desktop  
 ![(For Admin) Site management Page for desktop](./docs/Wireframe/Desktop-admin(SITE%20LIST).jpg)  
 
 
-**(For Admin) User management Page**   
-- movile   
+**(For Admin) User management Page**  
+- movile  
 ![(For Admin) User management Page for movile](./docs/Wireframe/iPhone-admin(USER%20LIST).jpg)  
 
 - Tablet  
-![(For Admin) User management Page for tablet](./docs/Wireframe/iPhone-admin(USER%20LIST).jpg)   
+![(For Admin) User management Page for tablet](./docs/Wireframe/iPhone-admin(USER%20LIST).jpg)  
 
-- Desktop   
+- Desktop  
 ![(For Admin) User management Page for tablet](./docs/Wireframe/Desktop%20-admin(USER%20LIST).jpg)  
  
 
