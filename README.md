@@ -34,8 +34,13 @@
 ![application architecture diagram](./docs/Application_Architecture_Diagram.jpeg)  
   
 ## User Stories  
-[Excel sheet for user story](https://onedrive.live.com/view.aspx?resid=6E0FC3D2BFB74104!129&ithint=file%2cxlsx&authkey=!AG1EELNirMpapYc)
+[Excel sheet for user story](https://onedrive.live.com/view.aspx?resid=6E0FC3D2BFB74104!129&ithint=file%2cxlsx&authkey=!AG1EELNirMpapYc)  
+All the user stories are start as a traveler. We assume that if we are a traveler, what we want to get from this web app. Then, we assume that if we are the owner of this app, how can we manage it. Finally, we add a few more features we'd like to see as a normal user. Here are the screenshot of the process of completing the user stories. You also can find the final excel from the link above.
+![dataflow diagram](/docs/userStory/user_story_start.png)   
+  
+![dataflow diagram](/docs/userStory/add_admin_to_user_story.png)   
 
+![dataflow diagram](/docs/userStory/final_user_story.png) 
 - As a traveler, I want to be able to securely log in, log out and change details of my account so my information only accessed for me.  
 - As a traveller, I want to know about the application and what the feature of it so that I know if this app is appropriate for my situation.
 - As a traveller, I want to see other travellers' photo so I can find more travling choices.  
