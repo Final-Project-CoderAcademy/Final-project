@@ -247,5 +247,26 @@ All the user stories are start as a traveler. We assume that if we are a travele
  
 
  ## Trello Board  
- [Trello Board link](https://trello.com/b/Uw6DU7pd/finalprojecta)
- 
+ [Trello Board link](https://trello.com/b/Uw6DU7pd/finalprojecta)  
+Yuka Toshima worked primarily on wireframe, while Xinzhe Yu worked on Dataflow and Application Architecture Diagram. We started on October 24, and in Trello, we put the cards we were working on in the "Doing" section and moved them to the "Done" section when the work was finished to share our progress. The cards were marked with the due date and the person in charge so that we knew who was supposed to do what by when.
+
+ - Day 1 (24th Oct)  
+  **Start of the day**  
+  <img src="./docs/Trello/24_Oct_2022.png" alt="24th Oct start" width="500"/>  
+  **End of the day**  
+  <img src="./docs/Trello/24-Oct-2022(2).png" alt="24th Oct end" width="500"/>  
+
+- Day 2 (25th Oct)  
+ <img src="./docs/Trello/25-Oct-2022.png" alt="25th Oct" width="500"/>   
+
+- Day 3 (26th Oct)  
+ <img src="./docs/Trello/26_Oct_2022.png" alt="26th Oct" width="500"/>   
+
+- Day 4 (27th Oct)  
+ <img src="./docs/Trello/27_Oct_2022.png" alt="27th Oct" width="500"/>   
+
+- Day 5 (28th Oct)  
+ <img src="./docs/Trello/28_Oct_2022.png" alt="28th Oct" width="500"/>   
+
+- Day 6 (29th Oct)  
+ <img src="./docs/Trello/29_Oct_2022.png" alt="29th Oct" width="500"/>   
