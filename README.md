@@ -271,3 +271,6 @@ Yuka Toshima worked primarily on wireframe, while Xinzhe Yu worked on Dataflow a
 
 - Day 6 (29th Oct)  
  <img src="./docs/Trello/29_Oct_2022.png" alt="29th Oct" width="500"/>   
+
+- Last Day (1st Nov)  
+ <img src="./docs/Trello/1_Nov_2022.png" alt="1st Nov" width="500"/>   
