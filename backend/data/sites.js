@@ -5,6 +5,7 @@ const sites = [
         rating: 4.0,
         category: 'park',
         image: '/images/bigbanana.jpg',
+        numReviews: 5
     },
     {
         name: 'Hiking in Tasmania',
@@ -12,6 +13,7 @@ const sites = [
         rating: 4.3,
         category: 'mountain',
         image: '/images/tasmania_hiking.jpg',
+        numReviews: 22
     },
     {
         name: 'Surfing in Gold Coast',
@@ -19,6 +21,7 @@ const sites = [
         rating: 3.8,
         category: 'sea',
         image: '/images/goldcoast_surfing.jpg',
+        numReviews: 8
     },
     {
         name: "Newcastle's beautiful landscape",
@@ -26,6 +29,7 @@ const sites = [
         rating: 4.7,
         category: 'sea',
         image: '/images/newcastle.jpg',
+        numReviews: 13
     },
     {
         name: 'Roadtrip around Pink Lake  in Port Gregory',
@@ -33,6 +37,7 @@ const sites = [
         rating: 3.3,
         category: 'lake',
         image: '/images/pinklake.jpg',
+        numReviews: 10
     },
 ]
 
