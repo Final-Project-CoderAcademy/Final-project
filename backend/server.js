@@ -3,11 +3,12 @@ import dotenv from 'dotenv'
 import colors from 'colors'
 import helmet from 'helmet'
 import cors from 'cors'
+// middleware for handling error
 import { 
     errorHandler, 
     notFound 
 } from './middleware/errorMiddleware.js'
-
+// connect mongoDB
 import connectDB from './config/db.js'
 
 dotenv.config()
@@ -17,7 +18,7 @@ const PORT = process.env.PORT || 1010
 const HOST = '0.0.0.0'
 
 void process.on('unhandledRejection', (reason, p) => {
-    console.log(`Here is the BIG ERROR: \n`.red + p)
+    console.log(`BIG ERROR: \n`.red + p)
     console.log(`That's because of: \n`.red + reason)
 })
 
@@ -43,6 +44,7 @@ var corsOptions = {
 }
 app.use(cors(corsOptions))
 
+// test server connection
 app.get('/', (req,res) => {
     res.send('Test Test(robot sound)>>>>>>>Server is running...>>>>>>>')
 })
