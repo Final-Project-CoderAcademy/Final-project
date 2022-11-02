@@ -3,8 +3,15 @@ import dotenv from 'dotenv'
 import colors from 'colors'
 import helmet from 'helmet'
 import cors from 'cors'
+import { 
+    errorHandler, 
+    notFound 
+} from './middleware/errorMiddleware.js'
+
+import connectDB from './config/db.js'
 
 dotenv.config()
+connectDB()
 
 const PORT = process.env.PORT || 1010
 const HOST = '0.0.0.0'
@@ -37,8 +44,11 @@ var corsOptions = {
 app.use(cors(corsOptions))
 
 app.get('/', (req,res) => {
-    res.send('Server is running...')
+    res.send('Test Test(robot sound)>>>>>>>Server is running...>>>>>>>')
 })
+
+app.use(notFound)
+app.use(errorHandler)
 
 app.listen(
     PORT, 
