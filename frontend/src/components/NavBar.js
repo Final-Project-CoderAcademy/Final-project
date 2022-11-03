@@ -1,8 +1,8 @@
 import React from "react";
 import { LinkContainer } from "react-router-bootstrap";
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { solid, regular, brands, icon } from '@fortawesome/fontawesome-svg-core/import.macro' // <-- import styles to be used
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { solid } from "@fortawesome/fontawesome-svg-core/import.macro"; // <-- import styles to be used
 
 const NavBar = () => {
   return (
@@ -10,7 +10,9 @@ const NavBar = () => {
       <Navbar bg="light" expand="md">
         <Container>
           <LinkContainer to="/">
-            <Navbar.Brand href="#home" className="me-4">MyWay</Navbar.Brand>
+            <Navbar.Brand href="#home" className="me-4">
+              MyWay
+            </Navbar.Brand>
           </LinkContainer>
 
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -32,10 +34,16 @@ const NavBar = () => {
                   <NavDropdown.Item>MyHome</NavDropdown.Item>
                 </LinkContainer>
 
-                <NavDropdown.Item><FontAwesomeIcon icon={solid('arrow-right-from-bracket')} className="me-2"/>Log Out</NavDropdown.Item>
+                <NavDropdown.Item>
+                  <FontAwesomeIcon
+                    icon={solid("arrow-right-from-bracket")}
+                    className="me-2"
+                  />
+                  Log Out
+                </NavDropdown.Item>
               </NavDropdown>
 
-            {/* when the user is an Admin  */}
+              {/* when the user is an Admin  */}
               <NavDropdown title="Admin" id="basic-nav-dropdown">
                 <LinkContainer to="/">
                   <NavDropdown.Item>SITE LIST</NavDropdown.Item>
@@ -45,13 +53,21 @@ const NavBar = () => {
                 </LinkContainer>
               </NavDropdown>
 
-
-            {/* when the user is NOT logged in */}
-              <LinkContainer to='/'>
-                    <Nav.Link><FontAwesomeIcon icon={solid('arrow-right-to-bracket')} className="me-2"/>LOG IN</Nav.Link>
+              {/* when the user is NOT logged in */}
+              <LinkContainer to="/login">
+                <Nav.Link>
+                  <FontAwesomeIcon
+                    icon={solid("arrow-right-to-bracket")}
+                    className="me-2"
+                  />
+                  LOG IN
+                </Nav.Link>
               </LinkContainer>
-              <LinkContainer to='/'>
-                    <Nav.Link><FontAwesomeIcon icon={solid('user')} className="me-2"/>SIGN UP</Nav.Link>
+              <LinkContainer to="/signup">
+                <Nav.Link>
+                  <FontAwesomeIcon icon={solid("user")} className="me-2" />
+                  SIGN UP
+                </Nav.Link>
               </LinkContainer>
             </Nav>
           </Navbar.Collapse>
@@ -60,6 +76,5 @@ const NavBar = () => {
     </header>
   );
 };
-
 
 export default NavBar;
