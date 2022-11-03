@@ -4,8 +4,6 @@ import { solid } from "@fortawesome/fontawesome-svg-core/import.macro"; // <-- i
 import { Link } from "react-router-dom";
 import { Button, Row, Col, Form } from "react-bootstrap";
 
-// import Form from "react-bootstrap/Form";
-
 const Login = () => {
   return (
     <div>
