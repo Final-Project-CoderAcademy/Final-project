@@ -20,17 +20,17 @@ const NavBar = () => {
             <LinkContainer to="/" className="me-4">
               <Nav.Link>ABOUT</Nav.Link>
             </LinkContainer>
-            <LinkContainer to="/" className="me-4">
+            <LinkContainer to="/blogs" className="me-4">
               <Nav.Link href="#link">BLOG</Nav.Link>
             </LinkContainer>
 
-            <LinkContainer to="/" className="me-4">
+            <LinkContainer to="/sites" className="me-4">
               <Nav.Link href="#link">FIND YOUR WAY</Nav.Link>
             </LinkContainer>
 
             <Nav className="ms-auto">
               <NavDropdown title="User-Name" id="basic-nav-dropdown">
-                <LinkContainer to="/">
+                <LinkContainer to="/myhome">
                   <NavDropdown.Item>MyHome</NavDropdown.Item>
                 </LinkContainer>
 
@@ -45,10 +45,10 @@ const NavBar = () => {
 
               {/* when the user is an Admin  */}
               <NavDropdown title="Admin" id="basic-nav-dropdown">
-                <LinkContainer to="/">
+                <LinkContainer to="/admin/sitelist">
                   <NavDropdown.Item>SITE LIST</NavDropdown.Item>
                 </LinkContainer>
-                <LinkContainer to="/">
+                <LinkContainer to="/admin/userlist">
                   <NavDropdown.Item>USER LIST</NavDropdown.Item>
                 </LinkContainer>
               </NavDropdown>
