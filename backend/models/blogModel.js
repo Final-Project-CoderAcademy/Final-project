@@ -1,5 +1,14 @@
 import mongoose from 'mongoose';
 
+const commentSchema = mongoose.Schema({
+    content: {
+        type: String,
+        required: true,
+    }
+},
+{
+    timestamps: true,
+})
 const blogSchema = mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
@@ -14,6 +23,7 @@ const blogSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    comments:[commentSchema],
     title: {
         type: String,
         required: true

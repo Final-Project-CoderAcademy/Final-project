@@ -1,11 +1,10 @@
-import {app} from './app.js'
+import app from './app.js'
 import connectDB from './config/db.js'
-
+// connect mongoDB
 connectDB()
 
 const PORT = process.env.PORT || 1010
 const HOST = '0.0.0.0'
-
 
 app.listen(
     PORT, 
