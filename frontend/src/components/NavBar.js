@@ -1,10 +1,20 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { LinkContainer } from "react-router-bootstrap";
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro"; // <-- import styles to be used
+import { logOut } from "../actions/userActions";
 
 const NavBar = () => {
+  const dispatch = useDispatch();
+  const userLogIn = useSelector((state) => state.userLogIn);
+  const { userInfo } = userLogIn;
+
+  const logOutHandler = (e) => {
+    dispatch(logOut());
+  };
+
   return (
     <header>
       <Navbar bg="light" expand="md">
@@ -29,46 +39,50 @@ const NavBar = () => {
             </LinkContainer>
 
             <Nav className="ms-auto">
-              <NavDropdown title="User-Name" id="basic-nav-dropdown">
-                <LinkContainer to="/myhome">
-                  <NavDropdown.Item>MyHome</NavDropdown.Item>
-                </LinkContainer>
+              {userInfo ? (
+                <NavDropdown title={userInfo.name} id="username">
+                  <LinkContainer to="/myhome">
+                    <NavDropdown.Item>MyHome</NavDropdown.Item>
+                  </LinkContainer>
 
-                <NavDropdown.Item>
-                  <FontAwesomeIcon
-                    icon={solid("arrow-right-from-bracket")}
-                    className="me-2"
-                  />
-                  Log Out
-                </NavDropdown.Item>
-              </NavDropdown>
+                  <NavDropdown.Item onClick={logOutHandler}>
+                    <FontAwesomeIcon
+                      icon={solid("arrow-right-from-bracket")}
+                      className="me-2"
+                    />
+                    Log Out
+                  </NavDropdown.Item>
+                </NavDropdown>
+              ) : (
+                <>
+                  <LinkContainer to="/login">
+                    <Nav.Link>
+                      <FontAwesomeIcon
+                        icon={solid("arrow-right-to-bracket")}
+                        className="me-2"
+                      />
+                      LOG IN
+                    </Nav.Link>
+                  </LinkContainer>
+                  <LinkContainer to="/signup">
+                    <Nav.Link>
+                      <FontAwesomeIcon icon={solid("user")} className="me-2" />
+                      SIGN UP
+                    </Nav.Link>
+                  </LinkContainer>
+                </>
+              )}
 
-              {/* when the user is an Admin  */}
-              <NavDropdown title="Admin" id="basic-nav-dropdown">
-                <LinkContainer to="/admin/sitelist">
-                  <NavDropdown.Item>SITE LIST</NavDropdown.Item>
-                </LinkContainer>
-                <LinkContainer to="/admin/userlist">
-                  <NavDropdown.Item>USER LIST</NavDropdown.Item>
-                </LinkContainer>
-              </NavDropdown>
-
-              {/* when the user is NOT logged in */}
-              <LinkContainer to="/login">
-                <Nav.Link>
-                  <FontAwesomeIcon
-                    icon={solid("arrow-right-to-bracket")}
-                    className="me-2"
-                  />
-                  LOG IN
-                </Nav.Link>
-              </LinkContainer>
-              <LinkContainer to="/signup">
-                <Nav.Link>
-                  <FontAwesomeIcon icon={solid("user")} className="me-2" />
-                  SIGN UP
-                </Nav.Link>
-              </LinkContainer>
+              {userInfo && userInfo.isAdmin && (
+                <NavDropdown title="Admin" id="adminmenu">
+                  <LinkContainer to="/admin/sitelist">
+                    <NavDropdown.Item>SITE LIST</NavDropdown.Item>
+                  </LinkContainer>
+                  <LinkContainer to="/admin/userlist">
+                    <NavDropdown.Item>USER LIST</NavDropdown.Item>
+                  </LinkContainer>
+                </NavDropdown>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Container>
