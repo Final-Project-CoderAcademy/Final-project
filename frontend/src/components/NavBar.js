@@ -64,7 +64,7 @@ const NavBar = () => {
                       LOG IN
                     </Nav.Link>
                   </LinkContainer>
-                  <LinkContainer to="/signup">
+                  <LinkContainer to="/register">
                     <Nav.Link>
                       <FontAwesomeIcon icon={solid("user")} className="me-2" />
                       SIGN UP

@@ -1,18 +1,23 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro"; // <-- import styles to be used
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button, Row, Col, Form } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
-import { logIn } from "../actions/userActions";
+import { register } from "../actions/userActions";
 
-const Login = () => {
+const Register = () => {
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [message, setMessage] = useState("");
+
+  // dispatch action
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const userLogIn = useSelector((state) => state.userLogIn);
-  const { userInfo } = userLogIn;
+  const userRegister = useSelector((state) => state.userRegister);
+  const { loading, error, userInfo } = userRegister;
 
   const { search } = useLocation();
 
@@ -26,15 +31,33 @@ const Login = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(logIn(email, password));
+    console.log("clicked", password);
+    if (password !== confirmPassword) {
+      setMessage("Password not match");
+    } else {
+      dispatch(register(username, email, password));
+    }
   };
+
   return (
     <div>
       <Link to="/">
         <FontAwesomeIcon icon={solid("arrow-left")} />
       </Link>
-      <h1 className="mb-4">Log In</h1>
+      <h1 className="mb-4">SIGN UP</h1>
       <Form onSubmit={submitHandler}>
+        <Form.Group className="mb-3" controlId="username">
+          <Form.Label>Username </Form.Label>
+          <Form.Control
+            type="string"
+            placeholder="Jane"
+            value={username}
+            onChange={(e) => {
+              setUsername(e.target.value);
+            }}
+          />
+        </Form.Group>
+
         <Form.Group className="mb-3" controlId="email">
           <Form.Label>Email </Form.Label>
           <Form.Control
@@ -51,7 +74,7 @@ const Login = () => {
           <Form.Label>Password </Form.Label>
           <Form.Control
             type="password"
-            placeholder="Jane"
+            placeholder="password"
             value={password}
             onChange={(e) => {
               setPassword(e.target.value);
@@ -59,15 +82,27 @@ const Login = () => {
           />
         </Form.Group>
 
+        <Form.Group className="mb-4" controlId="confirmPassword">
+          <Form.Label>Confirm Password</Form.Label>
+          <Form.Control
+            type="password"
+            placeholder="password"
+            value={confirmPassword}
+            onChange={(e) => {
+              setConfirmPassword(e.target.value);
+            }}
+          />
+        </Form.Group>
+
         <Button variant="primary" type="submit">
-          LOG IN
+          SIGN UP
         </Button>
       </Form>
       <Row className="py-3">
         <Col>
-          New user?{" "}
-          <Link to={redirect ? `/register?register=${redirect}` : "/register"}>
-            SIGN UP
+          Already have an account?{" "}
+          <Link to={redirect ? `/login?redirect=${redirect}` : "/register"}>
+            LOG IN
           </Link>
         </Col>
       </Row>
@@ -75,4 +110,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

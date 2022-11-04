@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Footer from "./components/Footer";
 import NavBar from "./components/NavBar";
 import Login from "./pages/LogIn";
-import Signup from "./pages/SignUp";
+import Register from "./pages/Register";
 import About from "./pages/About";
 import BlogList from "./pages/BlogList";
 import BlogArticle from "./pages/BlogArticle";
@@ -24,7 +24,7 @@ function App() {
           <Routes>
             <Route path="/" element={<About />}></Route>
             <Route path="/login" element={<Login />}></Route>
-            <Route path="/signup" element={<Signup />}></Route>
+            <Route path="/register" element={<Register />}></Route>
             <Route path="/blogs" element={<BlogList />}></Route>
             <Route path="/blogs/:id" element={<BlogArticle />}></Route>
             <Route path="/sites" element={<SitesList />}></Route>
