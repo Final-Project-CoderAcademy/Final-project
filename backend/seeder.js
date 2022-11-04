@@ -3,8 +3,7 @@ import colors from 'colors'
 // mongoose model frame
 import User from './models/userModel.js'
 import Blog from './models/blogModel.js'
-import BlogComment from './models/blogCommentModel.js'
-import SiteComment from './models/siteCommentModel.js'
+
 import Site from './models/siteModel.js'
 // sample data of users and sites
 import sites from './data/sites.js'
@@ -21,9 +20,9 @@ const importData = async () => {
         // clear the data in database
         await User.deleteMany()
         await Blog.deleteMany()
-        await BlogComment.deleteMany()
+        
         await Site.deleteMany()
-        await SiteComment.deleteMany()
+        
 
         // insert the example users
         const createdUsers = await User.insertMany(users)
@@ -49,9 +48,9 @@ const destroyData = async () => {
         // clear the data in database
         await User.deleteMany()
         await Blog.deleteMany()
-        await BlogComment.deleteMany()
+        
         await Site.deleteMany()
-        await SiteComment.deleteMany()
+        
         console.log('successfully destroying example data of users and site!'.yellow.inverse)
         process.exit()
     } catch (error) {
