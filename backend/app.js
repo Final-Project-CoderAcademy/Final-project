@@ -8,11 +8,11 @@ import {
     errorHandler, 
     notFound 
 } from './middleware/errorMiddleware.js'
-// connect mongoDB
-
+// routes
+import siteRoutes from './routes/siteRoutes.js'
+import userRoutes from './routes/userRoutes.js'
 
 dotenv.config()
-
 
 void process.on('unhandledRejection', (reason, p) => {
     console.log(`BIG ERROR: \n`.red + p)
@@ -46,6 +46,9 @@ app.get('/', (req,res) => {
     res.status(200)
     res.json({message: ">>>>>Server is connected<<<<<"})
 })
+
+app.use('/api/sites', siteRoutes)
+app.use('/api/users', userRoutes)
 
 app.use(notFound)
 app.use(errorHandler)

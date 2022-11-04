@@ -1,15 +1,11 @@
 import mongoose from 'mongoose';
 
-const reviewSchema = mongoose.Schema({
-    name: {
-        type: String,
-        required: true,
-    },
+const commentSchema = mongoose.Schema({
     rating: {
         type: String,
         required: true,
     },
-    comment: {
+    content: {
         type: String,
         required: true,
     }
@@ -36,8 +32,8 @@ const siteSchema = mongoose.Schema({
         type: Number,
         required: true
     },
-    reviews: [reviewSchema],
-    numReviews: {
+    comments: [commentSchema],
+    numComments: {
         type: Number,
         require: true,
     },
