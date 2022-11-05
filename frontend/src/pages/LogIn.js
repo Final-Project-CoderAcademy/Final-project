@@ -20,12 +20,15 @@ const Login = () => {
   const redirect = search ? search.split("=")[1] : "/";
 
   useEffect(() => {
-
-  }, []);
+    if (userInfo) {
+      navigate(redirect);
+    }
+  }, [navigate, userInfo, redirect]);
 
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(logIn(email, password));
+    navigate("/");
   };
 
   return (
@@ -51,7 +54,7 @@ const Login = () => {
           <Form.Label>Password </Form.Label>
           <Form.Control
             type="password"
-            placeholder="Jane"
+            placeholder="password"
             value={password}
             onChange={(e) => {
               setPassword(e.target.value);
