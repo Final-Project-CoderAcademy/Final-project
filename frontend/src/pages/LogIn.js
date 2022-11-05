@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro"; // <-- import styles to be used
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button, Row, Col, Form } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
+
 import { logIn } from "../actions/userActions";
 
 const Login = () => {
@@ -19,15 +20,14 @@ const Login = () => {
   const redirect = search ? search.split("=")[1] : "/";
 
   useEffect(() => {
-    if (userInfo) {
-      navigate(redirect);
-    }
-  }, [navigate, userInfo, redirect]);
+
+  }, []);
 
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(logIn(email, password));
   };
+
   return (
     <div>
       <Link to="/">

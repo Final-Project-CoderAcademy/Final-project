@@ -36,7 +36,7 @@ app.use(express.urlencoded({ extended: true }));
 // configure cors
 var corsOptions = {
   origin: ["http://localhost:3000"],
-  optionsSuccessStatus: 200,
+  optionsSuccessStatus: 200
 };
 app.use(cors(corsOptions));
 
@@ -52,4 +52,4 @@ app.use("/api/users", userRoutes);
 app.use(notFound);
 app.use(errorHandler);
 
-export default app;
+export default app

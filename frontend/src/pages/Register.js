@@ -7,7 +7,7 @@ import { Button, Row, Col, Form } from "react-bootstrap";
 import { register } from "../actions/userActions";
 
 const Register = () => {
-  const [username, setUsername] = useState("");
+  const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -31,11 +31,10 @@ const Register = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log("clicked", password);
     if (password !== confirmPassword) {
       setMessage("Password not match");
     } else {
-      dispatch(register(username, email, password));
+      dispatch(register(userName, email, password));
     }
   };
 
@@ -46,14 +45,14 @@ const Register = () => {
       </Link>
       <h1 className="mb-4">SIGN UP</h1>
       <Form onSubmit={submitHandler}>
-        <Form.Group className="mb-3" controlId="username">
+        <Form.Group className="mb-3" controlId="userName">
           <Form.Label>Username </Form.Label>
           <Form.Control
             type="string"
             placeholder="Jane"
-            value={username}
+            value={userName}
             onChange={(e) => {
-              setUsername(e.target.value);
+              setUserName(e.target.value);
             }}
           />
         </Form.Group>
