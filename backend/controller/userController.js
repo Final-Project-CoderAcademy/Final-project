@@ -16,6 +16,7 @@ export const userLogin = asyncHandler(async (req, res) => {
             isAdmin: user.isAdmin,
             token: generateToken(user._id)
         })
+        res.status(200)
     } else {
         res.status(401)
         throw new Error("Invalid email or password")
