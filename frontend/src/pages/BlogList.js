@@ -1,7 +1,12 @@
 import React from "react";
+import { Container } from "react-bootstrap";
 
 const BlogList = () => {
-  return <div>BlogList</div>;
+  return (
+    <>
+      <Container>BlogList</Container>
+    </>
+  );
 };
 
 export default BlogList;

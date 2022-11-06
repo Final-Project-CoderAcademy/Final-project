@@ -43,7 +43,7 @@ const About = () => {
           <Col md="auto">
             <img
               className="imgTop mx-auto d-block"
-              src="https://images.unsplash.com/photo-1591701729564-3b5325d5a4bd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80"
+              src="https://images.unsplash.com/photo-1515861461225-1488dfdaf0a8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
               alt="top"
             />
           </Col>
@@ -57,9 +57,7 @@ const About = () => {
             </Link>
           </Col>
         </Row>
-      </Container>
 
-      <Container>
         <h2 className="text-center mt-5">FEATURES</h2>
         <Row className="d-flex align-items-center">
           {/* Find Your Way */}
