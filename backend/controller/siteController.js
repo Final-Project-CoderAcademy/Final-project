@@ -7,6 +7,7 @@ import asyncHandler from 'express-async-handler'
 // Public
 export const getSites = asyncHandler(async (req, res) => {
     const sites = await Site.find()
+    res.status(200)
     res.json(sites)
 })
 
@@ -16,6 +17,7 @@ export const getSites = asyncHandler(async (req, res) => {
 export const getOneSite = asyncHandler(async (req, res) => {
     const site = await Site.findById(req.params.id)
     if (site){
+        res.status(200)
         res.json(site)
     } else {
         res.status(404)
