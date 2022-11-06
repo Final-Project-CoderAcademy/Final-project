@@ -17,6 +17,13 @@ code {
   }
 }
 
+.pageImg {
+  object-fit: cover;
+
+  height: 300px !important;
+  width: 100%;
+}
+
 .imgTop {
   width: 330px;
   height: 250px;
@@ -25,4 +32,12 @@ code {
 .featureIcon {
   width: 100px !important;
   height: 100px;
+}
+
+figcaption {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
 }
