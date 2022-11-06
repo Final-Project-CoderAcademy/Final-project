@@ -5,6 +5,9 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
+import sunriseIcon from "../material/sunrise.png";
+import blogIcon from "../material/blogger.png";
 
 const About = () => {
   const testImages = [
@@ -25,17 +28,17 @@ const About = () => {
           <Carousel.Item key={id}>
             <img className="d-block w-100" src={src} alt={alt} />
             <Carousel.Caption>
-              <h2>Explore Australia</h2>
+              <h2 className="fw-bold">Explore Australia</h2>
             </Carousel.Caption>
           </Carousel.Item>
         ))}
       </Carousel>
 
-      <h2 className="text-center m-5">
-        <Badge bg="secondary">ABOUT US</Badge>
-      </h2>
       <Container>
-        <Row className="d-flex align-items-center">
+        <h2 className="text-center m-5">
+          <Badge bg="secondary">ABOUT US</Badge>
+        </h2>
+        <Row className="d-flex align-items-center md">
           <Col md="auto">
             <img
               className="imgTop mx-auto d-block"
@@ -49,6 +52,49 @@ const About = () => {
               make it your best Australia trip.
             </p>
             <Button variant="info">Let's start!</Button>
+          </Col>
+        </Row>
+      </Container>
+
+      <Container>
+        <h2 className="text-center m-5">FEATURES</h2>
+        <Row className="d-flex align-items-center">
+          {/* Find Your Way */}
+          <Col className="col-md-6">
+            <Card className="text-center p-4 m-3">
+              <Card.Img
+                variant="top"
+                src={sunriseIcon}
+                className="featureIcon mx-auto d-block"
+              />
+              <Card.Body>
+                <Card.Text>
+                  Are you wondering where to travel? Here you will find a list
+                  of recommended travel destinations by category. You are sure
+                  to find the place you want to visit.
+                </Card.Text>
+                <Button variant="primary">Find Your Way</Button>
+              </Card.Body>
+            </Card>
+          </Col>
+
+          {/* Blog */}
+          <Col>
+            <Card className="text-center p-4 m-3">
+              <Card.Img
+                variant="top"
+                src={blogIcon}
+                className="featureIcon mx-auto d-block"
+              />
+              <Card.Body>
+                <Card.Text>
+                  Why not write a travel blog and share it with others or keep
+                  it as a memory for yourself? You may also find places you want
+                  to visit in other people's travel blogs.
+                </Card.Text>
+                <Button variant="primary">Visit Blog Page</Button>
+              </Card.Body>
+            </Card>
           </Col>
         </Row>
       </Container>

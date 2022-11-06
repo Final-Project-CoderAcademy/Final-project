@@ -10,7 +10,19 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
+@media (max-width: 350px) {
+  .imgTop {
+    width: 100% !important;
+    height: 250px;
+  }
+}
+
 .imgTop {
   width: 330px;
   height: 250px;
+}
+
+.featureIcon {
+  width: 100px !important;
+  height: 100px;
 }
