@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Carousel from "react-bootstrap/Carousel";
 import Badge from "react-bootstrap/Badge";
 import Container from "react-bootstrap/Container";
@@ -51,13 +52,15 @@ const About = () => {
               We help travelers find the best destinations in Australia. Let's
               make it your best Australia trip.
             </p>
-            <Button variant="info">Let's start!</Button>
+            <Link to="/register">
+              <Button variant="info">Let's start!</Button>
+            </Link>
           </Col>
         </Row>
       </Container>
 
       <Container>
-        <h2 className="text-center m-5">FEATURES</h2>
+        <h2 className="text-center mt-5">FEATURES</h2>
         <Row className="d-flex align-items-center">
           {/* Find Your Way */}
           <Col className="col-md-6">
@@ -73,7 +76,9 @@ const About = () => {
                   of recommended travel destinations by category. You are sure
                   to find the place you want to visit.
                 </Card.Text>
-                <Button variant="primary">Find Your Way</Button>
+                <Link to="/sites">
+                  <Button variant="primary">Find Your Way</Button>
+                </Link>
               </Card.Body>
             </Card>
           </Col>
@@ -92,7 +97,9 @@ const About = () => {
                   it as a memory for yourself? You may also find places you want
                   to visit in other people's travel blogs.
                 </Card.Text>
-                <Button variant="primary">Visit Blog Page</Button>
+                <Link to="/blogs">
+                  <Button variant="primary">Visit Blog Page</Button>
+                </Link>
               </Card.Body>
             </Card>
           </Col>
