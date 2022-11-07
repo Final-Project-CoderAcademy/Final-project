@@ -14,13 +14,12 @@ import MyHome from "./pages/MyHome";
 import AdminUserList from "./pages/AdminUserList";
 import AdminSiteList from "./pages/AdminSiteList";
 
-
 function App() {
   return (
     <Router>
       <NavBar />
-      <main className="py-3">
-        <Container>
+      <main className="pb-3">
+        <>
           <Routes>
             <Route path="/" element={<About />}></Route>
             <Route path="/login" element={<Login />}></Route>
@@ -33,7 +32,7 @@ function App() {
             <Route path="/admin/userlist" element={<AdminUserList />}></Route>
             <Route path="/admin/sitelist" element={<AdminSiteList />}></Route>
           </Routes>
-        </Container>
+        </>
       </main>
       <Footer />
     </Router>
