@@ -27,9 +27,14 @@ const About = () => {
       <Carousel>
         {testImages.map(({ src, alt }, id) => (
           <Carousel.Item key={id}>
-            <img className="d-block w-100" src={src} alt={alt} />
+            <img
+              className="d-block w-100"
+              style={{ height: 500, objectFit: "cover" }}
+              src={src}
+              alt={alt}
+            />
             <Carousel.Caption>
-              <h2 className="fw-bold">Explore Australia</h2>
+              <h1 className="fw-bold mb-5">Explore Australia</h1>
             </Carousel.Caption>
           </Carousel.Item>
         ))}
