@@ -9,7 +9,7 @@ const BlogEdit = () => {
     <Container>
       <Row className="justify-content-md-center">
         <Col xs={12} md={6}>
-          <Link to="/">
+          <Link to="/myhome">
             <FontAwesomeIcon
               icon={solid("arrow-left")}
               style={{ width: 28, height: 23, color: "black" }}
@@ -34,12 +34,12 @@ const BlogEdit = () => {
               <Form.Control
                 as="textarea"
                 placeholder="Lorem ipsum dolor sit amet....."
-                style={{ height: 250 }}
+                rows={8}
               />
             </Form.Group>
 
             <div className="d-grid gap-2 d-md-block">
-              <Button variant="secondary" type="submit" className="px-5 ">
+              <Button variant="secondary" type="submit" className="my-3 px-5 ">
                 POST
               </Button>
             </div>
