@@ -9,7 +9,7 @@ const SiteEdit = () => {
     <Container>
       <Row className="justify-content-md-center">
         <Col xs={12} md={6}>
-          <Link to="/myhome">
+          <Link to="/admin/sitelist">
             <FontAwesomeIcon
               icon={solid("arrow-left")}
               style={{ width: 28, height: 23, color: "black" }}
