@@ -118,6 +118,7 @@ export const deleteUser = asyncHandler(async (req, res) => {
     const user = await User.findById(req.params.id)
     if (user && user.isAdmin !== true) {
         await user.remove()
+        res.status(200)
         res.json({message: 'User removed successfully!'})
     } else {
         res.status(404)

@@ -80,7 +80,7 @@ export const deleteSite = asyncHandler(async (req, res) => {
     const site = await Site.findById(req.params.id)
     if (site) {
         await site.remove()
-        res.json({message: 'Site removed successfully!'})
+        res.status(200).json({message: 'Site removed successfully!'})
     } else {
         res.status(404)
         throw new Error('not found this site!')
