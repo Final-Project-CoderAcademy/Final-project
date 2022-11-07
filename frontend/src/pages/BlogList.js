@@ -31,7 +31,7 @@ const BlogList = () => {
         {dammyImgs.map(({ src, alt }, id) => (
           <>
             <Row className="mt-4 d-flex justify-content-center">
-              <Col className="col-sm-4 mb-3" md="auto">
+              <Col className="col-sm-5 mb-3" md="auto">
                 <Link to="/blogs/:id">
                   <img
                     key={id}
@@ -41,15 +41,15 @@ const BlogList = () => {
                   />
                 </Link>
               </Col>
-              <Col className="col-sm-8 mb-3 text-center">
+              <Col className="col-sm-7 mb-3 text-center">
                 <h5 className="pageTitle">
                   The BIG BANANA blog in Coffs Harbour
                 </h5>
-                <Row>
-                  <Col className="col-md-6 d-none d-md-block"></Col>
-                  <Col className="col-md-6">
+                <Row className="d-flex  align-items-center">
+                  <Col className="col-sm-6 d-none d-sm-block"></Col>
+                  <Col className="col-sm-6 mt-sm-5">
                     <p className="mb-0">23 January, 2022</p>
-                    <p className=" mb-0">By.ABC</p>
+                    <p className="mb-0">By.ABC</p>
                   </Col>
                 </Row>
               </Col>
