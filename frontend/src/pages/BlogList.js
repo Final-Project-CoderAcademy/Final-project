@@ -45,7 +45,7 @@ const BlogList = () => {
                 <h5 className="pageTitle">
                   The BIG BANANA blog in Coffs Harbour
                 </h5>
-                <Row className="d-flex  align-items-center">
+                <Row className="d-flex  align-items-center text-sm-end">
                   <Col className="col-sm-6 d-none d-sm-block"></Col>
                   <Col className="col-sm-6 mt-sm-5">
                     <p className="mb-0">23 January, 2022</p>

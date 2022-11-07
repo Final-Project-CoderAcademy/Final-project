@@ -53,7 +53,9 @@ const About = () => {
               make it your best Australia trip.
             </p>
             <Link to="/register">
-              <Button variant="info">Let's start!</Button>
+              <Button variant="info" className="btn-round px-4">
+                Let's start!
+              </Button>
             </Link>
           </Col>
         </Row>
@@ -75,7 +77,9 @@ const About = () => {
                   to find the place you want to visit.
                 </Card.Text>
                 <Link to="/sites">
-                  <Button variant="primary">Find Your Way</Button>
+                  <Button variant="primary" className="btn-round px-4">
+                    Find Your Way
+                  </Button>
                 </Link>
               </Card.Body>
             </Card>
@@ -96,7 +100,9 @@ const About = () => {
                   to visit in other people's travel blogs.
                 </Card.Text>
                 <Link to="/blogs">
-                  <Button variant="primary">Visit Blog Page</Button>
+                  <Button variant="primary" className="btn-round px-4">
+                    Visit Blog Page
+                  </Button>
                 </Link>
               </Card.Body>
             </Card>
