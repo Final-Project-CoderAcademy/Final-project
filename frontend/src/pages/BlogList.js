@@ -26,7 +26,7 @@ const BlogList = () => {
         </figcaption>
       </figure>
       <Container>
-        <h4 className="mt-4">All Posts</h4>
+        <h4 className="m-5 ps-3">All Posts</h4>
 
         {dammyImgs.map(({ src, alt }, id) => (
           <>
