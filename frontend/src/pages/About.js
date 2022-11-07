@@ -39,7 +39,7 @@ const About = () => {
         <h2 className="text-center m-5">
           <Badge bg="secondary">ABOUT US</Badge>
         </h2>
-        <Row className="d-flex align-items-center md">
+        <Row className="d-flex align-items-center">
           <Col md="auto">
             <img
               className="imgTop mx-auto d-block"

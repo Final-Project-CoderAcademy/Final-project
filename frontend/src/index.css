@@ -10,13 +10,16 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
-@media (max-width: 350px) {
+@media (max-width: 575px) {
   .imgTop {
     width: 100% !important;
     height: 250px;
   }
-}
 
+  .pageTitle {
+    font-size: 1em;
+  }
+}
 .pageImg {
   object-fit: cover;
 
@@ -40,4 +43,9 @@ figcaption {
   left: 50%;
   transform: translate(-50%, -50%);
   color: white;
+}
+
+.blogListImg {
+  width: 150px;
+  height: 150px;
 }
