@@ -76,11 +76,15 @@ const AdminUserList = () => {
                   />
                 </td>
               )}
-              <td className="p-2">
-                <Button variant="danger" className="btn-sm">
-                  <FontAwesomeIcon icon={solid("trash-can")} />
-                </Button>
-              </td>
+              {admin ? (
+                <td className="p-2">Admin</td>
+              ) : (
+                <td className="p-2">
+                  <Button variant="danger" className="btn-sm">
+                    <FontAwesomeIcon icon={solid("trash-can")} />
+                  </Button>
+                </td>
+              )}
             </tr>
           ))}
         </tbody>
