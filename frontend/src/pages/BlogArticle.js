@@ -60,11 +60,9 @@ const BlogArticle = () => {
               Edit
             </Button>
           </Link>
-          <Link to="/blogs/:id/delete">
-            <Button variant="dark" className="btn-round px-3">
-              Delete
-            </Button>
-          </Link>
+          <Button variant="dark" className="btn-round px-3">
+            Delete
+          </Button>
         </div>
       </div>
       <div className="p-3 my-sm-5 text-sm-center commentContainer">

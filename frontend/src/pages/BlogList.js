@@ -42,15 +42,12 @@ const BlogList = () => {
                 </Link>
               </Col>
               <Col className="col-sm-7 mb-3 text-center">
-                <h5 className="pageTitle">
+                <h5 className="pageTitle mb-sm-4">
                   The BIG BANANA blog in Coffs Harbour
                 </h5>
                 <Row className="d-flex  align-items-center text-sm-end">
-                  <Col className="col-sm-6 d-none d-sm-block"></Col>
-                  <Col className="col-sm-6 mt-sm-5">
-                    <p className="mb-0">23 January, 2022</p>
-                    <p className="mb-0">By.ABC</p>
-                  </Col>
+                  <p className="mb-0">23 January, 2022</p>
+                  <p className="mb-0">By.ABC</p>
                 </Row>
               </Col>
             </Row>
