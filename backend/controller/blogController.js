@@ -52,12 +52,13 @@ export const getBlogsByUserId = asyncHandler(async (req, res) => {
 // DELETE one blog by userId
 export const deleteBlogById = asyncHandler(async (req, res) => {
     const blog = await Blog.findById(req.params.id)
-    console.log(blog.user)
-    console.log(req.user._id)
+    // console.log(blog.user)
+    // console.log(req.user._id)
     if (blog) {
         if (req.user._id.toString() === blog.user.toString()|| req.user.isAdmin){
             await blog.remove()
-            res.status(200).json({message: 'Blog removed successfully!'})
+            res.status(200)
+            res.json({message: 'Blog removed successfully!'})
         } else {
             res.status(401)
             throw new Error('You are not authorized to delete this blog!')
