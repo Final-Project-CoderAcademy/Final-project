@@ -1,9 +1,10 @@
 import mongoose from 'mongoose';
 
 const commentSchema = mongoose.Schema({
-    rating: {
-        type: String,
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
         required: true,
+        ref: 'User'
     },
     content: {
         type: String,

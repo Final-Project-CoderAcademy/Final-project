@@ -20,7 +20,6 @@ const importData = async () => {
         // clear the data in database
         await User.deleteMany()
         await Blog.deleteMany()
-        
         await Site.deleteMany()
         
 
@@ -29,11 +28,14 @@ const importData = async () => {
 
         // get admin user id and add each site a owner(admin user)
         const adminUser = createdUsers[0]._id
+        
+        // set the user for each sample site
         const sampleSites = sites.map(site => {
             return {...site, user: adminUser}
         })
         // insert the example sites
         await Site.insertMany(sampleSites)
+
         console.log('successfully adding example data of users and site!'.yellow.inverse)
         process.exit()
     } catch (error) {

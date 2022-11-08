@@ -8,6 +8,7 @@ import { errorHandler, notFound } from "./middleware/errorMiddleware.js";
 // routes
 import siteRoutes from "./routes/siteRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
+import blogRoutes from "./routes/blogRoutes.js";
 
 dotenv.config();
 
@@ -48,6 +49,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/sites", siteRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/blogs", blogRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
