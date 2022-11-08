@@ -1,5 +1,4 @@
 import React from "react";
-import { Container } from "react-bootstrap";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Footer from "./components/Footer";
 import NavBar from "./components/NavBar";
@@ -13,6 +12,8 @@ import SiteDetail from "./pages/SiteDetail";
 import MyHome from "./pages/MyHome";
 import AdminUserList from "./pages/AdminUserList";
 import AdminSiteList from "./pages/AdminSiteList";
+import BlogForm from "./pages/BlogForm";
+import SiteForm from "./pages/SiteForm";
 
 function App() {
   return (
@@ -24,10 +25,15 @@ function App() {
             <Route path="/" element={<About />}></Route>
             <Route path="/login" element={<Login />}></Route>
             <Route path="/register" element={<Register />}></Route>
+
             <Route path="/blogs" element={<BlogList />}></Route>
             <Route path="/blogs/:id" element={<BlogArticle />}></Route>
+            <Route path="/blogs/:id/edit" element={<BlogForm />}></Route>
+
             <Route path="/sites" element={<SitesList />}></Route>
             <Route path="/sites/:id" element={<SiteDetail />}></Route>
+            <Route path="/sites/:id/edit" element={<SiteForm />}></Route>
+
             <Route path="/myhome" element={<MyHome />}></Route>
             <Route path="/admin/userlist" element={<AdminUserList />}></Route>
             <Route path="/admin/sitelist" element={<AdminSiteList />}></Route>

@@ -54,3 +54,10 @@ figcaption {
 .btn-round {
   border-radius: 50px !important;
 }
+
+@media (min-width: 768px) {
+  .commentContainer {
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+}

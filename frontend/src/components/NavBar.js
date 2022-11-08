@@ -27,14 +27,14 @@ const NavBar = () => {
 
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <LinkContainer to="/" className="me-4">
+            <LinkContainer to="/" className="me-4 my-3">
               <Nav.Link>ABOUT</Nav.Link>
             </LinkContainer>
-            <LinkContainer to="/blogs" className="me-4">
+            <LinkContainer to="/blogs" className="me-4 my-3">
               <Nav.Link href="#link">BLOG</Nav.Link>
             </LinkContainer>
 
-            <LinkContainer to="/sites" className="me-4">
+            <LinkContainer to="/sites" className="me-4 my-3">
               <Nav.Link href="#link">FIND YOUR WAY</Nav.Link>
             </LinkContainer>
 
