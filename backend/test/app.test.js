@@ -3,17 +3,15 @@ import app from '../app.js'
 import mongoose from 'mongoose'
 import Site from '../models/siteModel.js'
 import User from '../models/userModel.js'
+import Blog from '../models/blogModel.js'
 
 beforeAll(async () => {
   await mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true })
-  
 })
 
 afterAll(async () => {
-
   await mongoose.connection.close()
 })
-
 
 // test server start request '/'
 describe("GET /", () => {
@@ -26,13 +24,13 @@ describe("GET /", () => {
 
 // test sites API
 describe("sites", () => {
-
+    // API test: GET /api/sites
     describe('GET /api/sites', () => {
       it("should respond with 200", async () => {
         await request(app).get(`/api/sites`).expect(200)
       })
     })
-
+    // API test: POST /api/sites
     describe('POST /api/sites', () => {
       it("should post a new site", async () => {
         const response = await request(app).post('/api/users/login').send({
@@ -45,6 +43,7 @@ describe("sites", () => {
       })
     })
 
+    // API test: GET /api/sites/:id
     describe('GET /api/sites/:id', () => {
       describe('given the site not exist',() => {
         it("should respond with 500 when give ", async () => {
@@ -60,6 +59,7 @@ describe("sites", () => {
       })
     })
 
+    // API test: PUT /api/sites/:id
     describe('PUT /api/sites/:id', () => {
       it("should post a new site", async () => {
         const response = await request(app).post('/api/users/login').send({
@@ -81,6 +81,7 @@ describe("sites", () => {
       })
     })
 
+    // API test: DELETE api/sites/:id
     describe("DELETE api/sites/:id", () => {
       it("should delete a site", async () => {
         const response = await request(app).post('/api/users/login').send({
@@ -100,6 +101,7 @@ describe("sites", () => {
 
 // test users API
 describe("users", () => {
+  // API test: POST api/users/login
   describe("POST api/users/login", () => {
     it("should response with 200", async () => {
       const response = await request(app).post('/api/users/login').send({
@@ -111,6 +113,7 @@ describe("users", () => {
     })
   })
 
+  // API test: POST api/users/register
   describe("POST api/users/register", () => {
     it("should response with 200", async () => {
       const response = await request(app).post('/api/users/register').send({
@@ -124,6 +127,7 @@ describe("users", () => {
     })
   })
 
+  // API test: GET api/users
   describe("GET api/users", () => {
     it("should response with 200", async () => {
       const admin = await request(app).post('/api/users/login').send({
@@ -136,6 +140,7 @@ describe("users", () => {
     })
   })
 
+  // API test: GET api/users/profile
   describe("GET api/users/profile", () => {
     it("should response with 200", async () => {
       const admin = await request(app).post('/api/users/login').send({
@@ -148,6 +153,7 @@ describe("users", () => {
     })
   })
 
+  // API test: PUT /api/users/profile
   describe('PUT /api/users/profile', () => {
     it("should post a new site", async () => {
       const response = await request(app).post('/api/users/login').send({
@@ -162,6 +168,7 @@ describe("users", () => {
     })
   })
 
+  // API test: DELETE api/users/:id
   describe("DELETE api/users/:id", () => {
     it("should response with 200", async () => {
       const admin = await request(app).post('/api/users/login').send({
@@ -177,4 +184,84 @@ describe("users", () => {
   })
 })
 
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
+// test blogs API
+describe("blogs", () => {
+  // API test: POST api/blogs
+  describe("POST api/blogs", () => {
+    it("should response with 200 and get the new blog", async () => {
+      const user = await request(app).post('/api/users/login').send({
+        email: 'todd@example.com',
+        password: '123456'
+      })
+      const token = await user.body.token
+      const response = await request(app).post(`/api/blogs`).set('Content-Type', 'application/json').set('Authorization', `Bearer ${token}`).send({
+        image: "path of the image",
+        article: "Blog test article.",
+        title: "Blog test title."
+      })
+      expect(response.statusCode).toBe(201)
+      expect(response.body.title).toBe("Blog test title.")
+    })
+  })
+
+    // API test: DELETE api/blogs/:id
+    describe("POST api/blogs", () => {
+
+      // wrong user failed to delete 
+      describe("delete with right user", () => {
+        it("should response with 200 and get the new blog", async () => {
+          const user = await request(app).post('/api/users/login').send({
+            email: 'xinzhe@example.com',
+            password: '123456'
+          })
+          const token = await user.body.token
+          const blog = await Blog.findOne({title: "Blog test title."})
+          const blogId = blog._id
+          const response = await request(app).delete(`/api/blogs/${blogId}`).set('Authorization', `Bearer ${token}`)
+          expect(response.statusCode).toBe(401)
+        })
+      })
+
+      // successfully delete
+      describe("delete with right user", () => {
+        it("should response with 200 and get the new blog", async () => {
+          const user = await request(app).post('/api/users/login').send({
+            email: 'todd@example.com',
+            password: '123456'
+          })
+          const token = await user.body.token
+          const blog = await Blog.findOne({title: "Blog test title."})
+          const blogId = blog._id
+          const response = await request(app).delete(`/api/blogs/${blogId}`).set('Authorization', `Bearer ${token}`)
+          expect(response.statusCode).toBe(200)
+        })
+      })
+
+
+      // admin successfully delete
+      describe("delete with right user", () => {
+        it("should response with 200 and get the new blog", async () => {
+          const user = await request(app).post('/api/users/login').send({
+            email: 'todd@example.com',
+            password: '123456'
+          })
+          const token = await user.body.token
+          const response = await request(app).post(`/api/blogs`).set('Content-Type', 'application/json').set('Authorization', `Bearer ${token}`).send({
+            image: "path of the image",
+            article: "Blog test article.",
+            title: "Blog test title."
+          })
+          const blogId = await response.body._id
+          const userAdmin = await request(app).post('/api/users/login').send({
+            email: 'admin@example.com',
+            password: '123456'
+          })
+          const tokenAdmin = await userAdmin.body.token
+          const responseDelete = await request(app).delete(`/api/blogs/${blogId}`).set('Authorization', `Bearer ${tokenAdmin}`)
+          expect(responseDelete.statusCode).toBe(200)
+        })
+      })
+    })
+})
