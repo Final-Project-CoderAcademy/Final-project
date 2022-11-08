@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro"; // <-- import styles to be used
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Container, Button } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
 
 const AdminSiteList = () => {
@@ -40,19 +40,19 @@ const AdminSiteList = () => {
       >
         <thead>
           <tr>
-            <th className="p-2">ID</th>
-            <th className="p-2">TITLE</th>
-            <th className="p-2">CATEGORY</th>
-            <th className="p-2"></th>
+            <th className="p-3">ID</th>
+            <th className="p-3">TITLE</th>
+            <th className="p-3">CATEGORY</th>
+            <th className="p-3"></th>
           </tr>
         </thead>
         <tbody>
           {dammySites.map(({ id, title, category }) => (
             <tr key={id}>
-              <td className="p-2">{id}</td>
-              <td className="p-2">{title}</td>
-              <td className="p-2">{category}</td>
-              <td className="p-2">
+              <td className="p-3">{id}</td>
+              <td className="p-3">{title}</td>
+              <td className="p-3">{category}</td>
+              <td className="p-3">
                 <Link to="/sites/:id/edit">
                   <Button variant="info" className="btn-sm">
                     <FontAwesomeIcon icon={solid("pen-to-square")} />

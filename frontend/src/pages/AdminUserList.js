@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro"; // <-- import styles to be used
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Container, Button } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
 
 const AdminUserList = () => {
@@ -44,32 +44,32 @@ const AdminUserList = () => {
         bordered
         hover
         responsive
-        className="table-sm text-center my-5 text-nowrap"
+        className=" table-sm text-center my-5 text-nowrap"
       >
         <thead>
           <tr>
-            <th className="p-2">ID</th>
-            <th className="p-2">USERNAME</th>
-            <th className="p-2">EMAIL</th>
-            <th className="p-2">ADMIN</th>
-            <th className="p-2"></th>
+            <th className="p-3">ID</th>
+            <th className="p-3">USERNAME</th>
+            <th className="p-3">EMAIL</th>
+            <th className="p-3">ADMIN</th>
+            <th className="p-3"></th>
           </tr>
         </thead>
         <tbody>
           {dammyUsers.map(({ id, username, email, admin }) => (
             <tr key={id}>
-              <td className="p-2">{id}</td>
-              <td className="p-2">{username}</td>
-              <td className="p-2">{email}</td>
+              <td className="p-3">{id}</td>
+              <td className="p-3">{username}</td>
+              <td className="p-3">{email}</td>
               {admin ? (
-                <td className="p-2">
+                <td className="p-3">
                   <FontAwesomeIcon
                     icon={solid("check")}
                     style={{ color: "green" }}
                   />
                 </td>
               ) : (
-                <td className="p-2">
+                <td className="p-3">
                   <FontAwesomeIcon
                     icon={solid("xmark")}
                     style={{ color: "red" }}
@@ -77,9 +77,9 @@ const AdminUserList = () => {
                 </td>
               )}
               {admin ? (
-                <td className="p-2">Admin</td>
+                <td className="p-3">Admin</td>
               ) : (
-                <td className="p-2">
+                <td className="p-3">
                   <Button variant="danger" className="btn-sm">
                     <FontAwesomeIcon icon={solid("trash-can")} />
                   </Button>
