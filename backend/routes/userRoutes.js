@@ -39,7 +39,17 @@ router.post(
 
 router.route("/").get(authUser, authAdmin, getAllTheUsers);
 router.route("/:id").delete(authUser, authAdmin, deleteUser);
-router.post("/login", userLogin);
+
+router.post(
+  "/login",
+  body("email").isEmail(),
+  body("password")
+    .isLength({ min: 6 })
+    .withMessage("password must be 6 or more characters."),
+  validate, // middleware
+  userLogin
+);
+
 router
   .route("/profile")
   .get(authUser, userProfile)

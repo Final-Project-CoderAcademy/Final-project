@@ -7,7 +7,7 @@ import generateToken from "../utils/generateToken.js";
 // Public
 export const userLogin = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
-  const user = await User.findOne({ email });
+  const user = await User.findOne({ email: email });
   if (user && (await user.matchPassword(password))) {
     res.json({
       _id: user._id,
@@ -19,7 +19,9 @@ export const userLogin = asyncHandler(async (req, res) => {
     res.status(200);
   } else {
     res.status(401);
-    throw new Error("Invalid email or password");
+    return res.status(401).json({
+      errors: [{ params: "email", message: "email or password is invalid" }],
+    });
   }
 });
 
