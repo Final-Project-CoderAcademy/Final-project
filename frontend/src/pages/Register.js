@@ -16,6 +16,7 @@ const Register = () => {
   };
 
   const [registerForm, setRegisterForm] = useState(initialRegisterForm);
+  const { username, email, password, confirmPassword } = registerForm;
 
   //Validation
   const [errors, setErrors] = useState("");
@@ -33,7 +34,6 @@ const Register = () => {
   };
 
   const validateForm = () => {
-    const { username, email, password, confirmPassword } = registerForm;
     const newErrors = {};
 
     if (!username || username === "")
@@ -76,13 +76,8 @@ const Register = () => {
     console.log(registerForm);
 
     try {
-      dispatch(
-        register(
-          registerForm.username,
-          registerForm.email,
-          registerForm.password
-        )
-      );
+      dispatch(register(username, email, password));
+      navigate("/");
     } catch {
       console.log(`${error}`);
     }
@@ -108,7 +103,7 @@ const Register = () => {
               <Form.Control
                 type="string"
                 placeholder="Jane"
-                value={registerForm.username}
+                value={username}
                 onChange={(e) => {
                   setField("username", e.target.value);
                 }}
@@ -124,7 +119,7 @@ const Register = () => {
               <Form.Control
                 type="email"
                 placeholder="example@gmail.com"
-                value={registerForm.email}
+                value={email}
                 onChange={(e) => {
                   setField("email", e.target.value);
                 }}
@@ -140,7 +135,7 @@ const Register = () => {
               <Form.Control
                 type="password"
                 placeholder="password"
-                value={registerForm.password}
+                value={password}
                 onChange={(e) => {
                   setField("password", e.target.value);
                 }}
@@ -156,7 +151,7 @@ const Register = () => {
               <Form.Control
                 type="password"
                 placeholder="password"
-                value={registerForm.confirmPassword}
+                value={confirmPassword}
                 onChange={(e) => {
                   setField("confirmPassword", e.target.value);
                 }}
