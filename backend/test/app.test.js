@@ -117,7 +117,7 @@ describe("users", () => {
 
   // API test: POST api/users/register
   describe("POST api/users/register", () => {
-    it("should response with 200", async () => {
+    it("should response with 201", async () => {
       const response = await request(app).post('/api/users/register').send({
         name: "heyhey",
         email: 'heyhey@example.com',

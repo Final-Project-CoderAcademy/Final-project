@@ -24,15 +24,6 @@ router.post(
   body("password")
     .isLength({ min: 6 })
     .withMessage("password must be 6 or more characters."),
-  body("confirmPassword")
-    .isLength({ min: 6 })
-    .withMessage("confirmPassword must be 6 or more characters."),
-  body("confirmPassword").custom(async (confirmPassword, { req }) => {
-    const password = req.body.password;
-    if (password !== confirmPassword) {
-      throw new Error("Passwords must be the same");
-    }
-  }),
   validate, // middleware
   userRegister
 );
