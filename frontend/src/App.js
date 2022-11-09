@@ -16,12 +16,13 @@ import BlogForm from "./pages/BlogForm";
 import SiteForm from "./pages/SiteForm";
 import WeatherSearchBar from "./components/WeatherSearchBar";
 
+
 function App() {
   return (
     <Router>
       <NavBar />
+      <WeatherSearchBar />
       <main className="pb-3">
-        <WeatherSearchBar />
         <>
           <Routes>
             <Route path="/" element={<About />}></Route>

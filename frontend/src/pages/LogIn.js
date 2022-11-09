@@ -8,8 +8,35 @@ import { Button, Row, Col, Form, Container } from "react-bootstrap";
 import { logIn } from "../actions/userActions";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const initialLoginForm = { email: "", password: "" };
+  const [loginForm, setLoginForm] = useState(initialLoginForm);
+  const { email, password } = loginForm;
+
+  //Validation
+  const [errors, setErrors] = useState("");
+  const setField = (field, value) => {
+    setLoginForm({
+      ...loginForm,
+      [field]: value,
+    });
+
+    if (errors[field])
+      setErrors({
+        ...errors,
+        [field]: null,
+      });
+  };
+
+  const validateForm = () => {
+    const newErrors = {};
+
+    if (!email || email === "") newErrors.email = "Please enter your email";
+    if (!password || password === "")
+      newErrors.password = "Please enter password";
+    return newErrors;
+  };
+
+  // dispatch action
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const userLogIn = useSelector((state) => state.userLogIn);
@@ -27,6 +54,13 @@ const Login = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+
+    const formErrors = validateForm();
+    if (Object.keys(formErrors).length > 0) {
+      setErrors(formErrors);
+      return;
+    }
+
     dispatch(logIn(email, password));
     navigate("/");
   };
@@ -45,7 +79,7 @@ const Login = () => {
           </Link>
           <h2 className="mb-4 text-center">LOG IN</h2>
 
-          <Form onSubmit={submitHandler}>
+          <Form onSubmit={submitHandler} noValidate>
             <Form.Group className="mb-3" controlId="email">
               <Form.Label>Email </Form.Label>
               <Form.Control
@@ -53,9 +87,13 @@ const Login = () => {
                 placeholder="example@gmail.com"
                 value={email}
                 onChange={(e) => {
-                  setEmail(e.target.value);
+                  setField("email", e.target.value);
                 }}
+                isInvalid={errors.email}
               />
+              <Form.Control.Feedback type="invalid">
+                {errors.email}
+              </Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group className="mb-4" controlId="password">
@@ -65,9 +103,13 @@ const Login = () => {
                 placeholder="password"
                 value={password}
                 onChange={(e) => {
-                  setPassword(e.target.value);
+                  setField("password", e.target.value);
                 }}
+                isInvalid={errors.password}
               />
+              <Form.Control.Feedback type="invalid">
+                {errors.password}
+              </Form.Control.Feedback>
             </Form.Group>
             <div className="d-grid gap-2 d-md-block">
               <Button variant="primary" type="submit" className="px-5 ">

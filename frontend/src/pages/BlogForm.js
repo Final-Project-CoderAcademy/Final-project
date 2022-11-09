@@ -19,11 +19,6 @@ const BlogEdit = () => {
           </Link>
           <h2 className="mb-4 text-center">BLOG POST</h2>
           <Form>
-            <Form.Group className="mb-3" controlId="author">
-              <Form.Label>Author</Form.Label>
-              <Form.Control type="string" placeholder="Joe" />
-            </Form.Group>
-
             <Form.Group className="mb-3" controlId="title">
               <Form.Label>Title</Form.Label>
               <Form.Control type="string" placeholder="Blog Title" />
