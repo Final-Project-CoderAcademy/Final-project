@@ -4,14 +4,49 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button, Row, Col, Form, Container } from "react-bootstrap";
+
 import { register } from "../actions/userActions";
 
 const Register = () => {
-  const [userName, setUserName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [message, setMessage] = useState("");
+  const initialRegisterForm = {
+    username: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  };
+
+  const [registerForm, setRegisterForm] = useState(initialRegisterForm);
+
+  //Validation
+  const [errors, setErrors] = useState("");
+  const setField = (field, value) => {
+    setRegisterForm({
+      ...registerForm,
+      [field]: value,
+    });
+
+    if (errors[field])
+      setErrors({
+        ...errors,
+        [field]: null,
+      });
+  };
+
+  const validateForm = () => {
+    const { username, email, password, confirmPassword } = registerForm;
+    const newErrors = {};
+
+    if (!username || username === "")
+      newErrors.username = "Please enter your username";
+    if (!email || email === "") newErrors.email = "Please enter your email";
+    if (!password || password === "")
+      newErrors.password = "Please enter password";
+    if (!confirmPassword || confirmPassword === "")
+      newErrors.confirmPassword = "Please enter confirm password";
+    if (password !== confirmPassword)
+      newErrors.password = "password don't match";
+    return newErrors;
+  };
 
   // dispatch action
   const dispatch = useDispatch();
@@ -31,10 +66,25 @@ const Register = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    if (password !== confirmPassword) {
-      setMessage("Password not match");
-    } else {
-      dispatch(register(userName, email, password));
+
+    const formErrors = validateForm();
+    if (Object.keys(formErrors).length > 0) {
+      setErrors(formErrors);
+      return;
+    }
+
+    console.log(registerForm);
+
+    try {
+      dispatch(
+        register(
+          registerForm.username,
+          registerForm.email,
+          registerForm.password
+        )
+      );
+    } catch {
+      console.log(`${error}`);
     }
   };
 
@@ -51,17 +101,22 @@ const Register = () => {
             />
           </Link>
           <h2 className="mb-4 text-center">SIGN UP</h2>
-          <Form onSubmit={submitHandler}>
+
+          <Form onSubmit={submitHandler} noValidate>
             <Form.Group className="mb-3" controlId="userName">
               <Form.Label>Username </Form.Label>
               <Form.Control
                 type="string"
                 placeholder="Jane"
-                value={userName}
+                value={registerForm.username}
                 onChange={(e) => {
-                  setUserName(e.target.value);
+                  setField("username", e.target.value);
                 }}
+                isInvalid={errors.username}
               />
+              <Form.Control.Feedback type="invalid">
+                {errors.username}
+              </Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="email">
@@ -69,11 +124,15 @@ const Register = () => {
               <Form.Control
                 type="email"
                 placeholder="example@gmail.com"
-                value={email}
+                value={registerForm.email}
                 onChange={(e) => {
-                  setEmail(e.target.value);
+                  setField("email", e.target.value);
                 }}
+                isInvalid={errors.email}
               />
+              <Form.Control.Feedback type="invalid">
+                {errors.email}
+              </Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group className="mb-4" controlId="password">
@@ -81,11 +140,15 @@ const Register = () => {
               <Form.Control
                 type="password"
                 placeholder="password"
-                value={password}
+                value={registerForm.password}
                 onChange={(e) => {
-                  setPassword(e.target.value);
+                  setField("password", e.target.value);
                 }}
+                isInvalid={errors.password}
               />
+              <Form.Control.Feedback type="invalid">
+                {errors.password}
+              </Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group className="mb-4" controlId="confirmPassword">
@@ -93,18 +156,24 @@ const Register = () => {
               <Form.Control
                 type="password"
                 placeholder="password"
-                value={confirmPassword}
+                value={registerForm.confirmPassword}
                 onChange={(e) => {
-                  setConfirmPassword(e.target.value);
+                  setField("confirmPassword", e.target.value);
                 }}
+                isInvalid={errors.confirmPassword}
               />
+              <Form.Control.Feedback type="invalid">
+                {errors.confirmPassword}
+              </Form.Control.Feedback>
             </Form.Group>
+
             <div className="d-grid gap-2 d-md-block">
               <Button variant="primary" type="submit" className="px-5 ">
                 SIGN UP
               </Button>
             </div>
           </Form>
+
           <Row className="py-3">
             <Col>
               Already have an account?{" "}
