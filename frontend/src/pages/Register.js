@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { solid } from "@fortawesome/fontawesome-svg-core/import.macro"; // <-- import styles to be used
+import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button, Row, Col, Form, Container } from "react-bootstrap";
 import { register } from "../actions/userActions";

@@ -14,11 +14,13 @@ import AdminUserList from "./pages/AdminUserList";
 import AdminSiteList from "./pages/AdminSiteList";
 import BlogForm from "./pages/BlogForm";
 import SiteForm from "./pages/SiteForm";
+import WeatherSearch from "./components/WeatherSearch";
 
 function App() {
   return (
     <Router>
       <NavBar />
+      <WeatherSearch />
       <main className="pb-3">
         <>
           <Routes>
