@@ -30,7 +30,7 @@ router.post(
   body("confirmPassword").custom(async (confirmPassword, { req }) => {
     const password = req.body.password;
     if (password !== confirmPassword) {
-      throw new Error("Passwords must be same");
+      throw new Error("Passwords must be the same");
     }
   }),
   validate, // middleware
@@ -40,15 +40,7 @@ router.post(
 router.route("/").get(authUser, authAdmin, getAllTheUsers);
 router.route("/:id").delete(authUser, authAdmin, deleteUser);
 
-router.post(
-  "/login",
-  body("email").isEmail(),
-  body("password")
-    .isLength({ min: 6 })
-    .withMessage("password must be 6 or more characters."),
-  validate, // middleware
-  userLogin
-);
+router.post("/login", userLogin);
 
 router
   .route("/profile")
