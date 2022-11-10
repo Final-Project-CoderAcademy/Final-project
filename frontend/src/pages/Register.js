@@ -8,49 +8,54 @@ import { Button, Row, Col, Form, Container } from "react-bootstrap";
 import { register } from "../actions/userActions";
 
 const Register = () => {
-  const initialRegisterForm = {
-    username: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-  };
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [message, setMessage] = useState("");
+  // const initialRegisterForm = {
+  //   username: "",
+  //   email: "",
+  //   password: "",
+  //   confirmPassword: "",
+  // };
 
-  const [registerForm, setRegisterForm] = useState(initialRegisterForm);
-  const { username, email, password, confirmPassword } = registerForm;
+  // const [registerForm, setRegisterForm] = useState(initialRegisterForm);
+  // const { username, email, password, confirmPassword } = registerForm;
 
   //Validation
-  const [errors, setErrors] = useState("");
-  const setField = (field, value) => {
-    setRegisterForm({
-      ...registerForm,
-      [field]: value,
-    });
+  // const [errors, setErrors] = useState("");
+  // const setField = (field, value) => {
+  //   setRegisterForm({
+  //     ...registerForm,
+  //     [field]: value,
+  //   });
 
-    if (errors[field])
-      setErrors({
-        ...errors,
-        [field]: null,
-      });
-  };
+  //   if (errors[field])
+  //     setErrors({
+  //       ...errors,
+  //       [field]: null,
+  //     });
+  // };
 
-  const [usernameError, setUsernameError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
-  const [emailError, setEmailError] = useState("");
+  // const [usernameError, setUsernameError] = useState("");
+  // const [passwordError, setPasswordError] = useState("");
+  // const [emailError, setEmailError] = useState("");
 
-  const validateForm = () => {
-    const newErrors = {};
+  // const validateForm = () => {
+  //   const newErrors = {};
 
-    if (!username || username === "")
-      newErrors.username = "Please enter your username";
-    if (!email || email === "") newErrors.email = "Please enter your email";
-    if (!password || password === "")
-      newErrors.password = "Please enter password";
-    if (!confirmPassword || confirmPassword === "")
-      newErrors.confirmPassword = "Please enter confirm password";
-    if (password !== confirmPassword)
-      newErrors.password = "password have to be the same";
-    return newErrors;
-  };
+  //   if (!username || username === "")
+  //     newErrors.username = "Please enter your username";
+  //   if (!email || email === "") newErrors.email = "Please enter your email";
+  //   if (!password || password === "")
+  //     newErrors.password = "Please enter password";
+  //   if (!confirmPassword || confirmPassword === "")
+  //     newErrors.confirmPassword = "Please enter confirm password";
+  //   if (password !== confirmPassword)
+  //     newErrors.password = "password have to be the same";
+  //   return newErrors;
+  // };
 
   // dispatch action
   const dispatch = useDispatch();
@@ -71,31 +76,36 @@ const Register = () => {
   const submitHandler = (e) => {
     e.preventDefault();
 
-    const formErrors = validateForm();
-    if (Object.keys(formErrors).length > 0) {
-      setErrors(formErrors);
-      return;
+    // const formErrors = validateForm();
+    // if (Object.keys(formErrors).length > 0) {
+    //   setErrors(formErrors);
+    //   return;
+    // }
+
+    // console.log(registerForm);
+    if (password !== confirmPassword) {
+      setMessage("Password not match");
+    } else {
+      dispatch(register(username, email, password));
     }
 
-    console.log(registerForm);
-
-    dispatch(register(username, email, password));
-    if (error) {
-      error.forEach((err) => {
-        console.log("err", err);
-        if (err.param === "name") {
-          setUsernameError(err.msg);
-          console.log(err.msg);
-        }
-        if (err.param === "email") {
-          setEmailError("invalid email address");
-        }
-        if (err.param === "password") {
-          setPasswordError(err.msg);
-          console.log(err.msg);
-        }
-      });
-    }
+    // dispatch(register(username, email, password));
+    // if (error) {
+    //   error.forEach((err) => {
+    //     console.log("err", err);
+    //     if (err.param === "name") {
+    //       setUsernameError(err.msg);
+    //       console.log(err.msg);
+    //     }
+    //     if (err.param === "email") {
+    //       setEmailError("invalid email address");
+    //     }
+    //     if (err.param === "password") {
+    //       setPasswordError(err.msg);
+    //       console.log(err.msg);
+    //     }
+    //   });
+    // }
   };
 
   return (
@@ -116,17 +126,17 @@ const Register = () => {
             <Form.Group className="mb-3" controlId="username">
               <Form.Label>Username </Form.Label>
               <Form.Control
-                type="string"
+                type="username"
                 placeholder="Jane"
                 value={username}
                 onChange={(e) => {
-                  setField("username", e.target.value);
+                  setUsername(e.target.value);
                 }}
-                isInvalid={errors.username || usernameError}
+                // isInvalid={errors.username}
               />
-              <Form.Control.Feedback type="invalid">
-                {errors.username || usernameError}
-              </Form.Control.Feedback>
+              {/* <Form.Control.Feedback type="invalid">
+                {errors.username}
+              </Form.Control.Feedback> */}
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="email">
@@ -136,13 +146,13 @@ const Register = () => {
                 placeholder="example@gmail.com"
                 value={email}
                 onChange={(e) => {
-                  setField("email", e.target.value);
+                  setEmail(e.target.value);
                 }}
-                isInvalid={errors.email || emailError}
+                // isInvalid={errors.email}
               />
-              <Form.Control.Feedback type="invalid">
-                {errors.email || emailError}
-              </Form.Control.Feedback>
+              {/* <Form.Control.Feedback type="invalid">
+                {errors.email}
+              </Form.Control.Feedback> */}
             </Form.Group>
 
             <Form.Group className="mb-4" controlId="password">
@@ -152,13 +162,13 @@ const Register = () => {
                 placeholder="password"
                 value={password}
                 onChange={(e) => {
-                  setField("password", e.target.value);
+                  setPassword(e.target.value);
                 }}
-                isInvalid={errors.password || passwordError}
+                // isInvalid={errors.password}
               />
-              <Form.Control.Feedback type="invalid">
-                {errors.password || passwordError}
-              </Form.Control.Feedback>
+              {/* <Form.Control.Feedback type="invalid">
+                {errors.password}
+              </Form.Control.Feedback> */}
             </Form.Group>
 
             <Form.Group className="mb-4" controlId="confirmPassword">
@@ -168,13 +178,13 @@ const Register = () => {
                 placeholder="password"
                 value={confirmPassword}
                 onChange={(e) => {
-                  setField("confirmPassword", e.target.value);
+                  setConfirmPassword(e.target.value);
                 }}
-                isInvalid={errors.confirmPassword}
+                // isInvalid={errors.confirmPassword}
               />
-              <Form.Control.Feedback type="invalid">
+              {/* <Form.Control.Feedback type="invalid">
                 {errors.confirmPassword}
-              </Form.Control.Feedback>
+              </Form.Control.Feedback> */}
             </Form.Group>
 
             <div className="d-grid gap-2 d-md-block">
