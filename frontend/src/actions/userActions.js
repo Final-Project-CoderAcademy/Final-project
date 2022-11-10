@@ -10,7 +10,7 @@ import {
 } from "../contents/userContents";
 
 // register POST request actions
-export const register = (username, email, password) => async (dispatch) => {
+export const register = (name, email, password) => async (dispatch) => {
   try {
     dispatch({ type: USER_REGISTER_REQUEST });
     const config = {
@@ -20,7 +20,7 @@ export const register = (username, email, password) => async (dispatch) => {
     };
     const { data } = await axios.post(
       "/api/users/register",
-      { username, email, password },
+      { name, email, password },
       config
     );
     dispatch({ type: USER_REGISTER_SUCCESS, payload: data });

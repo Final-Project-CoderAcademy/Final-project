@@ -86,6 +86,7 @@ const Register = () => {
     if (password !== confirmPassword) {
       setMessage("Password not match");
     } else {
+      // console.log(username)
       dispatch(register(username, email, password));
     }
 
