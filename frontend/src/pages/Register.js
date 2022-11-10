@@ -12,50 +12,12 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [message, setMessage] = useState("");
-  // const initialRegisterForm = {
-  //   username: "",
-  //   email: "",
-  //   password: "",
-  //   confirmPassword: "",
-  // };
 
-  // const [registerForm, setRegisterForm] = useState(initialRegisterForm);
-  // const { username, email, password, confirmPassword } = registerForm;
-
-  //Validation
-  // const [errors, setErrors] = useState("");
-  // const setField = (field, value) => {
-  //   setRegisterForm({
-  //     ...registerForm,
-  //     [field]: value,
-  //   });
-
-  //   if (errors[field])
-  //     setErrors({
-  //       ...errors,
-  //       [field]: null,
-  //     });
-  // };
-
-  // const [usernameError, setUsernameError] = useState("");
-  // const [passwordError, setPasswordError] = useState("");
-  // const [emailError, setEmailError] = useState("");
-
-  // const validateForm = () => {
-  //   const newErrors = {};
-
-  //   if (!username || username === "")
-  //     newErrors.username = "Please enter your username";
-  //   if (!email || email === "") newErrors.email = "Please enter your email";
-  //   if (!password || password === "")
-  //     newErrors.password = "Please enter password";
-  //   if (!confirmPassword || confirmPassword === "")
-  //     newErrors.confirmPassword = "Please enter confirm password";
-  //   if (password !== confirmPassword)
-  //     newErrors.password = "password have to be the same";
-  //   return newErrors;
-  // };
+  //validation
+  const [usernameError, setUsernameError] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [confirmError, setConfirmError] = useState("");
 
   // dispatch action
   const dispatch = useDispatch();
@@ -73,40 +35,47 @@ const Register = () => {
     }
   }, [navigate, userInfo, redirect]);
 
+  const validation = () => {
+    if (!username || username === "")
+      setUsernameError("Please enter your username");
+    if (!email || email === "") setEmailError("Please enter your email");
+    if (!password || password === "") setPasswordError("Please enter password");
+    if (!confirmPassword || confirmPassword === "")
+      setConfirmError("Please enter confirm password");
+    if (password !== confirmPassword)
+      setConfirmError("password must be the same");
+    return;
+  };
+
   const submitHandler = (e) => {
+    console.log("clicked");
     e.preventDefault();
-
-    // const formErrors = validateForm();
-    // if (Object.keys(formErrors).length > 0) {
-    //   setErrors(formErrors);
-    //   return;
+    validation();
+    // if (password !== confirmPassword) {
+    //   setMessage("Password not match");
+    // } else {
+    //   // console.log(username)
+    //   dispatch(register(username, email, password));
     // }
 
-    // console.log(registerForm);
-    if (password !== confirmPassword) {
-      setMessage("Password not match");
-    } else {
-      // console.log(username)
-      dispatch(register(username, email, password));
+    dispatch(register(username, email, password));
+
+    if (error) {
+      error.forEach((err) => {
+        console.log("err", err);
+        if (err.param === "name") {
+          setUsernameError(err.msg);
+          console.log(err.msg);
+        }
+        if (err.param === "email") {
+          setEmailError("invalid email address");
+        }
+        if (err.param === "password") {
+          setPasswordError(err.msg);
+          console.log(err.msg);
+        }
+      });
     }
-
-    // dispatch(register(username, email, password));
-    // if (error) {
-    //   error.forEach((err) => {
-    //     console.log("err", err);
-    //     if (err.param === "name") {
-    //       setUsernameError(err.msg);
-    //       console.log(err.msg);
-    //     }
-    //     if (err.param === "email") {
-    //       setEmailError("invalid email address");
-    //     }
-    //     if (err.param === "password") {
-    //       setPasswordError(err.msg);
-    //       console.log(err.msg);
-    //     }
-    //   });
-    // }
   };
 
   return (
@@ -133,11 +102,11 @@ const Register = () => {
                 onChange={(e) => {
                   setUsername(e.target.value);
                 }}
-                // isInvalid={errors.username}
+                isInvalid={usernameError}
               />
-              {/* <Form.Control.Feedback type="invalid">
-                {errors.username}
-              </Form.Control.Feedback> */}
+              <Form.Control.Feedback type="invalid">
+                {usernameError}
+              </Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="email">
@@ -149,11 +118,11 @@ const Register = () => {
                 onChange={(e) => {
                   setEmail(e.target.value);
                 }}
-                // isInvalid={errors.email}
+                isInvalid={emailError}
               />
-              {/* <Form.Control.Feedback type="invalid">
-                {errors.email}
-              </Form.Control.Feedback> */}
+              <Form.Control.Feedback type="invalid">
+                {emailError}
+              </Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group className="mb-4" controlId="password">
@@ -165,11 +134,11 @@ const Register = () => {
                 onChange={(e) => {
                   setPassword(e.target.value);
                 }}
-                // isInvalid={errors.password}
+                isInvalid={passwordError}
               />
-              {/* <Form.Control.Feedback type="invalid">
-                {errors.password}
-              </Form.Control.Feedback> */}
+              <Form.Control.Feedback type="invalid">
+                {passwordError}
+              </Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group className="mb-4" controlId="confirmPassword">
@@ -181,11 +150,11 @@ const Register = () => {
                 onChange={(e) => {
                   setConfirmPassword(e.target.value);
                 }}
-                // isInvalid={errors.confirmPassword}
+                isInvalid={confirmError}
               />
-              {/* <Form.Control.Feedback type="invalid">
-                {errors.confirmPassword}
-              </Form.Control.Feedback> */}
+              <Form.Control.Feedback type="invalid">
+                {confirmError}
+              </Form.Control.Feedback>
             </Form.Group>
 
             <div className="d-grid gap-2 d-md-block">
