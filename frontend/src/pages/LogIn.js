@@ -12,6 +12,9 @@ const Login = () => {
   const [loginForm, setLoginForm] = useState(initialLoginForm);
   const { email, password } = loginForm;
 
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+
   //Validation
   const [errors, setErrors] = useState("");
   const setField = (field, value) => {
@@ -19,12 +22,6 @@ const Login = () => {
       ...loginForm,
       [field]: value,
     });
-
-    if (errors[field])
-      setErrors({
-        ...errors,
-        [field]: null,
-      });
   };
 
   const validateForm = () => {
@@ -40,7 +37,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const userLogIn = useSelector((state) => state.userLogIn);
-  const { userInfo } = userLogIn;
+  const { loading, error, userInfo } = userLogIn;
 
   const { search } = useLocation();
 
@@ -62,6 +59,19 @@ const Login = () => {
     }
 
     dispatch(logIn(email, password));
+    if (error) {
+      console.log(error);
+      error.forEach((err) => {
+        if (err.param === "email") {
+          setEmailError(err.msg);
+        }
+
+        if (err.param === "password") {
+          setPasswordError(err.msg);
+        }
+      });
+    }
+
     navigate("/");
   };
 
@@ -89,10 +99,10 @@ const Login = () => {
                 onChange={(e) => {
                   setField("email", e.target.value);
                 }}
-                isInvalid={errors.email}
+                isInvalid={errors.email || emailError}
               />
               <Form.Control.Feedback type="invalid">
-                {errors.email}
+                {errors.email || emailError}
               </Form.Control.Feedback>
             </Form.Group>
 
@@ -105,10 +115,10 @@ const Login = () => {
                 onChange={(e) => {
                   setField("password", e.target.value);
                 }}
-                isInvalid={errors.password}
+                isInvalid={errors.password || passwordError}
               />
               <Form.Control.Feedback type="invalid">
-                {errors.password}
+                {errors.password || passwordError}
               </Form.Control.Feedback>
             </Form.Group>
             <div className="d-grid gap-2 d-md-block">
