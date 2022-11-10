@@ -25,8 +25,10 @@ export const register = (name, email, password) => async (dispatch) => {
       config
     );
     dispatch({ type: USER_REGISTER_SUCCESS, payload: data });
-    dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
-    localStorage.setItem("userInfo", JSON.stringify(data));
+    if (!data.errors){
+      dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
+      localStorage.setItem("userInfo", JSON.stringify(data));
+    }
   } catch (error) {
     const errors = error.response.data.errors;
     dispatch({

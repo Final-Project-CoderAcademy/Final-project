@@ -68,7 +68,7 @@ const Register = () => {
   const redirect = search ? search.split("=")[1] : "/";
 
   useEffect(() => {
-    if (userInfo) {
+    if (userInfo && !userInfo.errors) {
       navigate(redirect);
     }
   }, [navigate, userInfo, redirect]);
