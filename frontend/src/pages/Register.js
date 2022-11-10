@@ -72,7 +72,7 @@ const Register = () => {
         }
         if (err.param === "password") {
           setPasswordError(err.msg);
-          console.log(err.msg);
+          // console.log(err.msg);
         }
       });
     }
