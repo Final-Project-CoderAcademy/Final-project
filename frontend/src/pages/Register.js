@@ -84,7 +84,7 @@ const Register = () => {
       error.forEach((err) => {
         console.log("err", err);
         if (err.param === "name") {
-          setUsernameError(`${err.msg}`);
+          setUsernameError(err.msg);
           console.log(err.msg);
         }
         if (err.param === "email") {
