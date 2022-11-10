@@ -29,6 +29,7 @@ export const register = (username, email, password) => async (dispatch) => {
     console.log("sign up successfully");
   } catch (error) {
     const errors = error.response.data.errors;
+    console.log("error:", errors);
     dispatch({
       type: USER_REGISTER_FAIL,
       payload: errors,
