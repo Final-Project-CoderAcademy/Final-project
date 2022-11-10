@@ -3,6 +3,7 @@ import {
   USER_REGISTER_REQUEST,
   USER_REGISTER_SUCCESS,
   USER_REGISTER_FAIL,
+  USER_REGISTER_RESET,
   USER_LOGIN_REQUEST,
   USER_LOGIN_SUCCESS,
   USER_LOGIN_FAIL,
@@ -26,7 +27,6 @@ export const register = (name, email, password) => async (dispatch) => {
     dispatch({ type: USER_REGISTER_SUCCESS, payload: data });
     dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
     localStorage.setItem("userInfo", JSON.stringify(data));
-    console.log("sign up successfully");
   } catch (error) {
     const errors = error.response.data.errors;
     console.log("error:", errors);
@@ -71,4 +71,5 @@ export const logIn = (email, password) => async (dispatch) => {
 export const logOut = () => (dispatch) => {
   localStorage.removeItem("userInfo");
   dispatch({ type: USER_LOGOUT });
+  dispatch({ type: USER_REGISTER_RESET });
 };
