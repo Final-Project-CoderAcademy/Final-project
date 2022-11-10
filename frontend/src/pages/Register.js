@@ -62,17 +62,14 @@ const Register = () => {
 
     if (error) {
       error.forEach((err) => {
-        console.log("err", err);
         if (err.param === "name") {
           setUsernameError(err.msg);
-          console.log(err.msg);
         }
         if (err.param === "email") {
           setEmailError("invalid email address");
         }
         if (err.param === "password") {
           setPasswordError(err.msg);
-          // console.log(err.msg);
         }
       });
     }

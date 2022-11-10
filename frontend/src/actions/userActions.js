@@ -12,29 +12,27 @@ import {
 
 // register POST request actions
 export const register = (name, email, password) => async (dispatch) => {
-  try {
-    dispatch({ type: USER_REGISTER_REQUEST });
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-    const { data } = await axios.post(
-      "/api/users/register",
-      { name, email, password },
-      config
-    );
-    dispatch({ type: USER_REGISTER_SUCCESS, payload: data });
-    if (!data.errors){
-      dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
-      localStorage.setItem("userInfo", JSON.stringify(data));
-    }
-  } catch (error) {
-    const errors = error.response.data.errors;
-    console.log("error:", errors);
+  // try {
+  dispatch({ type: USER_REGISTER_REQUEST });
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  const { data } = await axios.post(
+    "/api/users/register",
+    { name, email, password },
+    config
+  );
+  dispatch({ type: USER_REGISTER_SUCCESS, payload: data });
+  if (!data.errors) {
+    dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
+    localStorage.setItem("userInfo", JSON.stringify(data));
+  } else {
+    console.log(data.errors);
     dispatch({
       type: USER_REGISTER_FAIL,
-      payload: errors,
+      payload: data.errors,
     });
   }
 };
