@@ -86,3 +86,28 @@ export const deleteSite = asyncHandler(async (req, res) => {
         throw new Error('not found this site!')
     }
 })
+
+// create comment for site
+// POST /api/sites/:id/comments
+// users
+export const createSiteComment = asyncHandler(async (req, res) => {
+    const {
+        content
+    } = req.body
+    const site = await Site.findById(req.params.id)
+    if (site) {
+        const createComment = {
+            user: req.user._id,
+            content,
+            name: req.user.name
+        }
+        
+        res.status(201).json(createComment)
+        site.comments.push(createComment)
+        site.numComments = site.comments.length
+        await site.save()
+        res.status(201).json({message: "Successfully add comment."})
+    } else {
+        res.status(404).json('Site not found!')
+    }
+})
