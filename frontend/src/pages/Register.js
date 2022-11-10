@@ -33,6 +33,10 @@ const Register = () => {
       });
   };
 
+  const [usernameError, setUsernameError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [emailError, setEmailError] = useState("");
+
   const validateForm = () => {
     const newErrors = {};
 
@@ -44,7 +48,7 @@ const Register = () => {
     if (!confirmPassword || confirmPassword === "")
       newErrors.confirmPassword = "Please enter confirm password";
     if (password !== confirmPassword)
-      newErrors.password = "password don't match";
+      newErrors.password = "password have to be the same";
     return newErrors;
   };
 
@@ -75,11 +79,22 @@ const Register = () => {
 
     console.log(registerForm);
 
-    try {
-      dispatch(register(username, email, password));
-      navigate("/");
-    } catch {
-      console.log(`${error}`);
+    dispatch(register(username, email, password));
+    if (error) {
+      error.forEach((err) => {
+        console.log("err", err);
+        if (err.param === "name") {
+          setUsernameError(`${err.msg}`);
+          console.log(err.msg);
+        }
+        if (err.param === "email") {
+          setEmailError("invalid email address");
+        }
+        if (err.param === "password") {
+          setPasswordError(err.msg);
+          console.log(err.msg);
+        }
+      });
     }
   };
 
@@ -98,7 +113,7 @@ const Register = () => {
           <h2 className="mb-4 text-center">SIGN UP</h2>
 
           <Form onSubmit={submitHandler} noValidate>
-            <Form.Group className="mb-3" controlId="userName">
+            <Form.Group className="mb-3" controlId="username">
               <Form.Label>Username </Form.Label>
               <Form.Control
                 type="string"
@@ -107,10 +122,10 @@ const Register = () => {
                 onChange={(e) => {
                   setField("username", e.target.value);
                 }}
-                isInvalid={errors.username}
+                isInvalid={errors.username || usernameError}
               />
               <Form.Control.Feedback type="invalid">
-                {errors.username}
+                {errors.username || usernameError}
               </Form.Control.Feedback>
             </Form.Group>
 
@@ -123,10 +138,10 @@ const Register = () => {
                 onChange={(e) => {
                   setField("email", e.target.value);
                 }}
-                isInvalid={errors.email}
+                isInvalid={errors.email || emailError}
               />
               <Form.Control.Feedback type="invalid">
-                {errors.email}
+                {errors.email || emailError}
               </Form.Control.Feedback>
             </Form.Group>
 
@@ -139,10 +154,10 @@ const Register = () => {
                 onChange={(e) => {
                   setField("password", e.target.value);
                 }}
-                isInvalid={errors.password}
+                isInvalid={errors.password || passwordError}
               />
               <Form.Control.Feedback type="invalid">
-                {errors.password}
+                {errors.password || passwordError}
               </Form.Control.Feedback>
             </Form.Group>
 
