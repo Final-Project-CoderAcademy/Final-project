@@ -2,7 +2,7 @@ import Blog from '../models/blogModel.js'
 // asyncHandler is used to simplify the syntax of the promise catch error handling
 import asyncHandler from 'express-async-handler'
 
-// GET all the blogs
+// GET api/blogs
 export const getBlogs = asyncHandler(async (req, res) => {
     const blogs = await Blog.find({})
     if (blogs && blogs.length !== 0) {
@@ -13,7 +13,7 @@ export const getBlogs = asyncHandler(async (req, res) => {
     }
 })
 
-// get one blog by Id
+// GET api/blogs/:id
 export const getBlogById = asyncHandler(async (req, res) => {
     const blog = await Blog.findById(req.params.id)
     if (blog) {
@@ -25,7 +25,7 @@ export const getBlogById = asyncHandler(async (req, res) => {
     }
 })
 
-// POST one blog
+// POST api/blogs
 export const createBlog = asyncHandler(async (req, res) => {
     const blog = new Blog({
         user: req.user._id,
@@ -37,7 +37,7 @@ export const createBlog = asyncHandler(async (req, res) => {
     res.status(201).json(newBlog)
 })
 
-// GET one user's blogs by userId
+// GET api/blogs/:userId/all
 export const getBlogsByUserId = asyncHandler(async (req, res) => {
     const blogs = await Blog.find({user: req.params.userId})
     if (blogs && blogs.length !==0) {
@@ -49,7 +49,7 @@ export const getBlogsByUserId = asyncHandler(async (req, res) => {
     }
 })
 
-// DELETE one blog by userId
+// DELETE api/blogs/:id
 export const deleteBlogById = asyncHandler(async (req, res) => {
     const blog = await Blog.findById(req.params.id)
     // console.log(blog.user)
@@ -66,5 +66,30 @@ export const deleteBlogById = asyncHandler(async (req, res) => {
     } else {
         res.status(404)
         throw new Error('not found this blog!')
+    }
+})
+
+// create comment for site
+// POST /api/sites/:id/comments
+// users
+export const createSiteComment = asyncHandler(async (req, res) => {
+    const {
+        content
+    } = req.body
+    const blog = await Blog.findById(req.params.id)
+    if (blog) {
+        const createComment = {
+            user: req.user._id,
+            content,
+            name: req.user.name
+        }
+        
+        res.status(201).json(createComment)
+        blog.comments.push(createComment)
+        blog.numComments = blog.comments.length
+        await blog.save()
+        res.status(201).json({message: "Successfully add comment."})
+    } else {
+        res.status(404).json('Blog not found!')
     }
 })
