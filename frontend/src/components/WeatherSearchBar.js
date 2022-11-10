@@ -35,7 +35,20 @@ const WeatherSearchBar = () => {
     });
   };
 
+  const setForm = (e) => {
+    e.preventDefault()
+    loader
+    .load()
+    .then(google => {
+      initAutocomplete(google)
+  })
+    .catch(e => {
+      console.log(e.message)
+    });
+  }
+
   useEffect(() => {
+    
     loader
       .load()
       .then((google) => {
@@ -48,7 +61,7 @@ const WeatherSearchBar = () => {
 
   return (
     <Container>
-      <Form className="d-flex align-items-center justify-content-center mt-4 mb-3">
+      <Form className="d-flex align-items-center justify-content-center mt-4 mb-3" onSubmit={setForm}>
         <FontAwesomeIcon
           icon={solid("magnifying-glass")}
           style={{ width: 28, height: 23, color: "black" }}
