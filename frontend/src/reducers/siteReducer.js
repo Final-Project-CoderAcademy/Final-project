@@ -16,7 +16,7 @@ import {
   SITE_DELETE_REQUEST,
   SITE_DELETE_SUCCESS,
   SITE_DELETE_FAIL,
-} from "../contents/listContents";
+} from "../contents/siteContents";
 
 // reducer to get all the sites
 export const sitesListReducer = (state = { sites: [] }, action) => {
@@ -28,6 +28,19 @@ export const sitesListReducer = (state = { sites: [] }, action) => {
     case SITES_LIST_FAIL:
       return { error: action.payload };
 
+    default:
+      return state;
+  }
+};
+
+export const siteDetailReducer = (state = { site: {} }, action) => {
+  switch (action.type) {
+    case SITE_DETAIL_REQUEST:
+      return { ...state };
+    case SITE_DETAIL_SUCCESS:
+      return { site: action.payload };
+    case SITE_DETAIL_FAIL:
+      return { error: action.payload };
     default:
       return state;
   }
