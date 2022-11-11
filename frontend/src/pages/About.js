@@ -36,7 +36,7 @@ const About = () => {
                 />
               </Link>
               <Carousel.Caption>
-              <h1 className="fw-bold mb-5">Explore Australia</h1>
+              <h1 className="fw-bold mb-5">{site.name}</h1>
               </Carousel.Caption>
             </Carousel.Item>
         ))}
