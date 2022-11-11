@@ -1,0 +1,26 @@
+// Get all sites
+export const SITES_LIST_REQUEST = "SITES_LIST_REQUEST";
+export const SITES_LIST_SUCCESS = "SITES_LIST_SUCCESS";
+export const SITES_LIST_FAIL = "SITES_LIST_FAIL";
+
+// Get one site detail
+export const SITE_DETAIL_REQUEST = "SITE_DETAIL_REQUEST";
+export const SITE_DETAIL_SUCCESS = "SITE_DETAIL_SUCCESS";
+export const SITE_DETAIL_FAIL = "SITE_DETAIL_FAIL";
+
+// Create one site detail
+export const SITE_CREATE_REQUEST = "SITE_CREATE_REQUEST";
+export const SITE_CREATE_SUCCESS = "SITE_CREATE_SUCCESS";
+export const SITE_CREATE_FAIL = "SITE_CREATE_FAIL";
+export const SITE_CREATE_RESET = "SITE_CREATE_RESET";
+
+// Update one site detail
+export const SITE_UPDATE_REQUEST = "SITE_UPDATE_REQUEST";
+export const SITE_UPDATE_SUCCESS = "SITE_UPDATE_SUCCESS";
+export const SITE_UPDATE_FAIL = "SITE_UPDATE_FAIL";
+export const SITE_UPDATE_RESET = "SITE_UPDATE_RESET";
+
+// Delete one site detail
+export const SITE_DELETE_REQUEST = "SITE_DELETE_REQUEST";
+export const SITE_DELETE_SUCCESS = "SITE_DELETE_SUCCESS";
+export const SITE_DELETE_FAIL = "SITE_DELETE_FAIL";

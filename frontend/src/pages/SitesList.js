@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import siteTopImage from "../material/sitesSection.jpg";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
@@ -6,26 +6,17 @@ import { Container } from "react-bootstrap";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Link } from "react-router-dom";
+import { allSites } from "../actions/siteActions";
+import { useDispatch, useSelector } from "react-redux";
 
 const SitesList = () => {
-  const dammyImgs = [
-    {
-      src: "https://images.unsplash.com/photo-1636220506380-30a272f09562?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80",
-      alt: "bigbanana",
-    },
-    {
-      src: "https://images.unsplash.com/photo-1602242896752-b5c57d3f395f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80.jpg",
-      alt: "pinklake",
-    },
-    {
-      src: "https://images.unsplash.com/photo-1636220506380-30a272f09562?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80",
-      alt: "bigbanana",
-    },
-    {
-      src: "https://images.unsplash.com/photo-1602242896752-b5c57d3f395f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80.jpg",
-      alt: "pinklake",
-    },
-  ];
+  const dispatch = useDispatch();
+  const sitesList = useSelector((state) => state.sitesList);
+  const { error, sites } = sitesList;
+
+  useEffect(() => {
+    dispatch(allSites());
+  }, [dispatch]);
 
   const dammyCategories = ["All", "Mountain", "Beach", "Snow", "Other"];
   return (
@@ -37,6 +28,8 @@ const SitesList = () => {
         </figcaption>
       </figure>
 
+      {error ? <p>{error}</p> : null}
+
       <Container>
         {dammyCategories.map((category, id) => (
           <Button key={id} variant="light" className="btn-round mx-2 my-4 px-4">
@@ -47,22 +40,19 @@ const SitesList = () => {
         <h4 className="m-4 text-center">RECCOMENDED SITES</h4>
 
         <Row>
-          {dammyImgs.map(({ src, alt }, id) => (
-            <Col className="col-md-6 col-lg-4 mb-3" md="auto">
-              <Card key={id} className="m-3">
+          {sites.map((site) => (
+            <Col key={site._id} className="col-md-6 col-lg-4 mb-3" md="auto">
+              <Card className="m-3">
                 <Card.Img
                   variant="top"
-                  src={src}
-                  alt={alt}
+                  src={site.image}
+                  alt={site.name}
                   style={{ height: 190 }}
                 />
                 <Card.Body>
-                  <Card.Title>Card Title</Card.Title>
-                  <Card.Text>
-                    Some quick example text to build on the card title and make
-                    up the bulk of the card's content.
-                  </Card.Text>
-                  <Link to="/sites/:id">
+                  <Card.Title>{site.name}</Card.Title>
+                  <Card.Text>{site.description}</Card.Text>
+                  <Link to={`/sites/${site._id}`}>
                     <div className="text-end">
                       <Button variant="primary" className="btn-round px-3">
                         Read More
