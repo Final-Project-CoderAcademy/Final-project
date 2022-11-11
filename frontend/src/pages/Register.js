@@ -23,7 +23,7 @@ const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const userRegister = useSelector((state) => state.userRegister);
-  const { loading, error, userInfo } = userRegister;
+  const { error, userInfo } = userRegister;
 
   const { search } = useLocation();
 
@@ -48,7 +48,7 @@ const Register = () => {
   };
 
   const submitHandler = (e) => {
-    console.log("clicked");
+    
     e.preventDefault();
     validation();
     // if (password !== confirmPassword) {

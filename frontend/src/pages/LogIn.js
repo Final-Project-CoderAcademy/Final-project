@@ -37,7 +37,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const userLogIn = useSelector((state) => state.userLogIn);
-  const { loading, error, userInfo } = userLogIn;
+  const { error, userInfo } = userLogIn;
 
   const { search } = useLocation();
 
