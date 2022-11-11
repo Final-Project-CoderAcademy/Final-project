@@ -16,7 +16,7 @@ const About = () => {
   const dispatch = useDispatch();
   const sitesList = useSelector((state) => state.sitesList);
   const { error, sites } = sitesList;
-
+  const selectFiveSites = sites.slice(0, 5);
   useEffect(() => {
     dispatch(allSites());
     // eslint-disable-next-line
@@ -25,7 +25,7 @@ const About = () => {
   return (
     <>
       <Carousel>
-        {sites.map((site, id) => (
+        {selectFiveSites.map((site, id) => (
             <Carousel.Item key={id}>
               <Link to={`/sites/${site._id}`}>
                 <img
