@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { Link } from "react-router-dom";
 import Carousel from "react-bootstrap/Carousel";
 import Badge from "react-bootstrap/Badge";
@@ -9,34 +9,36 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import sunriseIcon from "../material/sunrise.png";
 import blogIcon from "../material/blogger.png";
+import { allSites } from "../actions/siteActions";
+import { useDispatch, useSelector } from "react-redux";
 
 const About = () => {
-  const testImages = [
-    {
-      src: "https://images.unsplash.com/photo-1636220506380-30a272f09562?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80",
-      alt: "bigbanana",
-    },
-    {
-      src: "https://images.unsplash.com/photo-1602242896752-b5c57d3f395f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80.jpg",
-      alt: "pinklake",
-    },
-  ];
+  const dispatch = useDispatch();
+  const sitesList = useSelector((state) => state.sitesList);
+  const { error, sites } = sitesList;
+  const selectFiveSites = sites.slice(0, 5);
+  useEffect(() => {
+    dispatch(allSites());
+    // eslint-disable-next-line
+  }, [dispatch]);
 
   return (
     <>
       <Carousel>
-        {testImages.map(({ src, alt }, id) => (
-          <Carousel.Item key={id}>
-            <img
-              className="d-block w-100"
-              style={{ height: 500, objectFit: "cover" }}
-              src={src}
-              alt={alt}
-            />
-            <Carousel.Caption>
+        {selectFiveSites.map((site, id) => (
+            <Carousel.Item key={id}>
+              <Link to={`/sites/${site._id}`}>
+                <img
+                  className="d-block w-100"
+                  style={{ height: "58vh", objectFit: "cover" }}
+                  src={site.image}
+                  alt={site.name}
+                />
+              </Link>
+              <Carousel.Caption>
               <h1 className="fw-bold mb-5">Explore Australia</h1>
-            </Carousel.Caption>
-          </Carousel.Item>
+              </Carousel.Caption>
+            </Carousel.Item>
         ))}
       </Carousel>
 

@@ -16,12 +16,16 @@ const SitesList = () => {
 
   useEffect(() => {
     dispatch(allSites());
+    // eslint-disable-next-line
   }, [dispatch]);
 
   const getOneSentence = (text) => {
-    const splitText = text.split(".");
-    const oneSentence = splitText[0];
-    return oneSentence;
+    const sliceText = text.slice(0,160);
+    return sliceText + "...";
+  };
+  const getOneLine = (text) => {
+    const sliceText = text.slice(0,30);
+    return sliceText + "...";
   };
 
   const dammyCategories = ["All", "Mountain", "Beach", "Snow", "Other"];
@@ -53,10 +57,10 @@ const SitesList = () => {
                   variant="top"
                   src={site.image}
                   alt={site.name}
-                  style={{ height: 190 }}
+                  style={{ width: "100%" }}
                 />
                 <Card.Body>
-                  <Card.Title>{site.name}</Card.Title>
+                  <Card.Title>{getOneLine(`${site.name}`)}</Card.Title>
                   <Card.Text>{getOneSentence(`${site.description}`)}</Card.Text>
                   <Link to={`/sites/${site._id}`}>
                     <div className="text-end">
