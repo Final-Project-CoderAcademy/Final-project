@@ -52,3 +52,53 @@ export const siteDetail = (id) => async (dispatch) => {
     });
   }
 };
+
+// Create one site
+export const createSite = () => async (dispatch, getState) => {
+  try {
+    dispatch({ type: SITE_CREATE_REQUEST });
+    const {
+      userLogIn: { userInfo },
+    } = getState();
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+    const { data } = await axios.post(`/api/sites`, {}, config);
+    dispatch({ type: SITE_CREATE_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: SITE_CREATE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+// Delete one site
+export const deleteSite = (id) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: SITE_DELETE_REQUEST });
+    const {
+      userLogIn: { userInfo },
+    } = getState();
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+    await axios.delete(`/api/sites/${id}`, config);
+    dispatch({ type: SITE_DELETE_SUCCESS });
+  } catch (error) {
+    dispatch({
+      type: SITE_DELETE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};

@@ -16,6 +16,8 @@ const SiteDetail = () => {
     dispatch(siteDetail(id));
   }, [dispatch, id]);
 
+  
+
   const dammyComment = [
     {
       username: "ABC",

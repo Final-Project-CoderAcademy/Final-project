@@ -33,6 +33,7 @@ export const sitesListReducer = (state = { sites: [] }, action) => {
   }
 };
 
+// reducer to get one site detail
 export const siteDetailReducer = (state = { site: {} }, action) => {
   switch (action.type) {
     case SITE_DETAIL_REQUEST:
@@ -41,6 +42,38 @@ export const siteDetailReducer = (state = { site: {} }, action) => {
       return { site: action.payload };
     case SITE_DETAIL_FAIL:
       return { error: action.payload };
+    default:
+      return state;
+  }
+};
+
+// reducer to create one site
+export const siteCreateReducer = (state = {}, action) => {
+  switch (action.type) {
+    case SITE_CREATE_REQUEST:
+      return { loading: true };
+    case SITE_CREATE_SUCCESS:
+      return { success: true, site: action.payload };
+    case SITE_CREATE_FAIL:
+      return { error: action.payload };
+    case SITE_CREATE_RESET:
+      return {};
+
+    default:
+      return state;
+  }
+};
+
+// reducer to delete one site
+export const siteDeleteReducer = (state = {}, action) => {
+  switch (action.type) {
+    case SITE_DELETE_REQUEST:
+      return { loading: true };
+    case SITE_DELETE_SUCCESS:
+      return { success: true };
+    case SITE_DELETE_FAIL:
+      return { error: action.payload };
+
     default:
       return state;
   }
