@@ -18,6 +18,12 @@ const SitesList = () => {
     dispatch(allSites());
   }, [dispatch]);
 
+  const getOneSentence = (text) => {
+    const splitText = text.split(".");
+    const oneSentence = splitText[0];
+    return oneSentence;
+  };
+
   const dammyCategories = ["All", "Mountain", "Beach", "Snow", "Other"];
   return (
     <>
@@ -51,7 +57,7 @@ const SitesList = () => {
                 />
                 <Card.Body>
                   <Card.Title>{site.name}</Card.Title>
-                  <Card.Text>{site.description}</Card.Text>
+                  <Card.Text>{getOneSentence(`${site.description}`)}</Card.Text>
                   <Link to={`/sites/${site._id}`}>
                     <div className="text-end">
                       <Button variant="primary" className="btn-round px-3">
