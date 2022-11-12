@@ -9,6 +9,12 @@ import {
   siteDeleteReducer,
   commentAddReducer,
 } from "./reducers/siteReducer";
+import {
+  blogsListReducer,
+  blogDetailReducer,
+  blogCreateReducer,
+  blogDeleteReducer,
+} from "./reducers/blogReducer";
 
 const reducer = combineReducers({
   userLogIn: userLogInReducer,
@@ -17,7 +23,11 @@ const reducer = combineReducers({
   siteDetails: siteDetailReducer,
   siteCreate: siteCreateReducer,
   siteDelete: siteDeleteReducer,
-  siteAddComment: commentAddReducer
+  siteAddComment: commentAddReducer,
+  blogsList: blogsListReducer,
+  blogDetails: blogDetailReducer,
+  blogCreate: blogCreateReducer,
+  blogDelete: blogDeleteReducer,
 });
 
 // get the login user

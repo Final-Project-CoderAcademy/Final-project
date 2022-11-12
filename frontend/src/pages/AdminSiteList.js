@@ -8,12 +8,6 @@ import { allSites, createSite, deleteSite } from "../actions/siteActions";
 import { SITE_CREATE_RESET } from "../contents/siteContents";
 import { useDispatch, useSelector } from "react-redux";
 const AdminSiteList = () => {
-  const dammySites = [
-    { id: "10000000000", title: "hiking in tasmania", category: "Mountain" },
-    { id: "20000000000", title: "surfing in goldcoast", category: "Beach" },
-    { id: "30000000000", title: "the big banana", category: "Park" },
-  ];
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const sitesList = useSelector((state) => state.sitesList);
@@ -69,6 +63,10 @@ const AdminSiteList = () => {
       </Link>
       <div className="text-center">
         <h2 className="mb-4">SITE LIST</h2>
+        {errorCreate && <p style={{ color: "red" }}>{errorCreate}</p>}
+        {errorDelete && <p style={{ color: "red" }}>{errorDelete}</p>}
+        {error && <p style={{ color: "red" }}>{error}</p>}
+
         <Link to="/sites/:id/edit">
           <Button variant="info" className="px-4" onClick={createSiteHandler}>
             CREATE A SITE

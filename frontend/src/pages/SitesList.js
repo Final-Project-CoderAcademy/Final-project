@@ -16,15 +16,14 @@ const SitesList = () => {
 
   useEffect(() => {
     dispatch(allSites());
-    // eslint-disable-next-line
   }, [dispatch]);
 
   const getOneSentence = (text) => {
-    const sliceText = text.slice(0,160);
+    const sliceText = text.slice(0, 160);
     return sliceText + "...";
   };
   const getOneLine = (text) => {
-    const sliceText = text.slice(0,30);
+    const sliceText = text.slice(0, 30);
     return sliceText + "...";
   };
 
@@ -38,7 +37,7 @@ const SitesList = () => {
         </figcaption>
       </figure>
 
-      {error ? <p>{error}</p> : null}
+      {error && <p style={{ color: "red" }}>{error}</p>}
 
       <Container>
         {dammyCategories.map((category, id) => (

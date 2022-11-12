@@ -1,21 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container } from "react-bootstrap";
 import blogTopImage from "../material/blogSection.jpg";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { allBlogs } from "../actions/blogActions";
+import { useDispatch, useSelector } from "react-redux";
 
 const BlogList = () => {
-  const dammyImgs = [
-    {
-      src: "https://images.unsplash.com/photo-1636220506380-30a272f09562?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80",
-      alt: "bigbanana",
-    },
-    {
-      src: "https://images.unsplash.com/photo-1602242896752-b5c57d3f395f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80.jpg",
-      alt: "pinklake",
-    },
-  ];
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const blogsList = useSelector((state) => state.blogsList);
+  const { error, blogs } = blogsList;
+  const userLogIn = useSelector((state) => state.userLogIn);
+  const { userInfo } = userLogIn;
+
+  useEffect(() => {
+    if (userInfo) {
+      dispatch(allBlogs());
+    } else {
+      navigate("/login");
+    }
+  }, [dispatch]);
 
   return (
     <>
@@ -25,33 +31,30 @@ const BlogList = () => {
           <h1>BLOG</h1>
         </figcaption>
       </figure>
+      {error && <p style={{ color: "red" }}>{error}</p>}
+
       <Container>
         <h4 className="m-5 ps-3">All Posts</h4>
 
-        {dammyImgs.map(({ src, alt }, id) => (
-          <>
-            <Row className="mt-4 d-flex justify-content-center">
-              <Col className="col-sm-5 mb-3" md="auto">
-                <Link to="/blogs/:id">
-                  <img
-                    key={id}
-                    src={src}
-                    alt={alt}
-                    className="blogListImg mx-auto d-block"
-                  />
-                </Link>
-              </Col>
-              <Col className="col-sm-7 mb-3 text-center">
-                <h5 className="pageTitle mb-sm-4">
-                  The BIG BANANA blog in Coffs Harbour
-                </h5>
-                <Row className="d-flex  align-items-center text-sm-end">
-                  <p className="mb-0">23 January, 2022</p>
-                  <p className="mb-0">By.ABC</p>
-                </Row>
-              </Col>
-            </Row>
-          </>
+        {blogs?.map((blog) => (
+          <Row className="mt-4 d-flex justify-content-center">
+            <Col className="col-sm-5 mb-3" md="auto" key={blog._id}>
+              <Link to={`/blogs/${blog._id}`}>
+                <img
+                  src={blog.image}
+                  alt={blog.title}
+                  className="blogListImg mx-auto d-block"
+                />
+              </Link>
+            </Col>
+            <Col className="col-sm-7 mb-3 text-center">
+              <h5 className="pageTitle mb-sm-4">{blog.title}</h5>
+              <Row className="d-flex  align-items-center text-sm-end">
+                <p className="mb-0">{blog.updatedAt}</p>
+                <p className="mb-0">{blog.user}</p>
+              </Row>
+            </Col>
+          </Row>
         ))}
       </Container>
     </>
