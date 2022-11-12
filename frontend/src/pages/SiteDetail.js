@@ -22,6 +22,7 @@ const SiteDetail = () => {
   } = siteAddComment
 
 
+
   useEffect(() => {
     if (successProductReview) {
       setComment('')
@@ -32,6 +33,30 @@ const SiteDetail = () => {
       navigate('/login')
     }
   }, [dispatch, id, comment, navigate, successProductReview]);
+
+  const dammyComment = [
+    {
+      username: "ABC",
+      comment:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed imperdiet libero. ",
+    },
+    {
+      username: "DEF",
+      comment:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed imperdiet libero. ",
+    },
+    {
+      username: "GHI",
+      comment:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed imperdiet libero. ",
+    },
+    {
+      username: "JKL",
+      comment:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed imperdiet libero. ",
+    },
+  ];
+
 
   const commentSubmitHandler = (e) => {
     e.preventDefault();
@@ -55,10 +80,17 @@ const SiteDetail = () => {
       <h3 className="mt-5 fw-bold">{site.name}</h3>
       <p className="lh-lg fs-6">{site.description}</p>
       <div className="p-3 my-sm-5 text-sm-center commentContainer">
+
         <h5 style={{textAlign: 'left'}}>LOCATION</h5>
         <h5 className="mt-5 mb-3" style={{textAlign: 'left'}}>COMMENTS</h5>
         {site.comments === undefined ? "No comments." : site.comments.map(comment => (
           <Card key={comment._id} className="mb-1 border-1 d-flex">
+
+        <h5>LOCATION</h5>
+        <h5 className="mt-5 mb-3">COMMENTS</h5>
+        {dammyComment.map(({ username, comment }, id) => (
+          <Card className="mb-1 border-0 d-flex align-items-center" key={id}>
+
             <Card.Body>
               <Card.Text className="text-start mb-0">
                 {comment.content}

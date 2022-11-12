@@ -26,7 +26,7 @@ const BlogArticle = () => {
   }, [dispatch, id]);
 
   const deleteBlogHandler = (id) => {
-    if (userInfo._id == blog.user && window.confirm("Are you sure?")) {
+    if (userInfo._id === blog.user && window.confirm("Are you sure?")) {
       dispatch(deleteBlog(id));
     }
   };
@@ -70,7 +70,7 @@ const BlogArticle = () => {
         <p className="px-3 lh-lg fs-6 mb-1">{blog.article} </p>
         {userInfo._id === blog.user && (
           <div className="text-end my-3 ">
-            <Link to="/blogs/:id/edit">
+            <Link to={`/blogs/${blog._id}/edit`}>
               <Button variant="light" className="btn-round px-3 mx-2">
                 Edit
               </Button>
