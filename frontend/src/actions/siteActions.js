@@ -16,6 +16,9 @@ import {
   SITE_DELETE_REQUEST,
   SITE_DELETE_SUCCESS,
   SITE_DELETE_FAIL,
+  ADD_COMMENT_REQUEST,
+  ADD_COMMENT_SUCCESS,
+  ADD_COMMENT_FAIL,
 } from "../contents/siteContents";
 import axios from "axios";
 
@@ -62,7 +65,7 @@ export const createSite = () => async (dispatch, getState) => {
     } = getState();
     const config = {
       headers: {
-        Authorization: `Bearer ${userInfo.token}`,
+        Authorization: `Bearer ${userInfo.token}`
       },
     };
     const { data } = await axios.post(`/api/sites`, {}, config);
@@ -95,6 +98,32 @@ export const deleteSite = (id) => async (dispatch, getState) => {
   } catch (error) {
     dispatch({
       type: SITE_DELETE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+// add comment to one site
+export const addCommentToOneSite = (id, comment) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: ADD_COMMENT_REQUEST });
+    const {
+      userLogIn: { userInfo },
+    } = getState();
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${userInfo.token}`
+      },
+    };
+    const {data} = await axios.post(`/api/sites/${id}/comments`, comment, config);
+    dispatch({ type: ADD_COMMENT_SUCCESS });
+  } catch (error) {
+    dispatch({
+      type: ADD_COMMENT_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

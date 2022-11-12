@@ -16,6 +16,9 @@ import {
   SITE_DELETE_REQUEST,
   SITE_DELETE_SUCCESS,
   SITE_DELETE_FAIL,
+  ADD_COMMENT_REQUEST,
+  ADD_COMMENT_SUCCESS,
+  ADD_COMMENT_FAIL,
 } from "../contents/siteContents";
 
 // reducer to get all the sites
@@ -51,7 +54,7 @@ export const siteDetailReducer = (state = { site: {} }, action) => {
 export const siteCreateReducer = (state = {}, action) => {
   switch (action.type) {
     case SITE_CREATE_REQUEST:
-      return { loading: true };
+      return {};
     case SITE_CREATE_SUCCESS:
       return { success: true, site: action.payload };
     case SITE_CREATE_FAIL:
@@ -68,12 +71,27 @@ export const siteCreateReducer = (state = {}, action) => {
 export const siteDeleteReducer = (state = {}, action) => {
   switch (action.type) {
     case SITE_DELETE_REQUEST:
-      return { loading: true };
+      return {};
     case SITE_DELETE_SUCCESS:
       return { success: true };
     case SITE_DELETE_FAIL:
       return { error: action.payload };
 
+    default:
+      return state;
+  }
+};
+
+
+// reducer to add comment for a site
+export const commentAddReducer = (state = {}, action) => {
+  switch (action.type) {
+    case ADD_COMMENT_REQUEST:
+      return {};
+    case ADD_COMMENT_SUCCESS:
+      return { success: true };
+    case ADD_COMMENT_FAIL:
+      return { error: action.payload };
     default:
       return state;
   }

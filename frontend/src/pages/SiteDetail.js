@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
-import { Button, Container, Form } from "react-bootstrap";
-import Card from "react-bootstrap/Card";
+import React, { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { siteDetail } from "../actions/siteActions";
+import { Button, Container, Form } from "react-bootstrap";
+import Card from "react-bootstrap/Card";
+import { addCommentToOneSite, siteDetail } from "../actions/siteActions";
 
 const SiteDetail = () => {
   const { id } = useParams();
@@ -13,24 +13,44 @@ const SiteDetail = () => {
   const { error, site } = siteDetails;
   const userLogIn = useSelector((state) => state.userLogIn);
   const { userInfo } = userLogIn
+  const [comment, setComment] = useState("")
+
+  const siteAddComment = useSelector((state) => state.siteAddComment)
+  const {
+    success: successProductReview,
+    error: errorProductReview,
+  } = siteAddComment
+
 
   useEffect(() => {
+    if (successProductReview) {
+      setComment('')
+    }
     if (userInfo) {
       dispatch(siteDetail(id));
     } else {
       navigate('/login')
     }
-    
-  }, [dispatch, id]);
-  const commentSubmitHandler = () => {
+  }, [dispatch, id, comment, navigate, successProductReview]);
 
+  const commentSubmitHandler = (e) => {
+    e.preventDefault();
+    if (!(e.target[0].value === "")) {
+      dispatch(addCommentToOneSite(id, {
+        content: comment
+      }));
+      alert('successfully comment!')
+      navigate(`/sites/${id}`)
+    } else {
+      alert('The comment is empty!')
+    }
   }
   return (
     <Container className="px-sm-5 mt-5">
       <img
         src={site.image}
         alt={site.name}
-        className="my-sm-5 img-fluid mx-auto d-block"
+        className="my-sm-5 img-fluid d-block"
       />
       <h3 className="mt-5 fw-bold">{site.name}</h3>
       <p className="lh-lg fs-6">{site.description}</p>
@@ -59,7 +79,7 @@ const SiteDetail = () => {
         <div className="d-flex flex-column justify-content-center">
           <Form onSubmit={commentSubmitHandler}>
             <Form.Group className="mb-3" controlId="comment">
-              <Form.Control as="textarea" placeholder="Comment....." rows={8} />
+              <Form.Control as="textarea" placeholder="Comment....." rows={8} onChange={(e) => setComment(e.target.value)}/>
             </Form.Group>
             <div className="text-end my-1">
               <Button type="submit" variant="secondary" className="btn-round px-3 mx-2">

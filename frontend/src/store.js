@@ -7,6 +7,7 @@ import {
   siteDetailReducer,
   siteCreateReducer,
   siteDeleteReducer,
+  commentAddReducer,
 } from "./reducers/siteReducer";
 
 const reducer = combineReducers({
@@ -16,6 +17,7 @@ const reducer = combineReducers({
   siteDetails: siteDetailReducer,
   siteCreate: siteCreateReducer,
   siteDelete: siteDeleteReducer,
+  siteAddComment: commentAddReducer
 });
 
 // get the login user
