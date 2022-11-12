@@ -43,3 +43,80 @@ export const allBlogs = () => async (dispatch, getState) => {
     });
   }
 };
+
+// Get one blog article
+export const blogDetail = (id) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: BLOG_DETAIL_REQUEST });
+    const {
+      userLogIn: { userInfo },
+    } = getState();
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+    const { data } = await axios.get(`/api/blogs/${id}`, config);
+    dispatch({ type: BLOG_DETAIL_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: BLOG_DETAIL_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+// Create blog article
+export const createBlog = () => async (dispatch, getState) => {
+  try {
+    dispatch({ type: BLOG_CREATE_REQUEST });
+    const {
+      userLogIn: { userInfo },
+    } = getState();
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+    const { data } = await axios.post(`/api/blogs`, {}, config);
+    dispatch({ type: BLOG_CREATE_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: BLOG_CREATE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+// Update blog article
+
+// Delete blog article
+export const deleteBlog = (id) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: BLOG_DELETE_REQUEST });
+    const {
+      userLogIn: { userInfo },
+    } = getState();
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+    await axios.delete(`/api/blogs/${id}`, config);
+    dispatch({ type: BLOG_DELETE_SUCCESS });
+  } catch (error) {
+    dispatch({
+      type: BLOG_DELETE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};

@@ -32,3 +32,48 @@ export const blogsListReducer = (state = { blogs: [] }, action) => {
       return state;
   }
 };
+
+// reducer to get one blog article
+export const blogDetailReducer = (state = { blog: {} }, action) => {
+  switch (action.type) {
+    case BLOG_DETAIL_REQUEST:
+      return { ...state };
+    case BLOG_DETAIL_SUCCESS:
+      return { blog: action.payload };
+    case BLOG_DETAIL_FAIL:
+      return { error: action.payload };
+
+    default:
+      return state;
+  }
+};
+
+// reducer to create a blog article
+export const blogCreateReducer = (state = {}, action) => {
+  switch (action.type) {
+    case BLOG_CREATE_REQUEST:
+      return { loading: true };
+    case BLOG_CREATE_SUCCESS:
+      return { success: true, blog: action.payload };
+    case BLOG_CREATE_FAIL:
+      return { error: action.payload };
+    case BLOG_CREATE_RESET:
+      return {};
+    default:
+      return state;
+  }
+};
+
+// reducer to delete a blog article
+export const blogDeleteReducer = (state = {}, action) => {
+  switch (action.type) {
+    case BLOG_DELETE_REQUEST:
+      return { loading: true };
+    case BLOG_DELETE_SUCCESS:
+      return { success: true };
+    case BLOG_DELETE_FAIL:
+      return { error: action.payload };
+    default:
+      return state;
+  }
+};
