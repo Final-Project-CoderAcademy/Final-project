@@ -101,8 +101,6 @@ export const createSiteComment = asyncHandler(async (req, res) => {
             content,
             name: req.user.name
         }
-        
-        res.status(201).json(createComment)
         site.comments.push(createComment)
         site.numComments = site.comments.length
         await site.save()

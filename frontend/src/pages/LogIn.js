@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro"; // <-- import styles to be used
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button, Row, Col, Form, Container } from "react-bootstrap";
-
+import Message from "../components/Message"
 import { logIn } from "../actions/userActions";
 
 const Login = () => {
@@ -12,25 +12,12 @@ const Login = () => {
   const [loginForm, setLoginForm] = useState(initialLoginForm);
   const { email, password } = loginForm;
 
-  const [emailError, setEmailError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
-
   //Validation
-  const [errors, setErrors] = useState("");
   const setField = (field, value) => {
     setLoginForm({
       ...loginForm,
       [field]: value,
     });
-  };
-
-  const validateForm = () => {
-    const newErrors = {};
-
-    if (!email || email === "") newErrors.email = "Please enter your email";
-    if (!password || password === "")
-      newErrors.password = "Please enter password";
-    return newErrors;
   };
 
   // dispatch action
@@ -51,28 +38,7 @@ const Login = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-
-    const formErrors = validateForm();
-    if (Object.keys(formErrors).length > 0) {
-      setErrors(formErrors);
-      return;
-    }
-
-    dispatch(logIn(email, password));
-    if (error) {
-      console.log(error);
-      error.forEach((err) => {
-        if (err.param === "email") {
-          setEmailError(err.msg);
-        }
-
-        if (err.param === "password") {
-          setPasswordError(err.msg);
-        }
-      });
-    }
-
-    navigate("/");
+    dispatch(logIn(email, password, error))
   };
 
   return (
@@ -88,7 +54,7 @@ const Login = () => {
             />
           </Link>
           <h2 className="mb-4 text-center">LOG IN</h2>
-
+          {error && <Message variant='danger'>{error}</Message>}
           <Form onSubmit={submitHandler} noValidate>
             <Form.Group className="mb-3" controlId="email">
               <Form.Label>Email </Form.Label>
@@ -99,11 +65,7 @@ const Login = () => {
                 onChange={(e) => {
                   setField("email", e.target.value);
                 }}
-                isInvalid={errors.email || emailError}
               />
-              <Form.Control.Feedback type="invalid">
-                {errors.email || emailError}
-              </Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group className="mb-4" controlId="password">
@@ -115,11 +77,7 @@ const Login = () => {
                 onChange={(e) => {
                   setField("password", e.target.value);
                 }}
-                isInvalid={errors.password || passwordError}
               />
-              <Form.Control.Feedback type="invalid">
-                {errors.password || passwordError}
-              </Form.Control.Feedback>
             </Form.Group>
             <div className="d-grid gap-2 d-md-block">
               <Button variant="primary" type="submit" className="px-5 ">

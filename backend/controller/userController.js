@@ -19,9 +19,7 @@ export const userLogin = asyncHandler(async (req, res) => {
     res.status(200);
   } else {
     res.status(401);
-    return res.status(401).json({
-      errors: [{ params: "email", message: "email or password is invalid" }],
-    });
+    throw new Error("email or password is invalid");
   }
 });
 
@@ -47,7 +45,7 @@ export const userRegister = asyncHandler(async (req, res) => {
     });
   } else {
     res.status(400);
-    throw new Error("User is not existed!");
+    throw new Error("User is existed!");
   }
 });
 

@@ -27,6 +27,9 @@ const About = () => {
       <Carousel>
         {selectFiveSites.map((site, id) => (
             <Carousel.Item key={id}>
+              <Carousel.Caption>
+                <h1 className="fw-bold mb-5">{site.name}</h1>
+              </Carousel.Caption>
               <Link to={`/sites/${site._id}`}>
                 <img
                   className="d-block w-100"
@@ -35,9 +38,6 @@ const About = () => {
                   alt={site.name}
                 />
               </Link>
-              <Carousel.Caption>
-              <h1 className="fw-bold mb-5">{site.name}</h1>
-              </Carousel.Caption>
             </Carousel.Item>
         ))}
       </Carousel>
