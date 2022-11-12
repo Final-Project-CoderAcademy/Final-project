@@ -35,11 +35,11 @@ const SiteDetail = () => {
         <h5 style={{textAlign: 'left'}}>LOCATION</h5>
         <h5 className="mt-5 mb-3" style={{textAlign: 'left'}}>COMMENTS</h5>
         {site.comments === undefined ? "No comments." : site.comments.map(comment => (
-          <Card className="mb-1 border-1 d-flex">
+          <Card key={comment._id} className="mb-1 border-1 d-flex">
             <Card.Body>
               <Card.Text className="text-start mb-0">
                 {comment.content}
-              
+              </Card.Text>
               <div className="text-end">
                 {comment.name}
               </div>
@@ -48,7 +48,6 @@ const SiteDetail = () => {
                   <Card.Link href="#">DELETE</Card.Link>
                 </div>
               ) }
-              </Card.Text>
             </Card.Body>
           </Card>
         ))}
