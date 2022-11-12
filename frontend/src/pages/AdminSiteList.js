@@ -67,11 +67,9 @@ const AdminSiteList = () => {
         {errorDelete && <p style={{ color: "red" }}>{errorDelete}</p>}
         {error && <p style={{ color: "red" }}>{error}</p>}
 
-        <Link to="/sites/:id/edit">
-          <Button variant="info" className="px-4" onClick={createSiteHandler}>
-            CREATE A SITE
-          </Button>
-        </Link>
+        <Button variant="info" className="px-4" onClick={createSiteHandler}>
+          CREATE A SITE
+        </Button>
       </div>
 
       <Table

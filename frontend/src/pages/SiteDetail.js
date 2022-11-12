@@ -16,8 +16,6 @@ const SiteDetail = () => {
     dispatch(siteDetail(id));
   }, [dispatch, id]);
 
-  
-
   const dammyComment = [
     {
       username: "ABC",
@@ -54,7 +52,7 @@ const SiteDetail = () => {
         <h5>LOCATION</h5>
         <h5 className="mt-5 mb-3">COMMENTS</h5>
         {dammyComment.map(({ username, comment }, id) => (
-          <Card className="mb-1 border-0 d-flex align-items-center">
+          <Card className="mb-1 border-0 d-flex align-items-center" key={id}>
             <Card.Body>
               <Card.Title className="fs-6 fw-bold text-start">
                 FROM. {username}
