@@ -13,6 +13,7 @@ const SiteDetail = () => {
   const { error, site } = siteDetails;
   const userLogIn = useSelector((state) => state.userLogIn);
   const { userInfo } = userLogIn
+
   useEffect(() => {
     if (userInfo) {
       dispatch(siteDetail(id));
@@ -21,7 +22,9 @@ const SiteDetail = () => {
     }
     
   }, [dispatch, id]);
+  const commentSubmitHandler = () => {
 
+  }
   return (
     <Container className="px-sm-5 mt-5">
       <img
@@ -54,16 +57,16 @@ const SiteDetail = () => {
 
         <h5 className="mt-5 mb-3">ADD COMMENT</h5>
         <div className="d-flex flex-column justify-content-center">
-          <Form>
+          <Form onSubmit={commentSubmitHandler}>
             <Form.Group className="mb-3" controlId="comment">
               <Form.Control as="textarea" placeholder="Comment....." rows={8} />
             </Form.Group>
+            <div className="text-end my-1">
+              <Button type="submit" variant="secondary" className="btn-round px-3 mx-2">
+                POST COMMENT
+              </Button>
+            </div>
           </Form>
-          <div className="text-end my-1">
-            <Button variant="secondary" className="btn-round px-3 mx-2">
-              POST COMMENT
-            </Button>
-          </div>
         </div>
       </div>
     </Container>
