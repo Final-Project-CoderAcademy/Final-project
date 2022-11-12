@@ -11,35 +11,16 @@ const SiteDetail = () => {
   const dispatch = useDispatch();
   const siteDetails = useSelector((state) => state.siteDetails);
   const { error, site } = siteDetails;
-
+  const userLogIn = useSelector((state) => state.userLogIn);
+  const { userInfo } = userLogIn
   useEffect(() => {
-    dispatch(siteDetail(id));
+    if (userInfo) {
+      dispatch(siteDetail(id));
+    } else {
+      navigate('/login')
+    }
+    
   }, [dispatch, id]);
-
-  
-
-  const dammyComment = [
-    {
-      username: "ABC",
-      comment:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed imperdiet libero. ",
-    },
-    {
-      username: "DEF",
-      comment:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed imperdiet libero. ",
-    },
-    {
-      username: "GHI",
-      comment:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed imperdiet libero. ",
-    },
-    {
-      username: "JKL",
-      comment:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed imperdiet libero. ",
-    },
-  ];
 
   return (
     <Container className="px-sm-5 mt-5">
@@ -51,22 +32,23 @@ const SiteDetail = () => {
       <h3 className="mt-5 fw-bold">{site.name}</h3>
       <p className="lh-lg fs-6">{site.description}</p>
       <div className="p-3 my-sm-5 text-sm-center commentContainer">
-        <h5>LOCATION</h5>
-        <h5 className="mt-5 mb-3">COMMENTS</h5>
-        {dammyComment.map(({ username, comment }, id) => (
-          <Card className="mb-1 border-0 d-flex align-items-center">
+        <h5 style={{textAlign: 'left'}}>LOCATION</h5>
+        <h5 className="mt-5 mb-3" style={{textAlign: 'left'}}>COMMENTS</h5>
+        {site.comments === undefined ? "No comments." : site.comments.map(comment => (
+          <Card className="mb-1 border-1 d-flex">
             <Card.Body>
-              <Card.Title className="fs-6 fw-bold text-start">
-                FROM. {username}
-              </Card.Title>
               <Card.Text className="text-start mb-0">
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
-              </Card.Text>
+                {comment.content}
+              
               <div className="text-end">
-                <Card.Link href="#">EDIT</Card.Link>
-                <Card.Link href="#">DELETE</Card.Link>
+                {comment.name}
               </div>
+              {(comment.name === userInfo.name || userInfo.isAdmin) && (
+                <div className="text-end">
+                  <Card.Link href="#">DELETE</Card.Link>
+                </div>
+              ) }
+              </Card.Text>
             </Card.Body>
           </Card>
         ))}
