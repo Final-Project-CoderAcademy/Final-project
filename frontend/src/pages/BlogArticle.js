@@ -3,15 +3,12 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 import { Button, Container, Form } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import { useDispatch, useSelector } from "react-redux";
-<<<<<<< HEAD
 import {
   blogDetail,
   deleteBlog,
   addCommentToOneBlog,
+  deleteCommentToOneBlog,
 } from "../actions/blogActions";
-=======
-import { blogDetail, deleteBlog, addCommentToOneBlog, deleteCommentToOneBlog } from "../actions/blogActions";
->>>>>>> refs/remotes/origin/main
 
 const BlogArticle = () => {
   const { id } = useParams();
@@ -24,23 +21,13 @@ const BlogArticle = () => {
 
   const blogDelete = useSelector((state) => state.blogDelete);
   const { success: successDelete, error: errorDelete } = blogDelete;
-<<<<<<< HEAD
+
   const [comment, setComment] = useState("");
   const blogAddComment = useSelector((state) => state.blogAddComment);
   const { success: successComment, error: errorProductReview } = blogAddComment;
-=======
-  const [comment, setComment] = useState("")
-  const blogAddComment = useSelector((state) => state.blogAddComment)
-  const {
-    success: successComment,
-    error: errorProductReview,
-  } = blogAddComment
-  const blogCommentDelete = useSelector((state) => state.blogCommentDelete)
-  const {
-    success: successCommentDelete,
-  } = blogCommentDelete
+  const blogCommentDelete = useSelector((state) => state.blogCommentDelete);
+  const { success: successCommentDelete } = blogCommentDelete;
 
->>>>>>> refs/remotes/origin/main
   useEffect(() => {
     if (successComment) {
       setComment("");
@@ -50,7 +37,7 @@ const BlogArticle = () => {
     } else {
       navigate("/login");
     }
-    // eslint-disable-next-line 
+    // eslint-disable-next-line
   }, [dispatch, id, comment, navigate, successComment, successCommentDelete]);
 
   const deleteBlogHandler = (id) => {
@@ -72,17 +59,16 @@ const BlogArticle = () => {
     } else {
       alert("The comment is empty!");
     }
-<<<<<<< HEAD
   };
-=======
-  }
 
   const deleteComment = (commentId) => {
-    if ((userInfo._id == blog.user || userInfo.isAdmin) && window.confirm("Are you sure?")) {
+    if (
+      (userInfo._id == blog.user || userInfo.isAdmin) &&
+      window.confirm("Are you sure?")
+    ) {
       dispatch(deleteCommentToOneBlog(id, commentId));
     }
-  }
->>>>>>> refs/remotes/origin/main
+  };
 
   return (
     <Container className="px-sm-5">
@@ -117,7 +103,7 @@ const BlogArticle = () => {
       </div>
       <div className="p-3 my-sm-5 text-sm-center commentContainer">
         <h5 className="mt-5 mb-3">COMMENTS</h5>
-<<<<<<< HEAD
+
         {blog.comments === undefined
           ? "No comments."
           : blog.comments.map((comment) => (
@@ -129,31 +115,14 @@ const BlogArticle = () => {
                   <div className="text-end">{comment.name}</div>
                   {(comment.name === userInfo.name || userInfo.isAdmin) && (
                     <div className="text-end">
-                      <Card.Link href="#">DELETE</Card.Link>
+                      <Button onClick={() => deleteComment(comment._id)}>
+                        DELETE
+                      </Button>
                     </div>
                   )}
                 </Card.Body>
               </Card>
             ))}
-=======
-        {blog.comments === undefined ? "No comments." : blog.comments.map(comment => (
-          <Card key={comment._id} className="mb-1 border-1 d-flex">
-            <Card.Body>
-              <Card.Text className="text-start mb-0">
-                {comment.content}
-              </Card.Text>
-              <div className="text-end">
-                {comment.name}
-              </div>
-              {(comment.name === userInfo.name || userInfo.isAdmin) && (
-                <div className="text-end">
-                  <Button onClick={() => deleteComment(comment._id)}>DELETE</Button>
-                </div>
-              ) }
-            </Card.Body>
-          </Card>
-        ))}
->>>>>>> refs/remotes/origin/main
 
         <h5 className="mt-5 mb-3">ADD COMMENT</h5>
         <div className="d-flex flex-column justify-content-center">
