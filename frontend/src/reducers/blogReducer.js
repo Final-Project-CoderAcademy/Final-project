@@ -16,6 +16,9 @@ import {
   BLOG_DELETE_REQUEST,
   BLOG_DELETE_SUCCESS,
   BLOG_DELETE_FAIL,
+  ADD_COMMENT_REQUEST,
+  ADD_COMMENT_SUCCESS,
+  ADD_COMMENT_FAIL,
 } from "../contents/blogContents";
 
 // reducer to get all the blogs
@@ -72,6 +75,20 @@ export const blogDeleteReducer = (state = {}, action) => {
     case BLOG_DELETE_SUCCESS:
       return { success: true };
     case BLOG_DELETE_FAIL:
+      return { error: action.payload };
+    default:
+      return state;
+  }
+};
+
+// reducer to add comment for a site
+export const commentBlogAddReducer = (state = {}, action) => {
+  switch (action.type) {
+    case ADD_COMMENT_REQUEST:
+      return {};
+    case ADD_COMMENT_SUCCESS:
+      return { success: true };
+    case ADD_COMMENT_FAIL:
       return { error: action.payload };
     default:
       return state;

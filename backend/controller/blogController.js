@@ -1,4 +1,6 @@
 import Blog from '../models/blogModel.js'
+import User from '../models/userModel.js'
+
 // asyncHandler is used to simplify the syntax of the promise catch error handling
 import asyncHandler from 'express-async-handler'
 
@@ -28,7 +30,8 @@ export const getBlogById = asyncHandler(async (req, res) => {
 // POST api/blogs
 export const createBlog = asyncHandler(async (req, res) => {
     const blog = new Blog({
-        user: req.user._id,
+        user: req.user,
+        name: req.user.name,
         image: req.body.image,
         article: req.body.article,
         title: req.body.title
@@ -69,10 +72,10 @@ export const deleteBlogById = asyncHandler(async (req, res) => {
     }
 })
 
-// create comment for site
-// POST /api/sites/:id/comments
+// create comment for blog
+// POST /api/blogs/:id/comments
 // users
-export const createSiteComment = asyncHandler(async (req, res) => {
+export const createBlogComment = asyncHandler(async (req, res) => {
     const {
         content
     } = req.body
@@ -83,8 +86,6 @@ export const createSiteComment = asyncHandler(async (req, res) => {
             content,
             name: req.user.name
         }
-        
-        res.status(201).json(createComment)
         blog.comments.push(createComment)
         blog.numComments = blog.comments.length
         await blog.save()

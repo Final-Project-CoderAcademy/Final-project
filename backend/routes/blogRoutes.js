@@ -6,7 +6,7 @@ import {
   getBlogsByUserId,
   getBlogById,
   deleteBlogById,
-  createSiteComment,
+  createBlogComment,
 } from "../controller/blogController.js";
 
 const router = express.Router();
@@ -17,6 +17,5 @@ router
   .route("/:id")
   .get(authUser, getBlogById)
   .delete(authUser, deleteBlogById);
-router.route("/:id/comments").post(authUser, createSiteComment);
-
+router.route("/:id/comments").post(authUser, createBlogComment);
 export default router;

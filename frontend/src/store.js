@@ -8,13 +8,14 @@ import {
   siteCreateReducer,
   siteUpdateReducer,
   siteDeleteReducer,
-  commentAddReducer,
+  commentSiteAddReducer,
 } from "./reducers/siteReducer";
 import {
   blogsListReducer,
   blogDetailReducer,
   blogCreateReducer,
   blogDeleteReducer,
+  commentBlogAddReducer,
 } from "./reducers/blogReducer";
 
 const reducer = combineReducers({
@@ -25,7 +26,8 @@ const reducer = combineReducers({
   siteCreate: siteCreateReducer,
   siteUpdate: siteUpdateReducer,
   siteDelete: siteDeleteReducer,
-  siteAddComment: commentAddReducer,
+  siteAddComment: commentSiteAddReducer,
+  blogAddComment: commentBlogAddReducer,
   blogsList: blogsListReducer,
   blogDetails: blogDetailReducer,
   blogCreate: blogCreateReducer,

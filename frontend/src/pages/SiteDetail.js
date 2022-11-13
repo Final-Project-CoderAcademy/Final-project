@@ -12,23 +12,25 @@ const SiteDetail = () => {
   const siteDetails = useSelector((state) => state.siteDetails);
   const { error, site } = siteDetails;
   const userLogIn = useSelector((state) => state.userLogIn);
-  const { userInfo } = userLogIn;
-  const [comment, setComment] = useState("");
+  const { userInfo } = userLogIn
+  const [comment, setComment] = useState("")
 
-  const siteAddComment = useSelector((state) => state.siteAddComment);
-  const { success: successProductReview, error: errorProductReview } =
-    siteAddComment;
+  const siteAddComment = useSelector((state) => state.siteAddComment)
+  const {
+    success: successComment,
+    error: errorProductReview,
+  } = siteAddComment
 
   useEffect(() => {
-    if (successProductReview) {
-      setComment("");
+    if (successComment) {
+      setComment('')
     }
     if (userInfo) {
       dispatch(siteDetail(id));
     } else {
       navigate("/login");
     }
-  }, [dispatch, id, comment, navigate, successProductReview]);
+  }, [dispatch, id, comment, navigate, successComment]);
 
   const commentSubmitHandler = (e) => {
     e.preventDefault();

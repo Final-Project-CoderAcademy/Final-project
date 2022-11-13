@@ -30,7 +30,6 @@ export const sitesListReducer = (state = { sites: [] }, action) => {
       return { sites: action.payload };
     case SITES_LIST_FAIL:
       return { error: action.payload };
-
     default:
       return state;
   }
@@ -100,7 +99,7 @@ export const siteDeleteReducer = (state = {}, action) => {
 
 
 // reducer to add comment for a site
-export const commentAddReducer = (state = {}, action) => {
+export const commentSiteAddReducer = (state = {}, action) => {
   switch (action.type) {
     case ADD_COMMENT_REQUEST:
       return {};
