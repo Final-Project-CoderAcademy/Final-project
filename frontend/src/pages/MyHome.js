@@ -19,10 +19,10 @@ const MyHome = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const userDetails = useSelector((state) => state.userDetails);
-  const { errorUser, user } = userDetails;
+  const { error: errorUser, user } = userDetails;
 
   const userUpdateDetails = useSelector((state) => state.userUpdateDetails);
-  const { success } = userUpdateDetails;
+  const { success: successUpdate } = userUpdateDetails;
 
   const userBlogs = useSelector((state) => state.userBlogs);
   const { error, blogs } = userBlogs;
@@ -41,43 +41,42 @@ const MyHome = () => {
   } = blogCreate;
 
   useEffect(() => {
+    dispatch({ type: BLOG_CREATE_RESET });
     if (!userInfo) {
       navigate("/login");
-    } else {
-      if (!user.name || success) {
-        dispatch({ type: USER_UPDATE_RESET });
-        dispatch(getUserProfile("profile"));
-        dispatch(userAllBlogs(userInfo._id));
-      } else {
-        setName(user.name);
-        setEmail(user.email);
-      }
     }
-    dispatch({ type: BLOG_CREATE_RESET });
     if (successCreate) {
       navigate(`/blogs/${newBlog}/edit}`);
     } else {
       dispatch(userAllBlogs(userInfo._id));
     }
+
+    if (!user.name || successUpdate) {
+      dispatch({ type: USER_UPDATE_RESET });
+      dispatch(getUserProfile("profile"));
+      dispatch(userAllBlogs(userInfo._id));
+    } else {
+      setName(user.name);
+      setEmail(user.email);
+    }
   }, [
     dispatch,
     navigate,
-    success,
+    successUpdate,
     userInfo,
-    successDelete,
     successCreate,
+    //   successDelete,
     newBlog,
     user,
+    //   blogs,
   ]);
 
   const createBlogHandler = () => {
-    dispatch(createBlog());
+    dispatch(createBlog);
   };
 
   const deleteBlogHandler = (id) => {
-    if (window.confirm("Are you sure?")) {
-      dispatch(deleteBlog(id));
-    }
+    dispatch(deleteBlog(id));
   };
 
   const updateSubmitHandler = (e) => {
@@ -85,16 +84,6 @@ const MyHome = () => {
     dispatch(updateUserProfile({ id: user._id, name, email, password }));
   };
 
-  // const dammyImgs = [
-  //   {
-  //     src: "https://images.unsplash.com/photo-1636220506380-30a272f09562?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80",
-  //     alt: "bigbanana",
-  //   },
-  //   {
-  //     src: "https://images.unsplash.com/photo-1602242896752-b5c57d3f395f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80.jpg",
-  //     alt: "pinklake",
-  //   },
-  // ];
   return (
     <Container>
       <Row className="justify-content-md-center">
@@ -108,7 +97,7 @@ const MyHome = () => {
             />
           </Link>
           <h2 className="mb-4 text-center">MY HOME</h2>
-          {success && (
+          {successUpdate && (
             <p style={{ color: "green" }}>
               Your profile detail has been updated
             </p>
@@ -171,7 +160,7 @@ const MyHome = () => {
             </div>
           </Form>
 
-          {/* <div className="text-center">
+          <div className="text-center">
             <h3 className="mb-3">MY BLOG</h3>
             {error && <p>{error}</p>}
             {errorCreate && <p>{errorCreate}</p>}
@@ -218,7 +207,7 @@ const MyHome = () => {
                           variant="dark"
                           className=" px-2"
                           size="sm"
-                          onClick={deleteBlogHandler(blog._id)}
+                          onClick={() => deleteBlogHandler(blog._id)}
                         >
                           Delete
                         </Button>
@@ -228,7 +217,7 @@ const MyHome = () => {
                 </Row>
               </Col>
             </Row>
-          ))} */}
+          ))}
         </Col>
       </Row>
     </Container>
