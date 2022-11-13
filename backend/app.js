@@ -1,3 +1,4 @@
+import path from 'path'
 import express from "express";
 import dotenv from "dotenv";
 import colors from "colors";
@@ -9,6 +10,7 @@ import { errorHandler, notFound } from "./middleware/errorMiddleware.js";
 import siteRoutes from "./routes/siteRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import blogRoutes from "./routes/blogRoutes.js";
+import uploadRoutes from "./routes/uploadRoutes.js";
 
 dotenv.config();
 
@@ -47,9 +49,15 @@ app.get("/", (req, res) => {
   res.json({ message: ">>>>>Server is connected<<<<<" });
 });
 
+
+
 app.use("/api/sites", siteRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/blogs", blogRoutes);
+app.use('/api/upload', uploadRoutes)
+// upload folder used as static files folder 
+const __dirname = path.resolve()
+app.use('/upload', express.static(path.join(__dirname, '/upload')))
 
 app.use(notFound);
 app.use(errorHandler);
