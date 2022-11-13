@@ -132,8 +132,6 @@ export const commentBlogAddReducer = (state = {}, action) => {
       return state;
   }
 };
-<<<<<<< HEAD
-=======
 
 // reducer to DELETE comment for a site
 export const commentBlogDeleteReducer = (state = {}, action) => {
@@ -148,4 +146,3 @@ export const commentBlogDeleteReducer = (state = {}, action) => {
       return state;
   }
 };
->>>>>>> refs/remotes/origin/main

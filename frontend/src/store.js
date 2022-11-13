@@ -59,12 +59,9 @@ const reducer = combineReducers({
   blogCreate: blogCreateReducer,
   blogUpdate: blogUpdateReducer,
   blogDelete: blogDeleteReducer,
-<<<<<<< HEAD
   userBlogs: userBlogsReducer,
-=======
   blogCommentDelete: commentBlogDeleteReducer,
   siteCommentDelete: commentSiteDeleteReducer,
->>>>>>> refs/remotes/origin/main
 });
 
 // get the login user
