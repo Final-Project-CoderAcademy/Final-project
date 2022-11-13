@@ -66,6 +66,22 @@ export const siteCreateReducer = (state = {}, action) => {
   }
 };
 
+// reducer to update one site
+export const siteUpdateReducer = (state = { site: {} }, action) => {
+  switch (action.type) {
+    case SITE_UPDATE_REQUEST:
+      return { loading: true };
+    case SITE_UPDATE_SUCCESS:
+      return { success: true, site: action.payload };
+    case SITE_UPDATE_FAIL:
+      return { error: action.payload };
+    case SITE_UPDATE_RESET:
+      return { site: {} };
+    default:
+      return state;
+  }
+};
+
 // reducer to delete one site
 export const siteDeleteReducer = (state = {}, action) => {
   switch (action.type) {

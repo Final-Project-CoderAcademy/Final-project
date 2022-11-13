@@ -8,11 +8,9 @@ import {
   SITE_CREATE_REQUEST,
   SITE_CREATE_SUCCESS,
   SITE_CREATE_FAIL,
-  SITE_CREATE_RESET,
   SITE_UPDATE_REQUEST,
   SITE_UPDATE_SUCCESS,
   SITE_UPDATE_FAIL,
-  SITE_UPDATE_RESET,
   SITE_DELETE_REQUEST,
   SITE_DELETE_SUCCESS,
   SITE_DELETE_FAIL,
@@ -73,6 +71,32 @@ export const createSite = () => async (dispatch, getState) => {
   } catch (error) {
     dispatch({
       type: SITE_CREATE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+// Update one site
+export const updateSite = (site) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: SITE_UPDATE_REQUEST });
+    const {
+      userLogIn: { userInfo },
+    } = getState();
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+    const { data } = await axios.put(`/api/sites/${site._id}`, site, config);
+    dispatch({ type: SITE_UPDATE_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: SITE_UPDATE_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
