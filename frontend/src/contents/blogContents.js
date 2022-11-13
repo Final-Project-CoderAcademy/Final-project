@@ -31,7 +31,15 @@ export const BLOG_DELETE_REQUEST = "BLOG_DELETE_REQUEST";
 export const BLOG_DELETE_SUCCESS = "BLOG_DELETE_SUCCESS";
 export const BLOG_DELETE_FAIL = "BLOG_DELETE_FAIL";
 
-// add comment to one site
+// add comment to one blog
 export const ADD_COMMENT_REQUEST = "ADD_COMMENT_REQUEST";
 export const ADD_COMMENT_SUCCESS = "ADD_COMMENT_SUCCESS";
 export const ADD_COMMENT_FAIL = "ADD_COMMENT_FAIL";
+<<<<<<< HEAD
+=======
+
+// delete comment to one blog
+export const DELETE_COMMENT_REQUEST = "DELETE_COMMENT_REQUEST";
+export const DELETE_COMMENT_SUCCESS = "DELETE_COMMENT_SUCCESS";
+export const DELETE_COMMENT_FAIL = "DELETE_COMMENT_FAIL";
+>>>>>>> refs/remotes/origin/main
