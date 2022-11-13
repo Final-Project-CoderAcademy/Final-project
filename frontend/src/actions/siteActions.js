@@ -17,6 +17,9 @@ import {
   ADD_COMMENT_REQUEST,
   ADD_COMMENT_SUCCESS,
   ADD_COMMENT_FAIL,
+  DELETE_COMMENT_REQUEST,
+  DELETE_COMMENT_SUCCESS,
+  DELETE_COMMENT_FAIL,
 } from "../contents/siteContents";
 import axios from "axios";
 
@@ -148,6 +151,32 @@ export const addCommentToOneSite = (id, comment) => async (dispatch, getState) =
   } catch (error) {
     dispatch({
       type: ADD_COMMENT_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+
+// delete comment to one site
+export const deleteCommentToOneSite = (id, commentId) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: DELETE_COMMENT_REQUEST });
+    const {
+      userLogIn: { userInfo },
+    } = getState();
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`
+      },
+    };
+    const {data} = await axios.delete(`/api/sites/${id}/comments/${commentId}`, config);
+    dispatch({ type: DELETE_COMMENT_SUCCESS });
+  } catch (error) {
+    dispatch({
+      type: DELETE_COMMENT_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

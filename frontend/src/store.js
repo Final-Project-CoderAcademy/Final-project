@@ -9,6 +9,7 @@ import {
   siteUpdateReducer,
   siteDeleteReducer,
   commentSiteAddReducer,
+  commentSiteDeleteReducer,
 } from "./reducers/siteReducer";
 import {
   blogsListReducer,
@@ -16,6 +17,7 @@ import {
   blogCreateReducer,
   blogDeleteReducer,
   commentBlogAddReducer,
+  commentBlogDeleteReducer,
 } from "./reducers/blogReducer";
 
 const reducer = combineReducers({
@@ -32,6 +34,8 @@ const reducer = combineReducers({
   blogDetails: blogDetailReducer,
   blogCreate: blogCreateReducer,
   blogDelete: blogDeleteReducer,
+  blogCommentDelete: commentBlogDeleteReducer,
+  siteCommentDelete: commentSiteDeleteReducer,
 });
 
 // get the login user

@@ -3,7 +3,7 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 import { Button, Container, Form } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import { useDispatch, useSelector } from "react-redux";
-import { blogDetail, deleteBlog, addCommentToOneBlog } from "../actions/blogActions";
+import { blogDetail, deleteBlog, addCommentToOneBlog, deleteCommentToOneBlog } from "../actions/blogActions";
 
 const BlogArticle = () => {
   const { id } = useParams();
@@ -22,6 +22,11 @@ const BlogArticle = () => {
     success: successComment,
     error: errorProductReview,
   } = blogAddComment
+  const blogCommentDelete = useSelector((state) => state.blogCommentDelete)
+  const {
+    success: successCommentDelete,
+  } = blogCommentDelete
+
   useEffect(() => {
     if (successComment) {
       setComment('')
@@ -31,7 +36,8 @@ const BlogArticle = () => {
     } else {
       navigate("/login");
     }
-  }, [dispatch, id, comment, navigate, successComment]);
+    // eslint-disable-next-line 
+  }, [dispatch, id, comment, navigate, successComment, successCommentDelete]);
 
   const deleteBlogHandler = (id) => {
     if (userInfo._id == blog.user && window.confirm("Are you sure?")) {
@@ -52,6 +58,13 @@ const BlogArticle = () => {
       alert('The comment is empty!')
     }
   }
+
+  const deleteComment = (commentId) => {
+    if ((userInfo._id == blog.user || userInfo.isAdmin) && window.confirm("Are you sure?")) {
+      dispatch(deleteCommentToOneBlog(id, commentId));
+    }
+  }
+
   return (
     <Container className="px-sm-5">
       <h3 className="mt-5 fw-bold">{blog.title}</h3>
@@ -96,7 +109,7 @@ const BlogArticle = () => {
               </div>
               {(comment.name === userInfo.name || userInfo.isAdmin) && (
                 <div className="text-end">
-                  <Card.Link href="#">DELETE</Card.Link>
+                  <Button onClick={() => deleteComment(comment._id)}>DELETE</Button>
                 </div>
               ) }
             </Card.Body>

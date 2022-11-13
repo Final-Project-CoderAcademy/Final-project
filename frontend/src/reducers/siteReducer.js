@@ -19,6 +19,9 @@ import {
   ADD_COMMENT_REQUEST,
   ADD_COMMENT_SUCCESS,
   ADD_COMMENT_FAIL,
+  DELETE_COMMENT_REQUEST,
+  DELETE_COMMENT_SUCCESS,
+  DELETE_COMMENT_FAIL,
 } from "../contents/siteContents";
 
 // reducer to get all the sites
@@ -106,6 +109,20 @@ export const commentSiteAddReducer = (state = {}, action) => {
     case ADD_COMMENT_SUCCESS:
       return { success: true };
     case ADD_COMMENT_FAIL:
+      return { error: action.payload };
+    default:
+      return state;
+  }
+};
+
+// reducer to DELETE comment for a site
+export const commentSiteDeleteReducer = (state = {}, action) => {
+  switch (action.type) {
+    case DELETE_COMMENT_REQUEST:
+      return {};
+    case DELETE_COMMENT_SUCCESS:
+      return { success: true };
+    case DELETE_COMMENT_FAIL:
       return { error: action.payload };
     default:
       return state;

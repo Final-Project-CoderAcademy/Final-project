@@ -109,3 +109,39 @@ export const createSiteComment = asyncHandler(async (req, res) => {
         res.status(404).json('Site not found!')
     }
 })
+
+// delete comment for blog
+// DELETE /api/blogs/:id/comments/:commentId
+// users
+export const deleteBlogComment = asyncHandler(async (req, res) => {
+    const blog = await Blog.findById(req.params.id)
+    if (blog) {
+        const comment = await blog.comments.find(comment => comment._id.toString() === req.params.commentId.toString())
+        if (comment) {
+            await comment.remove()
+            blog.numComments = blog.comments.length
+            await blog.save()
+            res.status(201).json({message: "Successfully delete comment."})
+        }
+    } else {
+        res.status(404).json('Blog not found!')
+    }
+})
+
+// delete comment for site
+// DELETE /api/blogs/:id/comments/:commentId
+// users
+export const deleteSiteComment = asyncHandler(async (req, res) => {
+    const site = await Site.findById(req.params.id)
+    if (site) {
+        const comment = await site.comments.find(comment => comment._id.toString() === req.params.commentId.toString())
+        if (comment) {
+            await comment.remove()
+            site.numComments = site.comments.length
+            await site.save()
+            res.status(201).json({message: "Successfully delete comment."})
+        }
+    } else {
+        res.status(404).json('Site not found!')
+    }
+})

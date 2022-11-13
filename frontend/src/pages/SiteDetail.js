@@ -3,7 +3,7 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Container, Form } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
-import { addCommentToOneSite, siteDetail } from "../actions/siteActions";
+import { addCommentToOneSite, siteDetail, deleteCommentToOneSite } from "../actions/siteActions";
 
 const SiteDetail = () => {
   const { id } = useParams();
@@ -20,7 +20,10 @@ const SiteDetail = () => {
     success: successComment,
     error: errorProductReview,
   } = siteAddComment
-
+  const siteCommentDelete = useSelector((state) => state.siteCommentDelete)
+  const {
+    success: successCommentDelete,
+  } = siteCommentDelete
   useEffect(() => {
     if (successComment) {
       setComment('')
@@ -30,7 +33,7 @@ const SiteDetail = () => {
     } else {
       navigate("/login");
     }
-  }, [dispatch, id, comment, navigate, successComment]);
+  }, [dispatch, id, comment, navigate, successComment, successCommentDelete]);
 
   const commentSubmitHandler = (e) => {
     e.preventDefault();
@@ -47,6 +50,11 @@ const SiteDetail = () => {
     }
   };
 
+  const deleteComment = (commentId) => {
+    if ((userInfo._id == site.user || userInfo.isAdmin) && window.confirm("Are you sure?")) {
+      dispatch(deleteCommentToOneSite(id, commentId));
+    }
+  }
   return (
     <Container className="px-sm-5 mt-5">
       <img
@@ -72,7 +80,7 @@ const SiteDetail = () => {
                   <div className="text-end">{comment.name}</div>
                   {(comment.name === userInfo.name || userInfo.isAdmin) && (
                     <div className="text-end">
-                      <Card.Link href="#">DELETE</Card.Link>
+                      <Button onClick={() => deleteComment(comment._id)}>DELETE</Button>
                     </div>
                   )}
                 </Card.Body>
