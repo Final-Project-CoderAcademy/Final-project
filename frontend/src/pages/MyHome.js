@@ -1,20 +1,100 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro"; // <-- import styles to be used
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { createBlog, deleteBlog, userAllBlogs } from "../actions/blogActions";
+import { getUserProfile, updateUserProfile } from "../actions/userActions";
+import { BLOG_CREATE_RESET } from "../contents/blogContents";
+import { USER_UPDATE_RESET } from "../contents/userContents";
 
 const MyHome = () => {
-  const dammyImgs = [
-    {
-      src: "https://images.unsplash.com/photo-1636220506380-30a272f09562?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80",
-      alt: "bigbanana",
-    },
-    {
-      src: "https://images.unsplash.com/photo-1602242896752-b5c57d3f395f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80.jpg",
-      alt: "pinklake",
-    },
-  ];
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const userDetails = useSelector((state) => state.userDetails);
+  const { errorUser, user } = userDetails;
+
+  const userUpdateDetails = useSelector((state) => state.userUpdateDetails);
+  const { success } = userUpdateDetails;
+
+  const userBlogs = useSelector((state) => state.userBlogs);
+  const { error, blogs } = userBlogs;
+
+  const userLogIn = useSelector((state) => state.userLogIn);
+  const { userInfo } = userLogIn;
+
+  const blogDelete = useSelector((state) => state.blogDelete);
+  const { success: successDelete, error: errorDelete } = blogDelete;
+
+  const blogCreate = useSelector((state) => state.blogCreate);
+  const {
+    error: errorCreate,
+    success: successCreate,
+    blog: newBlog,
+  } = blogCreate;
+
+  useEffect(() => {
+    if (!userInfo) {
+      navigate("/login");
+    } else {
+      if (!user.name || success) {
+        dispatch({ type: USER_UPDATE_RESET });
+        dispatch(getUserProfile("profile"));
+        dispatch(userAllBlogs(userInfo._id));
+      } else {
+        setName(user.name);
+        setEmail(user.email);
+      }
+    }
+    dispatch({ type: BLOG_CREATE_RESET });
+    if (successCreate) {
+      navigate(`/blogs/${newBlog}/edit}`);
+    } else {
+      dispatch(userAllBlogs(userInfo._id));
+    }
+  }, [
+    dispatch,
+    navigate,
+    success,
+    userInfo,
+    successDelete,
+    successCreate,
+    newBlog,
+    user,
+  ]);
+
+  const createBlogHandler = () => {
+    dispatch(createBlog());
+  };
+
+  const deleteBlogHandler = (id) => {
+    if (window.confirm("Are you sure?")) {
+      dispatch(deleteBlog(id));
+    }
+  };
+
+  const updateSubmitHandler = (e) => {
+    e.preventDefault();
+    dispatch(updateUserProfile({ id: user._id, name, email, password }));
+  };
+
+  // const dammyImgs = [
+  //   {
+  //     src: "https://images.unsplash.com/photo-1636220506380-30a272f09562?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80",
+  //     alt: "bigbanana",
+  //   },
+  //   {
+  //     src: "https://images.unsplash.com/photo-1602242896752-b5c57d3f395f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80.jpg",
+  //     alt: "pinklake",
+  //   },
+  // ];
   return (
     <Container>
       <Row className="justify-content-md-center">
@@ -28,25 +108,60 @@ const MyHome = () => {
             />
           </Link>
           <h2 className="mb-4 text-center">MY HOME</h2>
-          <Form className="mb-5">
+          {success && (
+            <p style={{ color: "green" }}>
+              Your profile detail has been updated
+            </p>
+          )}
+          {errorUser && <p>{errorUser}</p>}
+
+          <Form className="mb-5" onSubmit={updateSubmitHandler}>
             <Form.Group className="mb-3" controlId="userName">
-              <Form.Label>Username </Form.Label>
-              <Form.Control type="string" placeholder="username" />
+              <Form.Label>Username</Form.Label>
+              <Form.Control
+                type="string"
+                placeholder="username"
+                value={name}
+                onChange={(e) => {
+                  setName(e.target.value);
+                }}
+              />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="email">
               <Form.Label>Email </Form.Label>
-              <Form.Control type="email" placeholder="example@gmail.com" />
+              <Form.Control
+                type="email"
+                placeholder="example@gmail.com"
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
+              />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="password">
               <Form.Label>Password </Form.Label>
-              <Form.Control type="password" placeholder="password" />
+              <Form.Control
+                type="password"
+                placeholder="password"
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
+              />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="confirmPassword">
               <Form.Label>Confirm Password</Form.Label>
-              <Form.Control type="password" placeholder="password" />
+              <Form.Control
+                type="password"
+                placeholder="password"
+                value={confirmPassword}
+                onChange={(e) => {
+                  setConfirmPassword(e.target.value);
+                }}
+              />
             </Form.Group>
 
             <div className="d-grid gap-2 d-md-block">
@@ -56,53 +171,64 @@ const MyHome = () => {
             </div>
           </Form>
 
-          <div className="text-center">
+          {/* <div className="text-center">
             <h3 className="mb-3">MY BLOG</h3>
+            {error && <p>{error}</p>}
+            {errorCreate && <p>{errorCreate}</p>}
+            {errorDelete && <p>{errorDelete}</p>}
             <Link to="/blogs/:id/edit">
-              <Button variant="info" className="px-4">
+              <Button
+                variant="info"
+                className="px-4"
+                onClick={createBlogHandler}
+              >
                 CREATE A POST
               </Button>
             </Link>
           </div>
-          {dammyImgs.map(({ src, alt }, id) => (
-            <>
-              <Row className="mt-4">
-                <Col className="col-sm-5 mb-3" md="auto">
-                  <Link to="/blogs/:id">
-                    <img
-                      key={id}
-                      src={src}
-                      alt={alt}
-                      className=" mx-auto d-block"
-                      style={{ height: 100, width: 100 }}
-                    />
-                  </Link>
-                </Col>
-                <Col className="col-sm-7 mb-3 text-center">
-                  <h6 className="pageTitle">
-                    The BIG BANANA blog in Coffs Harbour
-                  </h6>
-                  <Row className="d-flex  align-items-center text-sm-end">
-                    <div>
-                      <p className="mb-0">23 January, 2022</p>
-                      <Link to="/blogs/:id/edit">
+          {blogs?.map((blog) => (
+            <Row className="mt-4" key={blog._id}>
+              <Col className="col-sm-5 mb-3" md="auto">
+                <Link to="/blogs/:id">
+                  <img
+                    src={blog.image}
+                    alt={blog.title}
+                    className=" mx-auto d-block"
+                    style={{ height: 100, width: 100 }}
+                  />
+                </Link>
+              </Col>
+              <Col className="col-sm-7 mb-3 text-center">
+                <h6 className="pageTitle">{blog.title}</h6>
+                <Row className="d-flex  align-items-center text-sm-end">
+                  <div>
+                    <p className="mb-0">{blog.updatedAt.slice(0, 10)}</p>
+                    {blog.user === userInfo._id && (
+                      <>
+                        <Link to={`/blogs/${blog._id}/edit`}>
+                          <Button
+                            variant="light"
+                            className=" px-2 mx-2"
+                            size="sm"
+                          >
+                            Edit
+                          </Button>
+                        </Link>
                         <Button
-                          variant="light"
-                          className=" px-2 mx-2"
+                          variant="dark"
+                          className=" px-2"
                           size="sm"
+                          onClick={deleteBlogHandler(blog._id)}
                         >
-                          Edit
+                          Delete
                         </Button>
-                      </Link>
-                      <Button variant="dark" className=" px-2" size="sm">
-                        Delete
-                      </Button>
-                    </div>
-                  </Row>
-                </Col>
-              </Row>
-            </>
-          ))}
+                      </>
+                    )}
+                  </div>
+                </Row>
+              </Col>
+            </Row>
+          ))} */}
         </Col>
       </Row>
     </Container>

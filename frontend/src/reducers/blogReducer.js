@@ -2,6 +2,10 @@ import {
   BLOGS_LIST_REQUEST,
   BLOGS_LIST_SUCCESS,
   BLOGS_LIST_FAIL,
+  USER_BLOGS_REQUEST,
+  USER_BLOGS_SUCCESS,
+  USER_BLOGS_FAIL,
+  USER_BLOGS_RESET,
   BLOG_DETAIL_REQUEST,
   BLOG_DETAIL_SUCCESS,
   BLOG_DETAIL_FAIL,
@@ -30,7 +34,22 @@ export const blogsListReducer = (state = { blogs: [] }, action) => {
       return { blogs: action.payload };
     case BLOGS_LIST_FAIL:
       return { error: action.payload };
+    default:
+      return state;
+  }
+};
 
+// reducer to get user's all blogs for MY HOME
+export const userBlogsReducer = (state = { blogs: [] }, action) => {
+  switch (action.type) {
+    case USER_BLOGS_REQUEST:
+      return { blogs: [] };
+    case USER_BLOGS_SUCCESS:
+      return { blogs: action.payload, success: true };
+    case USER_BLOGS_FAIL:
+      return { error: action.payload };
+    case USER_BLOGS_RESET:
+      return { blogs: [] };
     default:
       return state;
   }
@@ -62,6 +81,22 @@ export const blogCreateReducer = (state = {}, action) => {
       return { error: action.payload };
     case BLOG_CREATE_RESET:
       return {};
+    default:
+      return state;
+  }
+};
+
+// reducer to update a blog article
+export const blogUpdateReducer = (state = { blog: {} }, action) => {
+  switch (action.type) {
+    case BLOG_UPDATE_REQUEST:
+      return { loading: true };
+    case BLOG_UPDATE_SUCCESS:
+      return { success: true, blog: action.payload };
+    case BLOG_UPDATE_FAIL:
+      return { error: action.payload };
+    case BLOG_UPDATE_RESET:
+      return { blog: {} };
     default:
       return state;
   }

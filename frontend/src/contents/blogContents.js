@@ -3,6 +3,12 @@ export const BLOGS_LIST_REQUEST = "BLOGS_LIST_REQUEST";
 export const BLOGS_LIST_SUCCESS = "BLOGS_LIST_SUCCESS";
 export const BLOGS_LIST_FAIL = "BLOGS_LIST_FAIL";
 
+// Get one user's all blogs by user's ID
+export const USER_BLOGS_REQUEST = "USER_BLOGS_REQUEST";
+export const USER_BLOGS_SUCCESS = "USER_BLOGS_SUCCESS";
+export const USER_BLOGS_FAIL = "USER_BLOGS_FAIL";
+export const USER_BLOGS_RESET = "USER_BLOGS_RESET";
+
 // Get one blog article
 export const BLOG_DETAIL_REQUEST = "BLOG_DETAIL_REQUEST";
 export const BLOG_DETAIL_SUCCESS = "BLOG_DETAIL_SUCCESS";

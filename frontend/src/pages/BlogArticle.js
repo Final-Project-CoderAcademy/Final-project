@@ -3,7 +3,11 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 import { Button, Container, Form } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import { useDispatch, useSelector } from "react-redux";
-import { blogDetail, deleteBlog, addCommentToOneBlog } from "../actions/blogActions";
+import {
+  blogDetail,
+  deleteBlog,
+  addCommentToOneBlog,
+} from "../actions/blogActions";
 
 const BlogArticle = () => {
   const { id } = useParams();
@@ -16,15 +20,12 @@ const BlogArticle = () => {
 
   const blogDelete = useSelector((state) => state.blogDelete);
   const { success: successDelete, error: errorDelete } = blogDelete;
-  const [comment, setComment] = useState("")
-  const blogAddComment = useSelector((state) => state.blogAddComment)
-  const {
-    success: successComment,
-    error: errorProductReview,
-  } = blogAddComment
+  const [comment, setComment] = useState("");
+  const blogAddComment = useSelector((state) => state.blogAddComment);
+  const { success: successComment, error: errorProductReview } = blogAddComment;
   useEffect(() => {
     if (successComment) {
-      setComment('')
+      setComment("");
     }
     if (userInfo) {
       dispatch(blogDetail(id));
@@ -39,24 +40,26 @@ const BlogArticle = () => {
     }
   };
 
-
   const commentSubmitHandler = (e) => {
     e.preventDefault();
     if (!(e.target[0].value === "")) {
-      dispatch(addCommentToOneBlog(id, {
-        content: comment
-      }));
-      alert('successfully comment!')
-      navigate(`/blogs/${id}`)
+      dispatch(
+        addCommentToOneBlog(id, {
+          content: comment,
+        })
+      );
+      alert("successfully comment!");
+      navigate(`/blogs/${id}`);
     } else {
-      alert('The comment is empty!')
+      alert("The comment is empty!");
     }
-  }
+  };
+
   return (
     <Container className="px-sm-5">
       <h3 className="mt-5 fw-bold">{blog.title}</h3>
       <div className="text-end">
-        <p className="mb-0">{blog.updatedAt && blog.updatedAt.slice(0,10)}</p>
+        <p className="mb-0">{blog.updatedAt && blog.updatedAt.slice(0, 10)}</p>
         <p className="mb-0">{blog.name}</p>
       </div>
       <img
@@ -85,36 +88,45 @@ const BlogArticle = () => {
       </div>
       <div className="p-3 my-sm-5 text-sm-center commentContainer">
         <h5 className="mt-5 mb-3">COMMENTS</h5>
-        {blog.comments === undefined ? "No comments." : blog.comments.map(comment => (
-          <Card key={comment._id} className="mb-1 border-1 d-flex">
-            <Card.Body>
-              <Card.Text className="text-start mb-0">
-                {comment.content}
-              </Card.Text>
-              <div className="text-end">
-                {comment.name}
-              </div>
-              {(comment.name === userInfo.name || userInfo.isAdmin) && (
-                <div className="text-end">
-                  <Card.Link href="#">DELETE</Card.Link>
-                </div>
-              ) }
-            </Card.Body>
-          </Card>
-        ))}
+        {blog.comments === undefined
+          ? "No comments."
+          : blog.comments.map((comment) => (
+              <Card key={comment._id} className="mb-1 border-1 d-flex">
+                <Card.Body>
+                  <Card.Text className="text-start mb-0">
+                    {comment.content}
+                  </Card.Text>
+                  <div className="text-end">{comment.name}</div>
+                  {(comment.name === userInfo.name || userInfo.isAdmin) && (
+                    <div className="text-end">
+                      <Card.Link href="#">DELETE</Card.Link>
+                    </div>
+                  )}
+                </Card.Body>
+              </Card>
+            ))}
 
         <h5 className="mt-5 mb-3">ADD COMMENT</h5>
         <div className="d-flex flex-column justify-content-center">
-            <Form onSubmit={commentSubmitHandler}>
-              <Form.Group className="mb-3" controlId="comment">
-                <Form.Control as="textarea" placeholder="Comment....." rows={8} onChange={(e) => setComment(e.target.value)}/>
-              </Form.Group>
-              <div className="text-end my-1">
-                <Button type="submit" variant="secondary" className="btn-round px-3 mx-2">
-                  POST COMMENT
-                </Button>
-              </div>
-            </Form>
+          <Form onSubmit={commentSubmitHandler}>
+            <Form.Group className="mb-3" controlId="comment">
+              <Form.Control
+                as="textarea"
+                placeholder="Comment....."
+                rows={8}
+                onChange={(e) => setComment(e.target.value)}
+              />
+            </Form.Group>
+            <div className="text-end my-1">
+              <Button
+                type="submit"
+                variant="secondary"
+                className="btn-round px-3 mx-2"
+              >
+                POST COMMENT
+              </Button>
+            </div>
+          </Form>
         </div>
       </div>
     </Container>
