@@ -1,3 +1,5 @@
+
+
 import React, { useEffect } from "react";
 import { Container } from "react-bootstrap";
 import blogTopImage from "../material/blogSection.jpg";
@@ -50,8 +52,8 @@ const BlogList = () => {
             <Col className="col-sm-7 mb-3 text-center">
               <h5 className="pageTitle mb-sm-4">{blog.title}</h5>
               <Row className="d-flex  align-items-center text-sm-end">
-                <p className="mb-0">{blog.updatedAt}</p>
-                <p className="mb-0">{blog.user}</p>
+                <p className="mb-0">{blog.updatedAt.slice(0, 10)}</p>
+                <p className="mb-0">{blog.name}</p>
               </Row>
             </Col>
           </Row>

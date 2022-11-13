@@ -17,13 +17,13 @@ const SiteDetail = () => {
 
   const siteAddComment = useSelector((state) => state.siteAddComment)
   const {
-    success: successProductReview,
+    success: successComment,
     error: errorProductReview,
   } = siteAddComment
 
 
   useEffect(() => {
-    if (successProductReview) {
+    if (successComment) {
       setComment('')
     }
     if (userInfo) {
@@ -31,7 +31,7 @@ const SiteDetail = () => {
     } else {
       navigate('/login')
     }
-  }, [dispatch, id, comment, navigate, successProductReview]);
+  }, [dispatch, id, comment, navigate, successComment]);
 
   const commentSubmitHandler = (e) => {
     e.preventDefault();

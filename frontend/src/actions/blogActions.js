@@ -16,6 +16,9 @@ import {
   BLOG_DELETE_REQUEST,
   BLOG_DELETE_SUCCESS,
   BLOG_DELETE_FAIL,
+  ADD_COMMENT_REQUEST,
+  ADD_COMMENT_SUCCESS,
+  ADD_COMMENT_FAIL,
 } from "../contents/blogContents";
 import axios from "axios";
 
@@ -113,6 +116,32 @@ export const deleteBlog = (id) => async (dispatch, getState) => {
   } catch (error) {
     dispatch({
       type: BLOG_DELETE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+// add comment to one blog
+export const addCommentToOneBlog = (id, comment) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: ADD_COMMENT_REQUEST });
+    const {
+      userLogIn: { userInfo },
+    } = getState();
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${userInfo.token}`
+      },
+    };
+    const {data} = await axios.post(`/api/blogs/${id}/comments`, comment, config);
+    dispatch({ type: ADD_COMMENT_SUCCESS });
+  } catch (error) {
+    dispatch({
+      type: ADD_COMMENT_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
