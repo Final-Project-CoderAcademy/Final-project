@@ -1,4 +1,4 @@
-// import axios from "axios";
+import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,7 +12,6 @@ const SiteEdit = () => {
   const { id: siteId } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
   const [name, setName] = useState("");
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
@@ -44,6 +43,7 @@ const SiteEdit = () => {
         setNumComments(site.numComments);
       }
     }
+     // eslint-disable-next-line
   }, [dispatch, navigate, siteId, site, successUpdate]);
 
   const submitHandler = (e) => {
@@ -61,22 +61,22 @@ const SiteEdit = () => {
     );
   };
 
-  // const uploadFileHandler = async (e) => {
-  //   const file = e.target.files[0];
-  //   const formData = new FormData();
-  //   formData.append("image", file);
-  //   try {
-  //     const config = {
-  //       headers: {
-  //         "Content-Type": "multerpart/form-data",
-  //       },
-  //     };
-  //     const { data } = await axios.post("/api/sites", formData, config);
-  //     setImage(data);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
+  const uploadFileHandler = async (e) => {
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append("image", file);
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "multerpart/form-data",
+        },
+      };
+      const { data } = await axios.post("/api/upload", formData, config);
+      setImage(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <Container>
@@ -103,33 +103,41 @@ const SiteEdit = () => {
               <Form.Label>Title</Form.Label>
               <Form.Control
                 type="string"
-                placeholder="Site Title"
-                value={name}
+                placeholder={name}
                 onChange={(e) => setName(e.target.value)}
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="title">
               <Form.Label>Category</Form.Label>
               <Form.Control
-                as="select"
-                value={category}
+                type="string"
+                placeholder={category}
                 onChange={(e) => setCategory(e.target.value)}
               >
-                <option>{category}</option>
-                {Categories.map((category, id) => (
-                  <option key={id}>{category}</option>
-                ))}
               </Form.Control>
             </Form.Group>
             <Form.Group className="mb-3" controlId="description">
               <Form.Label>Description</Form.Label>
               <Form.Control
                 as="textarea"
-                placeholder="Lorem ipsum dolor sit amet....."
+                placeholder={description}
                 style={{ height: 250 }}
-                value={description}
                 onChange={(e) => setDescription(e.target.value)}
               />
+            </Form.Group>
+
+            <Form.Group controlId='image'>
+              <Form.Label>Image: </Form.Label>
+              <Form.Control
+                type='text'
+                placeholder={image}
+                onChange={(e) => setImage(e.target.value)}
+              ></Form.Control>
+              <Form.Control
+                type="file"
+                placeholder='insert image'
+                onChange={uploadFileHandler}
+              ></Form.Control>
             </Form.Group>
 
             <div className="d-grid gap-2 d-md-block">
