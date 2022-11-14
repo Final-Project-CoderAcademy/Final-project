@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Button, Container, Form } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import { addCommentToOneSite, siteDetail, deleteCommentToOneSite } from "../actions/siteActions";
+import GoogleMapSite from "../components/GoogleMapSite";
 
 const SiteDetail = () => {
   const { id } = useParams();
@@ -66,6 +67,7 @@ const SiteDetail = () => {
       <p className="lh-lg fs-6">{site.description}</p>
       <div className="p-3 my-sm-5 text-sm-center commentContainer">
         <h5 style={{ textAlign: "left" }}>LOCATION</h5>
+        <GoogleMapSite/>
         <h5 className="mt-5 mb-3" style={{ textAlign: "left" }}>
           COMMENTS
         </h5>

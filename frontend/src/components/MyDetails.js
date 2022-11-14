@@ -18,57 +18,31 @@ const MyDetails = () => {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
   
-    const userDetails = useSelector((state) => state.userDetails);
-    const { error: errorUser, user } = userDetails;
-  
     const userUpdateDetails = useSelector((state) => state.userUpdateDetails);
     const { success: successUpdate } = userUpdateDetails;
-  
-    const userBlogs = useSelector((state) => state.userBlogs);
-    const { error, blogs } = userBlogs;
-  
+
     const userLogIn = useSelector((state) => state.userLogIn);
     const { userInfo } = userLogIn;
-  
-    const blogDelete = useSelector((state) => state.blogDelete);
-    const { success: successDelete, error: errorDelete } = blogDelete;
-  
-    const blogCreate = useSelector((state) => state.blogCreate);
-    const {
-      
-      success: successCreate,
-      blog: newBlog,
-    } = blogCreate;
   
     useEffect(() => {
       dispatch({ type: BLOG_CREATE_RESET });
       if (!userInfo) {
         navigate("/login");
       }
-      if (successCreate) {
-        navigate(`/blogs/${newBlog}/edit}`);
-      } else {
-        dispatch(userAllBlogs(userInfo._id));
-      }
-  
-      if (!user.name || successUpdate) {
+
+      if (!userInfo || successUpdate) {
         dispatch({ type: USER_UPDATE_RESET });
         dispatch(getUserProfile("profile"));
         dispatch(userAllBlogs(userInfo._id));
       } else {
-        setName(user.name);
-        setEmail(user.email);
+        setName(userInfo.name);
+        setEmail(userInfo.email);
       }
     }, [
       dispatch,
       navigate,
       successUpdate,
       userInfo,
-      successCreate,
-      //   successDelete,
-      newBlog,
-      user,
-      //   blogs,
     ]);
     const updateSubmitHandler = (e) => {
         e.preventDefault();
@@ -85,7 +59,7 @@ const MyDetails = () => {
           alert('password and confirm password must be same')
         }
         if (password && (password === confirmPassword) && window.confirm('Are you sure?')) {
-          dispatch(updateUserProfile({ id: user._id, name, email, password }));
+          dispatch(updateUserProfile({ id: userInfo._id, name, email, password }));
           navigate('/')
         }
       };
@@ -100,7 +74,6 @@ const MyDetails = () => {
           Your profile detail has been updated
         </p>
       )}
-      {errorUser && <p>{errorUser}</p>}
 
       <Form className="mb-5" onSubmit={updateSubmitHandler}>
         <Form.Group className="mb-3" controlId="userName">
