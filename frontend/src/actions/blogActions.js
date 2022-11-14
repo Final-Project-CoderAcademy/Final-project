@@ -164,7 +164,7 @@ export const addCommentToOneBlog =
           Authorization: `Bearer ${userInfo.token}`,
         },
       };
-      const { data } = await axios.post(
+      await axios.post(
         `/api/blogs/${id}/comments`,
         comment,
         config
@@ -194,7 +194,7 @@ export const deleteCommentToOneBlog =
           Authorization: `Bearer ${userInfo.token}`,
         },
       };
-      const { data } = await axios.delete(
+      await axios.delete(
         `/api/blogs/${id}/comments/${commentId}`,
         config
       );

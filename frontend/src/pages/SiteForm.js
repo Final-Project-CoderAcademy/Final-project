@@ -41,7 +41,7 @@ const SiteEdit = () => {
         setNumComments(site.numComments);
       }
     }
-     // eslint-disable-next-line
+    // eslint-disable-next-line
   }, [dispatch, navigate, siteId, site, successUpdate]);
 
   const submitHandler = (e) => {

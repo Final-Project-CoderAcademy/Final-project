@@ -21,7 +21,8 @@ const BlogList = () => {
     } else {
       navigate("/login");
     }
-  }, [dispatch]);
+    // eslint-disable-next-line
+  }, [dispatch, userInfo, navigate]);
   const deleteBlogHandler = (id) => {
     if (window.confirm("Are you sure?")) {
       dispatch(deleteBlog(id));
