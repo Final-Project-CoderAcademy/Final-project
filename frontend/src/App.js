@@ -15,6 +15,8 @@ import AdminSiteList from "./pages/AdminSiteList";
 import BlogForm from "./pages/BlogForm";
 import SiteForm from "./pages/SiteForm";
 import WeatherSearchBar from "./components/WeatherSearchBar";
+import MyDetails from "./components/MyDetails";
+import MyBlog from "./components/MyBlog";
 
 
 function App() {
@@ -31,13 +33,15 @@ function App() {
 
             <Route path="/blogs" element={<BlogList />}></Route>
             <Route path="/blogs/:id" element={<BlogArticle />}></Route>
-            <Route path="/blogs/:id/edit" element={<BlogForm />}></Route>
+            <Route path="/blogs/:id/create" element={<BlogForm />}></Route>
 
             <Route path="/sites" element={<SitesList />}></Route>
             <Route path="/sites/:id" element={<SiteDetail />}></Route>
             <Route path="/sites/:id/edit" element={<SiteForm />}></Route>
 
             <Route path="/myhome" element={<MyHome />}></Route>
+            <Route path="/myhome/myBlogs" element={<MyBlog />}></Route>
+            <Route path="/myhome/myDetails" element={<MyDetails />}></Route>
             <Route path="/admin/userlist" element={<AdminUserList />}></Route>
             <Route path="/admin/sitelist" element={<AdminSiteList />}></Route>
           </Routes>

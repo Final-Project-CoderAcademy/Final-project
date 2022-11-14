@@ -1,10 +1,28 @@
-import React from "react";
+import axios from "axios";
+import React, {useState} from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro"; // <-- import styles to be used
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 
 const BlogEdit = () => {
+  // const [image, setImage] = useState("");
+  // const uploadFileHandler = async (e) => {
+  //   const file = e.target.files[0];
+  //   const formData = new FormData();
+  //   formData.append("image", file);
+  //   try {
+  //     const config = {
+  //       headers: {
+  //         "Content-Type": "multerpart/form-data",
+  //       },
+  //     };
+  //     const { data } = await axios.post("/api/upload", formData, config);
+  //     setImage(data);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
   return (
     <Container>
       <Row className="justify-content-md-center">
@@ -19,6 +37,15 @@ const BlogEdit = () => {
           </Link>
           <h2 className="mb-4 text-center">BLOG POST</h2>
           <Form>
+            {/* <Form.Group controlId='image'>
+              <Form.Label>Image: </Form.Label>
+              <Form.Control
+                type="file"
+                placeholder='insert image'
+                onChange={uploadFileHandler}
+              ></Form.Control>
+            </Form.Group> */}
+
             <Form.Group className="mb-3" controlId="title">
               <Form.Label>Title</Form.Label>
               <Form.Control type="string" placeholder="Blog Title" />
@@ -28,7 +55,7 @@ const BlogEdit = () => {
               <Form.Label>Article</Form.Label>
               <Form.Control
                 as="textarea"
-                placeholder="Lorem ipsum dolor sit amet....."
+                placeholder="Blog contents..."
                 rows={8}
               />
             </Form.Group>
