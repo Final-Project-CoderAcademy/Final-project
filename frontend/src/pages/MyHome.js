@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro"; // <-- import styles to be used
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import { Container, Row, Col, CardGroup, Card, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { createBlog, deleteBlog, userAllBlogs } from "../actions/blogActions";
 import { getUserProfile, updateUserProfile } from "../actions/userActions";
 import { BLOG_CREATE_RESET } from "../contents/blogContents";
 import { USER_UPDATE_RESET } from "../contents/userContents";
+import MyBlog from "../components/MyBlog"
+import MyDetails from "../components/MyDetails"
 
 const MyHome = () => {
   const dispatch = useDispatch();
@@ -35,7 +37,7 @@ const MyHome = () => {
 
   const blogCreate = useSelector((state) => state.blogCreate);
   const {
-    error: errorCreate,
+    
     success: successCreate,
     blog: newBlog,
   } = blogCreate;
@@ -87,7 +89,7 @@ const MyHome = () => {
   return (
     <Container>
       <Row className="justify-content-md-center">
-        <Col xs={12} md={6}>
+        <Col xs={12} md={12}>
           <Link to="/">
             <FontAwesomeIcon
               icon={solid("arrow-left")}
@@ -96,128 +98,36 @@ const MyHome = () => {
               variant="primary"
             />
           </Link>
-          <h2 className="mb-4 text-center">MY HOME</h2>
-          {successUpdate && (
-            <p style={{ color: "green" }}>
-              Your profile detail has been updated
-            </p>
-          )}
-          {errorUser && <p>{errorUser}</p>}
 
-          <Form className="mb-5" onSubmit={updateSubmitHandler}>
-            <Form.Group className="mb-3" controlId="userName">
-              <Form.Label>Username</Form.Label>
-              <Form.Control
-                type="string"
-                placeholder="username"
-                value={name}
-                onChange={(e) => {
-                  setName(e.target.value);
-                }}
-              />
-            </Form.Group>
 
-            <Form.Group className="mb-3" controlId="email">
-              <Form.Label>Email </Form.Label>
-              <Form.Control
-                type="email"
-                placeholder="example@gmail.com"
-                value={email}
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                }}
-              />
-            </Form.Group>
+          <CardGroup>
 
-            <Form.Group className="mb-3" controlId="password">
-              <Form.Label>Password </Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="password"
-                value={password}
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                }}
-              />
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="confirmPassword">
-              <Form.Label>Confirm Password</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="password"
-                value={confirmPassword}
-                onChange={(e) => {
-                  setConfirmPassword(e.target.value);
-                }}
-              />
-            </Form.Group>
-
-            <div className="d-grid gap-2 d-md-block">
-              <Button variant="primary" type="submit" className="my-1 px-5 ">
-                UPDATE
-              </Button>
-            </div>
-          </Form>
-
-          <div className="text-center">
-            <h3 className="mb-3">MY BLOG</h3>
-            {error && <p>{error}</p>}
-            {errorCreate && <p>{errorCreate}</p>}
-            {errorDelete && <p>{errorDelete}</p>}
-            <Link to="/blogs/:id/edit">
-              <Button
-                variant="info"
-                className="px-4"
-                onClick={createBlogHandler}
-              >
-                CREATE A POST
-              </Button>
-            </Link>
-          </div>
-          {blogs?.map((blog) => (
-            <Row className="mt-4" key={blog._id}>
-              <Col className="col-sm-5 mb-3" md="auto">
-                <Link to="/blogs/:id">
-                  <img
-                    src={blog.image}
-                    alt={blog.title}
-                    className=" mx-auto d-block"
-                    style={{ height: 100, width: 100 }}
-                  />
+            <Card style={{backgroundColor: "lightgrey", textAlign: "center", margin: "20px", border: "1px solid lightgrey", borderRadius: "10px"}}>
+              <Card.Body>
+                <Card.Title>MyDetails</Card.Title>
+                <Card.Text>
+                  You can change your account information here!
+                </Card.Text>
+                <Link to="/myhome/myDetails">
+                  <Button variant="primary">To myDetails</Button>
                 </Link>
-              </Col>
-              <Col className="col-sm-7 mb-3 text-center">
-                <h6 className="pageTitle">{blog.title}</h6>
-                <Row className="d-flex  align-items-center text-sm-end">
-                  <div>
-                    <p className="mb-0">{blog.updatedAt.slice(0, 10)}</p>
-                    {blog.user === userInfo._id && (
-                      <>
-                        <Link to={`/blogs/${blog._id}/edit`}>
-                          <Button
-                            variant="light"
-                            className=" px-2 mx-2"
-                            size="sm"
-                          >
-                            Edit
-                          </Button>
-                        </Link>
-                        <Button
-                          variant="dark"
-                          className=" px-2"
-                          size="sm"
-                          onClick={() => deleteBlogHandler(blog._id)}
-                        >
-                          Delete
-                        </Button>
-                      </>
-                    )}
-                  </div>
-                </Row>
-              </Col>
-            </Row>
-          ))}
+              </Card.Body>
+            </Card>
+            <Card style={{backgroundColor: "lightgrey", textAlign: "center",  margin: "20px", border: "1px solid lightgrey", borderRadius: "10px"}}>
+              <Card.Body>
+                <Card.Title>MyBlogs</Card.Title>
+                <Card.Text>
+                  You can manage your blogs here!
+                </Card.Text>
+                <Link to="/myhome/myBlogs">
+                  <Button variant="primary">To myBlogs</Button>
+                </Link>
+              </Card.Body>
+            </Card>
+
+          </CardGroup>
+
+
         </Col>
       </Row>
     </Container>

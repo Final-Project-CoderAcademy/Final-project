@@ -44,14 +44,16 @@ const NavBar = () => {
                   <LinkContainer to="/myhome">
                     <NavDropdown.Item>MyHome</NavDropdown.Item>
                   </LinkContainer>
-
+                  <LinkContainer to="/login">
                   <NavDropdown.Item onClick={logOutHandler}>
+                    
                     <FontAwesomeIcon
                       icon={solid("arrow-right-from-bracket")}
                       className="me-2"
                     />
                     Log Out
                   </NavDropdown.Item>
+                  </LinkContainer>
                 </NavDropdown>
               ) : (
                 <>

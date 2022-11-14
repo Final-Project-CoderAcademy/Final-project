@@ -48,22 +48,24 @@ describe("sites", () => {
     // API test: GET /api/sites/:id
     describe('GET /api/sites/:id', () => {
       describe('given the site not exist',() => {
-        it("should respond with 500 when give ", async () => {
+        it("should respond with 500", async () => {
           const siteId = 'site1234'
           await request(app).get(`/api/sites/${siteId}`).expect(500)
         })
       })
       describe('given the site exist', () => {
         it("should respond with accurate data", async () => {
-          const res = await request(app).get(`/api/sites/6364b4f41230101b9667ea25`)
-          expect(res.body.name).toBe("Hiking in Tasmania")
+          const site = await Site.findOne({name: "The BIG BANANA in Coffs Harbour"})
+          const id = site._id
+          const res = await request(app).get(`/api/sites/${id}`)
+          expect(res.body.name).toBe("The BIG BANANA in Coffs Harbour")
         })
       })
     })
 
     // API test: PUT /api/sites/:id
     describe('PUT /api/sites/:id', () => {
-      it("should post a new site", async () => {
+      it("should post a new site with accurate data", async () => {
         const response = await request(app).post('/api/users/login').send({
           email: "admin@example.com",
           password: "123456"
@@ -157,7 +159,7 @@ describe("users", () => {
 
   // API test: PUT /api/users/profile
   describe('PUT /api/users/profile', () => {
-    it("should post a new site", async () => {
+    it("should get correct of updated info", async () => {
       const response = await request(app).post('/api/users/login').send({
         email: "heyhey@example.com",
         password: "123456"
@@ -212,13 +214,13 @@ describe("blogs", () => {
     describe("GET api/blogs", () => {
       it("should show all the blogs", async() => {
         const user = await request(app).post('/api/users/login').send({
-          email: 'xinzhe@example.com',
+          email: 'todd@example.com',
           password: '123456'
         })
         const token = await user.body.token
         const response = await request(app).get(`/api/blogs`).set('Authorization', `Bearer ${token}`)
         expect(response.statusCode).toBe(200)
-        expect(response.body[0].title).toBe("My vacation in Tas!")
+        expect(response.body[0].title).toBe("Blog test title.")
 
       })
     })
@@ -227,14 +229,14 @@ describe("blogs", () => {
     describe("GET api/blogs/:userId/all", () => {
       it("should show all the blogs of one user who log in", async() => {
         const user = await request(app).post('/api/users/login').send({
-          email: 'xinzhe@example.com',
+          email: 'todd@example.com',
           password: '123456'
         })
         const token = await user.body.token
         const userId = await user.body._id
         const response = await request(app).get(`/api/blogs/${userId}/all`).set('Authorization', `Bearer ${token}`)
         expect(response.statusCode).toBe(200)
-        expect(response.body[0].title).toBe("Another blog to test!")
+        expect(response.body[0].title).toBe("Blog test title.")
       })
     })
 
@@ -257,8 +259,8 @@ describe("blogs", () => {
     // API test: DELETE api/blogs/:id
     describe("DELETE api/blogs/:id", () => {
       // wrong user failed to delete 
-      describe("delete with right user", () => {
-        it("should response with 200 and get the new blog", async () => {
+      describe("delete with wrong user", () => {
+        it("should response with 401", async () => {
           const user = await request(app).post('/api/users/login').send({
             email: 'xinzhe@example.com',
             password: '123456'
@@ -287,7 +289,7 @@ describe("blogs", () => {
       })
 
       // admin successfully delete
-      describe("delete with right user", () => {
+      describe("delete with admin user", () => {
         it("should response with 200 and get the new blog", async () => {
           const user = await request(app).post('/api/users/login').send({
             email: 'todd@example.com',
