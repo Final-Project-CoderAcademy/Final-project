@@ -19,8 +19,6 @@ const SiteEdit = () => {
   const [rating, setRationg] = useState(0);
   const [numComments, setNumComments] = useState(0);
 
-  const Categories = ["Mountain", "Beach", "Snow", "Other"];
-
   const siteDetails = useSelector((state) => state.siteDetails);
   const { error, site } = siteDetails;
 
@@ -128,11 +126,6 @@ const SiteEdit = () => {
 
             <Form.Group controlId='image'>
               <Form.Label>Image: </Form.Label>
-              <Form.Control
-                type='text'
-                placeholder={image}
-                onChange={(e) => setImage(e.target.value)}
-              ></Form.Control>
               <Form.Control
                 type="file"
                 placeholder='insert image'
