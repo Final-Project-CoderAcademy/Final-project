@@ -62,6 +62,7 @@ const SiteDetail = () => {
         src={site.image}
         alt={site.name}
         className="my-sm-5 img-fluid d-block"
+        style={{width: "60vw", margin: "0 auto"}}
       />
       <h3 className="mt-5 fw-bold">{site.name}</h3>
       <p className="lh-lg fs-6">{site.description}</p>
@@ -82,7 +83,7 @@ const SiteDetail = () => {
                   <div className="text-end">{comment.name}</div>
                   {(comment.name === userInfo.name || userInfo.isAdmin) && (
                     <div className="text-end">
-                      <Button onClick={() => deleteComment(comment._id)}>DELETE</Button>
+                      <Button variant="outline-danger" onClick={() => deleteComment(comment._id)}>delete</Button>
                     </div>
                   )}
                 </Card.Body>

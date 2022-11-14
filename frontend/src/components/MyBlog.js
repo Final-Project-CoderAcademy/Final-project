@@ -51,7 +51,7 @@ const MyBlog = () => {
 
         {blogs?.map((blog) => (
           <Row className="mt-4 d-flex justify-content-center" key={blog._id}>
-            <Col className="col-sm-5 mb-3" md="auto">
+            <Col className="col-sm-3 mb-3" md="auto">
               <Link to={`/blogs/${blog._id}`}>
                 <img
                   src={blog.image}
@@ -60,15 +60,14 @@ const MyBlog = () => {
                 />
               </Link>
             </Col>
-            <Col className="col-sm-4 mb-3 text-center">
+            <Col className="col-sm-3 mb-3 text-center">
               <h5 className="pageTitle mb-sm-4">{blog.title}</h5>
-              <Row className="d-flex  align-items-center text-sm-end">
-                <p className="mb-0">{blog.updatedAt.slice(0, 10)}</p>
-                <p className="mb-0">{blog.name}</p>
-              </Row>
             </Col>
             <Col className="col-sm-3 mb-3 text-center">
-              <Button onClick={() => deleteBlogHandler(blog._id)}>
+              <p className="mb-0">{blog.updatedAt.slice(0, 10)}</p>
+            </Col>
+            <Col className="col-sm-3 mb-3 text-center">
+              <Button variant="outline-danger" onClick={() => deleteBlogHandler(blog._id)}>
                 Delete
               </Button>
             </Col>

@@ -28,18 +28,18 @@ const BlogEdit = () => {
   const { success: successUpdate, error: errorUpdate } = blogUpdate;
 
   useEffect(() => {
-    if (successUpdate === true) {
-      dispatch({ type: BLOG_UPDATE_RESET });
-      navigate("/blogs");
-    } else {
-      if (!blog._id || blog._id !== blogId) {
-        dispatch(blogDetail(blogId));
-      } else {
-        setTitle(blog.title);
-        setArticle(blog.article);
-        setImage(blog.image);
-      }
-    }
+    // if (successUpdate === true) {
+    //   dispatch({ type: BLOG_UPDATE_RESET });
+    //   navigate("/blogs");
+    // } else {
+    //   if (!blog._id || blog._id !== blogId) {
+    //     dispatch(blogDetail(blogId));
+    //   } else {
+    //     setTitle(blog.title);
+    //     setArticle(blog.article);
+    //     setImage(blog.image);
+    //   }
+    // }
   }, [dispatch, navigate, blogId, blog, successUpdate]);
 
   const submitHandler = (e) => {
