@@ -1,21 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { solid } from "@fortawesome/fontawesome-svg-core/import.macro"; // <-- import styles to be used
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import React from "react";
+import { Link} from "react-router-dom";
+
+import { Row, Col, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { createBlog, deleteBlog, userAllBlogs } from "../actions/blogActions";
-import { getUserProfile, updateUserProfile } from "../actions/userActions";
-import { BLOG_CREATE_RESET } from "../contents/blogContents";
-import { USER_UPDATE_RESET } from "../contents/userContents";
+import { createBlog, deleteBlog } from "../actions/blogActions";
+
+
 const MyBlog = () => {
     const dispatch = useDispatch();
-    const navigate = useNavigate();
-  
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
   
     const userDetails = useSelector((state) => state.userDetails);
     const { error: errorUser, user } = userDetails;
