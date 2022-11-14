@@ -1,55 +1,52 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { blogDetail, updateBlog } from "../actions/blogActions";
-import { BLOG_UPDATE_RESET } from "../contents/blogContents";
+import { createBlog } from "../actions/blogActions";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro"; // <-- import styles to be used
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import { SITE_CREATE_RESET } from "../contents/siteContents";
 
 const BlogEdit = () => {
-  const { id: blogId } = useParams();
+  const { id: userId } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  const userLogIn = useSelector((state) => state.userLogIn);
-  const { userInfo } = userLogIn;
 
   const [title, setTitle] = useState("");
   const [article, setArticle] = useState("");
   const [image, setImage] = useState("");
 
-  const blogDetails = useSelector((state) => state.blogDetails);
-  const { blog, error } = blogDetails;
-  console.log("blog: ", blog);
+  const userLogIn = useSelector((state) => state.userLogIn);
+  const { userInfo } = userLogIn;
 
-  const blogUpdate = useSelector((state) => state.blogUpdate);
-  const { success: successUpdate, error: errorUpdate } = blogUpdate;
+  const blogCreate = useSelector((state) => state.blogCreate);
+  const {
+    success: successCreate,
+    error: errorCreate,
+    blog: newBlog,
+  } = blogCreate;
 
   useEffect(() => {
-    // if (successUpdate === true) {
-    //   dispatch({ type: BLOG_UPDATE_RESET });
-    //   navigate("/blogs");
-    // } else {
-    //   if (!blog._id || blog._id !== blogId) {
-    //     dispatch(blogDetail(blogId));
-    //   } else {
-    //     setTitle(blog.title);
-    //     setArticle(blog.article);
-    //     setImage(blog.image);
-    //   }
-    // }
-  }, [dispatch, navigate, blogId, blog, successUpdate]);
+    if (!userInfo || userInfo._id !== userId) {
+      navigate("/blogs");
+    }
+    if (successCreate) {
+      dispatch({ type: SITE_CREATE_RESET });
+      navigate("blogs");
+    }
+  }, [dispatch, navigate, userId, newBlog, successCreate]);
 
-  const submitHandler = (e) => {
+  const submitBlogHandler = (e) => {
     e.preventDefault();
-    updateBlog({
-      _id: blogId,
-      title,
-      article,
-      image,
-    });
+    console.log("event", e.target);
+    dispatch(
+      createBlog({
+        title,
+        article,
+        image,
+      })
+    );
   };
 
   // const [image, setImage] = useState("");
@@ -83,23 +80,35 @@ const BlogEdit = () => {
             />
           </Link>
           <h2 className="mb-4 text-center">BLOG POST</h2>
-          {errorUpdate && <p>{errorUpdate}</p>}
-          {error && <p>{error}</p>}
-          <Form onSubmit={submitHandler}>
-            {/* <Form.Group controlId='image'>
+          {errorCreate && <p>{errorCreate}</p>}
+
+          <Form onSubmit={submitBlogHandler}>
+            {/* <Form.Group controlId="image" className="mb-3">
               <Form.Label>Image: </Form.Label>
               <Form.Control
                 type="file"
-                placeholder='insert image'
+                placeholder="insert image"
                 onChange={uploadFileHandler}
               ></Form.Control>
             </Form.Group> */}
+
+            <Form.Group controlId="image" className="mb-3">
+              <Form.Label>Image: </Form.Label>
+              <Form.Control
+                type="string"
+                placeholder="insert image"
+                // onChange={(e) => setImage(e.target.value)}
+                value="path"
+                readOnly
+              ></Form.Control>
+            </Form.Group>
 
             <Form.Group className="mb-3" controlId="title">
               <Form.Label>Title</Form.Label>
               <Form.Control
                 type="string"
-                placeholder={title}
+                placeholder="Title"
+                value={title}
                 onChange={(e) => setTitle(e.target.value)}
               />
             </Form.Group>
@@ -108,8 +117,9 @@ const BlogEdit = () => {
               <Form.Label>Article</Form.Label>
               <Form.Control
                 as="textarea"
-                placeholder={article}
+                placeholder="Article"
                 rows={8}
+                value={article}
                 onChange={(e) => setArticle(e.target.value)}
               />
             </Form.Group>

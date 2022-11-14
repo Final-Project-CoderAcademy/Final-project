@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Carousel from "react-bootstrap/Carousel";
 import Badge from "react-bootstrap/Badge";
@@ -16,6 +16,10 @@ const About = () => {
   const dispatch = useDispatch();
   const sitesList = useSelector((state) => state.sitesList);
   const { error, sites } = sitesList;
+
+  const userLogIn = useSelector((state) => state.userLogIn);
+  const { userInfo } = userLogIn;
+
   const selectFiveSites = sites.slice(0, 5);
   useEffect(() => {
     dispatch(allSites());
@@ -26,19 +30,19 @@ const About = () => {
     <>
       <Carousel>
         {selectFiveSites.map((site, id) => (
-            <Carousel.Item key={id}>
-              <Carousel.Caption>
-                <h1 className="fw-bold mb-5">{site.name}</h1>
-              </Carousel.Caption>
-              <Link to={`/sites/${site._id}`}>
-                <img
-                  className="d-block w-100"
-                  style={{ height: "58vh", objectFit: "cover" }}
-                  src={site.image}
-                  alt={site.name}
-                />
-              </Link>
-            </Carousel.Item>
+          <Carousel.Item key={id}>
+            <Carousel.Caption>
+              <h1 className="fw-bold mb-5">{site.name}</h1>
+            </Carousel.Caption>
+            <Link to={`/sites/${site._id}`}>
+              <img
+                className="d-block w-100"
+                style={{ height: "58vh", objectFit: "cover" }}
+                src={site.image}
+                alt={site.name}
+              />
+            </Link>
+          </Carousel.Item>
         ))}
       </Carousel>
 
@@ -106,11 +110,19 @@ const About = () => {
                   it as a memory for yourself? You may also find places you want
                   to visit in other people's travel blogs.
                 </Card.Text>
-                <Link to="/blogs">
-                  <Button variant="primary" className="btn-round px-4">
-                    Visit Blog Page
-                  </Button>
-                </Link>
+                {userInfo ? (
+                  <Link to="/blogs">
+                    <Button variant="primary" className="btn-round px-4">
+                      Visit Blog Page
+                    </Button>
+                  </Link>
+                ) : (
+                  <Link to="/login">
+                    <Button variant="primary" className="btn-round px-4">
+                      Login Now
+                    </Button>
+                  </Link>
+                )}
               </Card.Body>
             </Card>
           </Col>
