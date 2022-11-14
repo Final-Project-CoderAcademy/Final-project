@@ -53,7 +53,7 @@ const reducer = combineReducers({
   blogAddComment: commentBlogAddReducer,
   //blog page
   blogsList: blogsListReducer,
-  // blog article page
+  // blog article page, blog Form
   blogDetails: blogDetailReducer,
   // MY HOME page
   blogCreate: blogCreateReducer,
