@@ -11,9 +11,6 @@ import {
   BLOG_CREATE_REQUEST,
   BLOG_CREATE_SUCCESS,
   BLOG_CREATE_FAIL,
-  BLOG_UPDATE_REQUEST,
-  BLOG_UPDATE_SUCCESS,
-  BLOG_UPDATE_FAIL,
   BLOG_DELETE_REQUEST,
   BLOG_DELETE_SUCCESS,
   BLOG_DELETE_FAIL,
@@ -111,6 +108,7 @@ export const createBlog = () => async (dispatch, getState) => {
     } = getState();
     const config = {
       headers: {
+        "Content-Type": "application/json",
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
@@ -128,30 +126,30 @@ export const createBlog = () => async (dispatch, getState) => {
 };
 
 // Update blog article
-export const updateBlog = (blog) => async (dispatch, getState) => {
-  try {
-    dispatch({ type: BLOG_UPDATE_REQUEST });
-    const {
-      userLogIn: { userInfo },
-    } = getState();
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${userInfo.token}`,
-      },
-    };
-    const { data } = await axios.put(`/api/blogs/${blog._id}`, blog, config);
-    dispatch({ type: BLOG_UPDATE_SUCCESS, payload: data });
-  } catch (error) {
-    dispatch({
-      type: BLOG_UPDATE_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
-    });
-  }
-};
+// export const updateBlog = (blog) => async (dispatch, getState) => {
+//   try {
+//     dispatch({ type: BLOG_UPDATE_REQUEST });
+//     const {
+//       userLogIn: { userInfo },
+//     } = getState();
+//     const config = {
+//       headers: {
+//         "Content-Type": "application/json",
+//         Authorization: `Bearer ${userInfo.token}`,
+//       },
+//     };
+//     const { data } = await axios.put(`/api/blogs/${blog._id}`, blog, config);
+//     dispatch({ type: BLOG_UPDATE_SUCCESS, payload: data });
+//   } catch (error) {
+//     dispatch({
+//       type: BLOG_UPDATE_FAIL,
+//       payload:
+//         error.response && error.response.data.message
+//           ? error.response.data.message
+//           : error.message,
+//     });
+//   }
+// };
 
 // Delete blog article
 export const deleteBlog = (id) => async (dispatch, getState) => {

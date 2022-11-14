@@ -23,7 +23,6 @@ import {
   userBlogsReducer,
   blogDetailReducer,
   blogCreateReducer,
-  blogUpdateReducer,
   blogDeleteReducer,
   commentBlogAddReducer,
   commentBlogDeleteReducer,
@@ -57,7 +56,6 @@ const reducer = combineReducers({
   blogDetails: blogDetailReducer,
   // MY HOME page
   blogCreate: blogCreateReducer,
-  blogUpdate: blogUpdateReducer,
   blogDelete: blogDeleteReducer,
   userBlogs: userBlogsReducer,
   blogCommentDelete: commentBlogDeleteReducer,

@@ -13,10 +13,6 @@ import {
   BLOG_CREATE_SUCCESS,
   BLOG_CREATE_FAIL,
   BLOG_CREATE_RESET,
-  BLOG_UPDATE_REQUEST,
-  BLOG_UPDATE_SUCCESS,
-  BLOG_UPDATE_FAIL,
-  BLOG_UPDATE_RESET,
   BLOG_DELETE_REQUEST,
   BLOG_DELETE_SUCCESS,
   BLOG_DELETE_FAIL,
@@ -89,21 +85,21 @@ export const blogCreateReducer = (state = {}, action) => {
   }
 };
 
-// reducer to update a blog article
-export const blogUpdateReducer = (state = { blog: {} }, action) => {
-  switch (action.type) {
-    case BLOG_UPDATE_REQUEST:
-      return { loading: true };
-    case BLOG_UPDATE_SUCCESS:
-      return { success: true, blog: action.payload };
-    case BLOG_UPDATE_FAIL:
-      return { error: action.payload };
-    case BLOG_UPDATE_RESET:
-      return { blog: {} };
-    default:
-      return state;
-  }
-};
+// // reducer to update a blog article
+// export const blogUpdateReducer = (state = { blog: {} }, action) => {
+//   switch (action.type) {
+//     case BLOG_UPDATE_REQUEST:
+//       return { loading: true };
+//     case BLOG_UPDATE_SUCCESS:
+//       return { success: true, blog: action.payload };
+//     case BLOG_UPDATE_FAIL:
+//       return { error: action.payload };
+//     case BLOG_UPDATE_RESET:
+//       return { blog: {} };
+//     default:
+//       return state;
+//   }
+// };
 
 // reducer to delete a blog article
 export const blogDeleteReducer = (state = {}, action) => {
