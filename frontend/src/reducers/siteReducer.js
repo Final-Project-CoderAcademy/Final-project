@@ -63,7 +63,6 @@ export const siteCreateReducer = (state = {}, action) => {
       return { error: action.payload };
     case SITE_CREATE_RESET:
       return {};
-
     default:
       return state;
   }

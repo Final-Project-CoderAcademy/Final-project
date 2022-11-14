@@ -26,7 +26,7 @@ const SiteEdit = () => {
   const { error: errorUpdate, success: successUpdate } = siteUpdate;
 
   useEffect(() => {
-    if (successUpdate === true) {
+    if (successUpdate) {
       dispatch({ type: SITE_UPDATE_RESET });
       navigate("/admin/sitelist");
     } else {

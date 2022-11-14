@@ -35,13 +35,12 @@ const BlogList = () => {
           <h1>BLOG</h1>
         </figcaption>
       </figure>
-      {error && <p style={{ color: "red" }}>{error}</p>}
 
       <Container>
         <h4 className="m-5 ps-3">All Posts</h4>
 
-        {blogs.map((blog) => (
-          <Row className="mt-4 d-flex justify-content-center">
+        {(blogs === undefined || blogs.length === 0) ? (error && <p style={{ color: "lightgrey", textAlign: "center" }}>{error}</p>) : blogs.map((blog) => (
+          <Row key={blog._id} className="mt-4 d-flex justify-content-center">
             <Col className="col-sm-4 mb-3" md="auto" key={blog._id}>
               <Link to={`/blogs/${blog._id}`}>
                 <img
