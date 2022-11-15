@@ -100,7 +100,7 @@ export const blogDetail = (id) => async (dispatch, getState) => {
 };
 
 // Create blog article
-export const createBlog = () => async (dispatch, getState) => {
+export const createBlog = ({title, article, image}) => async (dispatch, getState) => {
   try {
     dispatch({ type: BLOG_CREATE_REQUEST });
     const {
@@ -112,7 +112,7 @@ export const createBlog = () => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    const { data } = await axios.post(`/api/blogs`, {}, config);
+    const { data } = await axios.post(`/api/blogs`, {title, article, image}, config);
     dispatch({ type: BLOG_CREATE_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
@@ -124,32 +124,6 @@ export const createBlog = () => async (dispatch, getState) => {
     });
   }
 };
-
-// Update blog article
-// export const updateBlog = (blog) => async (dispatch, getState) => {
-//   try {
-//     dispatch({ type: BLOG_UPDATE_REQUEST });
-//     const {
-//       userLogIn: { userInfo },
-//     } = getState();
-//     const config = {
-//       headers: {
-//         "Content-Type": "application/json",
-//         Authorization: `Bearer ${userInfo.token}`,
-//       },
-//     };
-//     const { data } = await axios.put(`/api/blogs/${blog._id}`, blog, config);
-//     dispatch({ type: BLOG_UPDATE_SUCCESS, payload: data });
-//   } catch (error) {
-//     dispatch({
-//       type: BLOG_UPDATE_FAIL,
-//       payload:
-//         error.response && error.response.data.message
-//           ? error.response.data.message
-//           : error.message,
-//     });
-//   }
-// };
 
 // Delete blog article
 export const deleteBlog = (id) => async (dispatch, getState) => {
@@ -190,7 +164,7 @@ export const addCommentToOneBlog =
           Authorization: `Bearer ${userInfo.token}`,
         },
       };
-      const { data } = await axios.post(
+      await axios.post(
         `/api/blogs/${id}/comments`,
         comment,
         config
@@ -220,7 +194,7 @@ export const deleteCommentToOneBlog =
           Authorization: `Bearer ${userInfo.token}`,
         },
       };
-      const { data } = await axios.delete(
+      await axios.delete(
         `/api/blogs/${id}/comments/${commentId}`,
         config
       );

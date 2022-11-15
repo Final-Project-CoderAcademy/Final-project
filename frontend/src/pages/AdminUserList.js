@@ -12,7 +12,7 @@ const AdminUserList = () => {
 
   const dispatch = useDispatch();
   const userList = useSelector((state) => state.userList);
-  const { loading, error, users } = userList;
+  const { error, users } = userList;
   const userLogIn = useSelector((state) => state.userLogIn);
   const { userInfo } = userLogIn;
   const userDelete = useSelector((state) => state.userDelete);
