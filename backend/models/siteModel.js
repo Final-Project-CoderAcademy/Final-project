@@ -49,6 +49,16 @@ const siteSchema = mongoose.Schema({
     category: {
         type: String,
         required: true
+    },
+    lat: {
+        type: Number,
+        required: true,
+        default: 0
+    },
+    lng: {
+        type: Number,
+        required: true,
+        default: 0
     }
 },
 {

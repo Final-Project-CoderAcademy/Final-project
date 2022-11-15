@@ -56,7 +56,9 @@ export const updateSite = asyncHandler(async (req, res) => {
         rating,
         numComments,
         image,
-        category
+        category,
+        lat,
+        lng
     } = req.body
     const site = await Site.findById(req.params.id)
     if (site) {
@@ -66,6 +68,8 @@ export const updateSite = asyncHandler(async (req, res) => {
         site.numComments = numComments
         site.image = image
         site.category = category
+        site.lat = lat
+        site.lng = lng
         const updateSite = await site.save()
         res.status(201).json(updateSite)
     } else {

@@ -5,7 +5,9 @@ const sites = [
         rating: 4.0,
         category: 'park',
         image: '/images/bigbanana.jpg',
-        numReviews: 5
+        numReviews: 5,
+        lat: -30.2748938,
+        lng: 153.1337285
     },
     {
         name: 'Hiking in Tasmania',
@@ -13,7 +15,9 @@ const sites = [
         rating: 4.3,
         category: 'mountain',
         image: '/images/tasmania_hiking.jpg',
-        numReviews: 22
+        numReviews: 22,
+        lat: -41.3980229,
+        lng: 146.0243935
     },
     {
         name: 'Surfing in Gold Coast',
@@ -21,7 +25,9 @@ const sites = [
         rating: 3.8,
         category: 'sea',
         image: '/images/goldcoast_surfing.jpg',
-        numReviews: 8
+        numReviews: 8,
+        lat: -27.9992435,
+        lng: 153.4314575
     },
     {
         name: "Newcastle's beautiful landscape",
@@ -29,15 +35,19 @@ const sites = [
         rating: 4.7,
         category: 'sea',
         image: '/images/newcastle.jpg',
-        numReviews: 13
+        numReviews: 13,
+        lat: -32.9282712,
+        lng: 151.7816802
     },
     {
-        name: 'Roadtrip around Pink Lake  in Port Gregory',
+        name: 'Roadtrip around Pink Lake in Port Gregory',
         description: 'Located in the vast and wild landscape of north-west Victoria, about a five-hour drive from Melbourne, these lakes change from brilliant pink to glistening white, and tend to be at their most vibrant on cloudy days.',
         rating: 3.3,
         category: 'lake',
         image: '/images/pinklake.jpg',
-        numReviews: 10
+        numReviews: 10,
+        lat: -36.406848,
+        lng: 141.9553708
     },
 ]
 
