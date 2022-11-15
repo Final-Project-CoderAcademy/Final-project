@@ -28,7 +28,6 @@ const SiteEdit = () => {
     libraries: ["places"],
   });
 
-
   const siteDetails = useSelector((state) => state.siteDetails);
   const { error, site } = siteDetails;
 
@@ -37,13 +36,13 @@ const SiteEdit = () => {
 
   useEffect(() => {
     loader
-    .load()
-    .then((google) => {
-      initAutocomplete(google);
-    })
-    .catch((e) => {
-      console.log(e.message);
-    });
+      .load()
+      .then((google) => {
+        initAutocomplete(google);
+      })
+      .catch((e) => {
+        console.log(e.message);
+      });
     if (successUpdate) {
       dispatch({ type: SITE_UPDATE_RESET });
       navigate("/admin/sitelist");
@@ -51,11 +50,25 @@ const SiteEdit = () => {
       dispatch(siteDetail(siteId));
     }
     // eslint-disable-next-line
-  }, [dispatch, navigate, siteId, site, successUpdate, lat, lng, name, category, description, image, numComments, rating]);
+  }, [
+    dispatch,
+    navigate,
+    siteId,
+    site,
+    successUpdate,
+    lat,
+    lng,
+    name,
+    category,
+    description,
+    image,
+    numComments,
+    rating,
+  ]);
 
   const submitHandler = (e) => {
     e.preventDefault();
-    if (!(lat ===0 && lng === 0)) {
+    if (!(lat === 0 && lng === 0)) {
       dispatch(
         updateSite({
           _id: siteId,
@@ -66,11 +79,11 @@ const SiteEdit = () => {
           image,
           category,
           lat,
-          lng
+          lng,
         })
       );
     } else {
-      alert('Location not found!')
+      alert("Location not found!");
     }
   };
 
@@ -80,23 +93,22 @@ const SiteEdit = () => {
     const autocomplete = new x.maps.places.Autocomplete(input);
     autocomplete.addListener("place_changed", () => {
       const { lat, lng } = autocomplete.getPlace().geometry.location;
-      setLat(lat())
-      setLng(lng())
+      setLat(lat());
+      setLng(lng());
     });
   };
 
   const setMapForm = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     loader
-    .load()
-    .then(google => {
-      initAutocomplete(google)
-  })
-    .catch(e => {
-      console.log(e.message)
-    });
-  }
-
+      .load()
+      .then((google) => {
+        initAutocomplete(google);
+      })
+      .catch((e) => {
+        console.log(e.message);
+      });
+  };
 
   const uploadFileHandler = async (e) => {
     const file = e.target.files[0];
@@ -135,22 +147,21 @@ const SiteEdit = () => {
 
           {errorUpdate && <p>{errorUpdate}</p>}
           {error && <p>{error}</p>}
-          <br/>
+          <br />
           <Form onSubmit={setMapForm}>
-              <Form.Group >
-                <Form.Label>Location: </Form.Label>
-                <Form.Control
-                  id="showMap"
-                  type="string"
-                  placeholder="site location"
-                  style={{ margin: "0 auto" }}
-                />
-              </Form.Group>
+            <Form.Group>
+              <Form.Label>Location: </Form.Label>
+              <Form.Control
+                id="showMap"
+                type="string"
+                placeholder="site location"
+                style={{ margin: "0 auto" }}
+              />
+            </Form.Group>
           </Form>
 
-
           <Form onSubmit={submitHandler}>
-            <Form.Group className="mb-3" >
+            <Form.Group className="mb-3">
               <Form.Label>Title</Form.Label>
               <Form.Control
                 type="string"
@@ -158,16 +169,15 @@ const SiteEdit = () => {
                 onChange={(e) => setName(e.target.value)}
               />
             </Form.Group>
-            <Form.Group className="mb-3" >
+            <Form.Group className="mb-3">
               <Form.Label>Category</Form.Label>
               <Form.Control
                 type="string"
                 placeholder={site.category}
                 onChange={(e) => setCategory(e.target.value)}
-              >
-              </Form.Control>
+              ></Form.Control>
             </Form.Group>
-            <Form.Group className="mb-3" >
+            <Form.Group className="mb-3">
               <Form.Label>Description</Form.Label>
               <Form.Control
                 as="textarea"
@@ -177,11 +187,11 @@ const SiteEdit = () => {
               />
             </Form.Group>
 
-            <Form.Group >
+            <Form.Group>
               <Form.Label>Image: </Form.Label>
               <Form.Control
                 type="file"
-                placeholder='insert image'
+                placeholder="insert image"
                 onChange={uploadFileHandler}
               ></Form.Control>
             </Form.Group>
