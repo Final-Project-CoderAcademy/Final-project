@@ -69,7 +69,7 @@ const AdminUserList = () => {
                 <td className="p-3">{user._id}</td>
                 <td className="p-3">{user.name}</td>
                 <td className="p-3">{user.email}</td>
-                {user._isAdmin ? (
+                {user.isAdmin ? (
                   <td className="p-3">
                     <FontAwesomeIcon
                       icon={solid("check")}

@@ -63,13 +63,3 @@ figcaption {
 }
 
 
-#blog-hover {
-  width: 60vw;
-  margin: 0 auto;
-  border-radius: 20px;
-
-}
-
-#blog-hover:hover {
-  background-color: skyblue;
-}

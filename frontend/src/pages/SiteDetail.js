@@ -68,7 +68,7 @@ const SiteDetail = () => {
       <p className="lh-lg fs-6">{site.description}</p>
       <div className="p-3 my-sm-5 text-sm-center commentContainer">
         <h5 style={{ textAlign: "left" }}>LOCATION</h5>
-        <GoogleMapSite/>
+        <GoogleMapSite lat={site.lat} lng={site.lng} />
         <h5 className="mt-5 mb-3" style={{ textAlign: "left" }}>
           COMMENTS
         </h5>
