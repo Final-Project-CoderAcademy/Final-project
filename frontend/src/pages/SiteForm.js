@@ -55,19 +55,23 @@ const SiteEdit = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(
-      updateSite({
-        _id: siteId,
-        name,
-        description,
-        rating,
-        numComments,
-        image,
-        category,
-        lat,
-        lng
-      })
-    );
+    if (!(lat ===0 && lng === 0)) {
+      dispatch(
+        updateSite({
+          _id: siteId,
+          name,
+          description,
+          rating,
+          numComments,
+          image,
+          category,
+          lat,
+          lng
+        })
+      );
+    } else {
+      alert('Location not found!')
+    }
   };
 
   // google map settings
