@@ -48,7 +48,6 @@ const Register = () => {
   };
 
   const submitHandler = (e) => {
-    
     e.preventDefault();
     validation();
     // if (password !== confirmPassword) {

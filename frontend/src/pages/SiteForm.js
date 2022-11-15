@@ -111,8 +111,7 @@ const SiteEdit = () => {
                 type="string"
                 placeholder={category}
                 onChange={(e) => setCategory(e.target.value)}
-              >
-              </Form.Control>
+              ></Form.Control>
             </Form.Group>
             <Form.Group className="mb-3" controlId="description">
               <Form.Label>Description</Form.Label>
@@ -124,11 +123,11 @@ const SiteEdit = () => {
               />
             </Form.Group>
 
-            <Form.Group controlId='image'>
+            <Form.Group controlId="image">
               <Form.Label>Image: </Form.Label>
               <Form.Control
                 type="file"
-                placeholder='insert image'
+                placeholder="insert image"
                 onChange={uploadFileHandler}
               ></Form.Control>
             </Form.Group>

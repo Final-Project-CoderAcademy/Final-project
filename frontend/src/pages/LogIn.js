@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro"; // <-- import styles to be used
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button, Row, Col, Form, Container } from "react-bootstrap";
-import Message from "../components/Message"
+import Message from "../components/Message";
 import { logIn } from "../actions/userActions";
 
 const Login = () => {
@@ -38,7 +38,7 @@ const Login = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(logIn(email, password, error))
+    dispatch(logIn(email, password, error));
   };
 
   return (
@@ -54,7 +54,7 @@ const Login = () => {
             />
           </Link>
           <h2 className="mb-4 text-center">LOG IN</h2>
-          {error && <Message variant='danger'>{error}</Message>}
+          {error && <Message variant="danger">{error}</Message>}
           <Form onSubmit={submitHandler} noValidate>
             <Form.Group className="mb-3" controlId="email">
               <Form.Label>Email </Form.Label>
