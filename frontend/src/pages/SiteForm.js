@@ -18,8 +18,8 @@ const SiteEdit = () => {
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
   // future features not work now
-  const [rating, setRationg] = useState(0);
-  const [numComments, setNumComments] = useState(0);
+  // const [rating, setRationg] = useState(0);
+  // const [numComments, setNumComments] = useState(0);
   //
   const [lat, setLat] = useState(0);
   const [lng, setLng] = useState(0);
@@ -61,8 +61,8 @@ const SiteEdit = () => {
           _id: siteId,
           name,
           description,
-          rating,
-          numComments,
+          // rating,
+          // numComments,
           image,
           category,
           lat,
