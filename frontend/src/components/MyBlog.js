@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-
 import { Row, Col, Button, Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { createBlog, deleteBlog, userAllBlogs } from "../actions/blogActions";
+import leftArrowIcon from "../icons/left.svg";
 
 const MyBlog = () => {
   const dispatch = useDispatch();
@@ -38,7 +38,15 @@ const MyBlog = () => {
   return (
     <Container>
       <div className="text-center">
-        <h2 className="mb-3">MY BLOG</h2>
+        <Link to="/myhome">
+          <img
+            src={leftArrowIcon}
+            style={{ width: 28, height: 23 }}
+            className="mt-5 float-start"
+            variant="primary"
+          />
+        </Link>
+        <h2 className="m-3">MY BLOG</h2>
 
         <Link to={`/blogs/${userInfo._id}/create`}>
           <Button variant="info" className="px-4" onClick={createBlogHandler}>
@@ -67,7 +75,10 @@ const MyBlog = () => {
               <p className="mb-0">{blog.updatedAt.slice(0, 10)}</p>
             </Col>
             <Col className="col-sm-3 mb-3 text-center">
-              <Button variant="outline-danger" onClick={() => deleteBlogHandler(blog._id)}>
+              <Button
+                variant="outline-danger"
+                onClick={() => deleteBlogHandler(blog._id)}
+              >
                 Delete
               </Button>
             </Col>
