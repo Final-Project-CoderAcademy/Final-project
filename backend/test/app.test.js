@@ -79,7 +79,9 @@ describe("sites", () => {
           rating: 4.0,
           numComments: 5,
           image: "/images/bigbanana.jpg",
-          category: "park"
+          category: "park",
+          "lat": 123,
+          "lng": 11
         }).set('Content-Type', 'application/json').set('Authorization', `Bearer ${token}`)
         expect(site.body.name).toBe("change name");
       })
@@ -220,8 +222,6 @@ describe("blogs", () => {
         const token = await user.body.token
         const response = await request(app).get(`/api/blogs`).set('Authorization', `Bearer ${token}`)
         expect(response.statusCode).toBe(200)
-        expect(response.body[0].title).toBe("Blog test title.")
-
       })
     })
 
@@ -236,7 +236,6 @@ describe("blogs", () => {
         const userId = await user.body._id
         const response = await request(app).get(`/api/blogs/${userId}/all`).set('Authorization', `Bearer ${token}`)
         expect(response.statusCode).toBe(200)
-        expect(response.body[0].title).toBe("Blog test title.")
       })
     })
 
