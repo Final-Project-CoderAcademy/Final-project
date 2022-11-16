@@ -40,42 +40,54 @@ const BlogList = () => {
       <Container>
         <h4 className="m-5 ps-3">All Posts</h4>
 
-        {(blogs === undefined || blogs.length === 0) ? (error && <p style={{ color: "lightgrey", textAlign: "center" }}>{error}</p>) : blogs.map((blog) => (
-          <Row key={blog._id} className="mt-4 d-flex justify-content-center">
-            <Col className="col-sm-4 mb-3" md="auto" key={blog._id}>
-              <Link to={`/blogs/${blog._id}`}>
-                <img
-                  src={blog.image}
-                  alt={blog.title}
-                  className="blogListImg mx-auto d-block"
-                />
-              </Link>
-            </Col>
+        {blogs === undefined || blogs.length === 0
+          ? error && (
+              <p style={{ color: "lightgrey", textAlign: "center" }}>{error}</p>
+            )
+          : blogs.map((blog) => (
+              <Row
+                key={blog._id}
+                className="mt-4 d-flex justify-content-center"
+              >
+                <Col className="col-sm-4 mb-3" md="auto" key={blog._id}>
+                  <Link to={`/blogs/${blog._id}`}>
+                    <img
+                      src={blog.image}
+                      alt={blog.title}
+                      className="blogListImg mx-auto d-block"
+                    />
+                  </Link>
+                </Col>
 
-            { userInfo.isAdmin ? (
-              <Col className="col-sm-5 mb-3 text-center">
-                <h5 className="pageTitle mb-sm-4">{blog.title}</h5>
-                <Row className="d-flex  align-items-center text-sm-end">
-                  <p className="mb-0">{blog.updatedAt.slice(0, 10)}</p>
-                  <p className="mb-0">{blog.name}</p>
-                </Row>
-              </Col>
-            ) : (
-              <Col className="col-sm-8 mb-3 text-center">
-                <h5 className="pageTitle mb-sm-4">{blog.title}</h5>
-                <Row className="d-flex  align-items-center text-sm-end">
-                  <p className="mb-0">{blog.updatedAt.slice(0, 10)}</p>
-                  <p className="mb-0">{blog.name}</p>
-                </Row>
-              </Col>
-            )}
-            { (userInfo.isAdmin) && (
-            <Col className="col-sm-3 mb-3 text-center">
-              <Button variant="outline-danger" onClick={() => deleteBlogHandler(blog._id)}>Delete</Button>
-            </Col>
-            )}
-          </Row>
-        ))}
+                {userInfo.isAdmin ? (
+                  <Col className="col-sm-5 mb-3 text-center">
+                    <h5 className="pageTitle mb-sm-4">{blog.title}</h5>
+                    <Row className="d-flex  align-items-center text-sm-end">
+                      <p className="mb-0">{blog.updatedAt.slice(0, 10)}</p>
+                      <p className="mb-0">{blog.name}</p>
+                    </Row>
+                  </Col>
+                ) : (
+                  <Col className="col-sm-8 mb-3 text-center">
+                    <h5 className="pageTitle mb-sm-4">{blog.title}</h5>
+                    <Row className="d-flex  align-items-center text-sm-end">
+                      <p className="mb-0">{blog.updatedAt.slice(0, 10)}</p>
+                      <p className="mb-0">{blog.name}</p>
+                    </Row>
+                  </Col>
+                )}
+                {userInfo.isAdmin && (
+                  <Col className="col-sm-3 mb-3 text-center">
+                    <Button
+                      variant="outline-danger"
+                      onClick={() => deleteBlogHandler(blog._id)}
+                    >
+                      Delete
+                    </Button>
+                  </Col>
+                )}
+              </Row>
+            ))}
       </Container>
     </>
   );

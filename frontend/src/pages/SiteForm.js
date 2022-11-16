@@ -34,7 +34,6 @@ const SiteEdit = () => {
   const { error: errorUpdate, success: successUpdate } = siteUpdate;
 
   useEffect(() => {
-    
     loader
       .load()
       .then((google) => {
@@ -50,11 +49,7 @@ const SiteEdit = () => {
       dispatch(siteDetail(siteId));
     }
     // eslint-disable-next-line
-  }, [
-    dispatch,
-    navigate,
-    successUpdate
-  ]);
+  }, [dispatch, navigate, successUpdate]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -143,7 +138,7 @@ const SiteEdit = () => {
                 id="showMap"
                 type="string"
                 placeholder="site location"
-                style={{ margin: "0 auto" }}
+                className="mb-3"
               />
             </Form.Group>
           </Form>
