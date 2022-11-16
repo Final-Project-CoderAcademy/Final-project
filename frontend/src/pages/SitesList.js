@@ -56,7 +56,7 @@ const SitesList = () => {
                   variant="top"
                   src={site.image}
                   alt={site.name}
-                  style={{ width: "100%" }}
+                  style={{ width: "100%", height: 200 }}
                 />
                 <Card.Body>
                   <Card.Title>{getOneLine(`${site.name}`)}</Card.Title>
