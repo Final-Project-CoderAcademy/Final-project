@@ -12,7 +12,7 @@
     "server": "nodemon backend/server",
     "client": "yarn --cwd frontend/ start",
     "dev": "yarn server & yarn client",
-    "test": "jest",
+    "api:test": "jest backend/test/app.test.js",
     "data:import": "node backend/seeder",
     "data:destroy": "node backend/seeder -d"
   },
