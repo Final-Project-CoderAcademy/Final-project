@@ -4,7 +4,6 @@ module.exports = {
     "@babel/preset-react",
     {
       modules: "false",
-      runtime: "automatic",
     },
   ],
 };
