@@ -9,6 +9,7 @@ import {
   addCommentToOneBlog,
   deleteCommentToOneBlog,
 } from "../actions/blogActions";
+import { SITE_CREATE_RESET } from "../contents/siteContents";
 
 const BlogArticle = () => {
   const { id } = useParams();
@@ -27,8 +28,12 @@ const BlogArticle = () => {
   const { success: successComment, error: errorProductReview } = blogAddComment;
   const blogCommentDelete = useSelector((state) => state.blogCommentDelete);
   const { success: successCommentDelete } = blogCommentDelete;
-
+  const blogCreate = useSelector((state) => state.blogCreate);
+  const { success: successSiteCreate } = blogCreate
   useEffect(() => {
+    if (successSiteCreate) {
+      dispatch({type: SITE_CREATE_RESET})
+    }
     if (successComment) {
       setComment("");
     }
@@ -43,6 +48,7 @@ const BlogArticle = () => {
   const deleteBlogHandler = (id) => {
     if (userInfo._id == blog.user && window.confirm("Are you sure?")) {
       dispatch(deleteBlog(id));
+      navigate("/blogs")
     }
   };
 
@@ -86,18 +92,7 @@ const BlogArticle = () => {
         <p className="px-3 lh-lg fs-6 mb-1">{blog.article}</p>
         {userInfo._id === blog.user && (
           <div className="text-end my-3 ">
-            <Link to="/blogs/:id/edit">
-              <Button variant="light" className="btn-round px-3 mx-2">
-                Edit
-              </Button>
-            </Link>
-            <Button
-              variant="dark"
-              className="btn-round px-3"
-              onClick={() => deleteBlogHandler(blog._id)}
-            >
-              Delete
-            </Button>
+            <Button variant="outline-danger" onClick={() => deleteBlogHandler(blog._id)}>Delete</Button>
           </div>
         )}
       </div>
@@ -115,7 +110,7 @@ const BlogArticle = () => {
                   <div className="text-end">{comment.name}</div>
                   {(comment.name === userInfo.name || userInfo.isAdmin) && (
                     <div className="text-end">
-                      <Button onClick={() => deleteComment(comment._id)}>
+                     <Button variant="outline-danger" onClick={() => deleteComment(comment._id)}>
                         DELETE
                       </Button>
                     </div>
