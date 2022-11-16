@@ -61,8 +61,8 @@ const SiteEdit = () => {
     category,
     description,
     image,
-    numComments,
-    rating,
+    // numComments,
+    // rating,
   ]);
 
   const submitHandler = (e) => {

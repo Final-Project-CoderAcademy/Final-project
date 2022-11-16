@@ -1,0 +1,10 @@
+{
+    "parserOpts": {
+      "plugins": ["jsx", "flow"]
+    },
+      "env": {
+        "test": {
+          "plugins": ["@babel/plugin-transform-modules-commonjs"]
+        }
+      }
+}
