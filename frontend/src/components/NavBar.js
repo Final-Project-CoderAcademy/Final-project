@@ -49,7 +49,7 @@ const NavBar = () => {
                     <NavDropdown.Item onClick={logOutHandler}>
                       <img
                         src={logOutIcon}
-                        style={{ width: 28, height: 23 }}
+                        style={{ width: 23, height: 20 }}
                         className="me-2"
                       />
                       Log Out
@@ -62,7 +62,7 @@ const NavBar = () => {
                     <Nav.Link>
                       <img
                         src={logInIcon}
-                        style={{ width: 28, height: 23 }}
+                        style={{ width: 23, height: 20 }}
                         className="me-2"
                       />
                       LOG IN
@@ -72,8 +72,8 @@ const NavBar = () => {
                     <Nav.Link>
                       <img
                         src={signUpIcon}
-                        style={{ width: 28, height: 23 }}
-                        className="me-2"
+                        style={{ width: 23, height: 20 }}
+                        className="me-1"
                       />
                       SIGN UP
                     </Nav.Link>

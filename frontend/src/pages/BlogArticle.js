@@ -104,25 +104,30 @@ const BlogArticle = () => {
       <div className="p-3 my-sm-5 text-sm-center commentContainer">
         <h5 className="mt-5 mb-3">COMMENTS</h5>
 
-        {(blog.comments === undefined || blog.comments.length === 0) 
-          ? (<p style={{color: "lightgrey"}}>No comment</p>)
-          : blog.comments.map((comment) => (
-              <Card key={comment._id} className="mb-1 border-1 d-flex">
-                <Card.Body>
-                  <Card.Text className="text-start mb-0">
-                    {comment.content}
-                  </Card.Text>
-                  <div className="text-end">{comment.name}</div>
-                  {(comment.name === userInfo.name || userInfo.isAdmin) && (
-                    <div className="text-end">
-                      <Button onClick={() => deleteComment(comment._id)}>
-                        DELETE
-                      </Button>
-                    </div>
-                  )}
-                </Card.Body>
-              </Card>
-            ))}
+        {blog.comments === undefined || blog.comments.length === 0 ? (
+          <p style={{ color: "lightgrey" }}>No comment</p>
+        ) : (
+          blog.comments.map((comment) => (
+            <Card key={comment._id} className="mb-1 border-1 d-flex">
+              <Card.Body>
+                <Card.Text className="text-start mb-0">
+                  {comment.content}
+                </Card.Text>
+                <div className="text-end">{comment.name}</div>
+                {(comment.name === userInfo.name || userInfo.isAdmin) && (
+                  <div className="text-end">
+                    <Button
+                      className="btn-sm"
+                      onClick={() => deleteComment(comment._id)}
+                    >
+                      DELETE
+                    </Button>
+                  </div>
+                )}
+              </Card.Body>
+            </Card>
+          ))
+        )}
 
         <h5 className="mt-5 mb-3">ADD COMMENT</h5>
         <div className="d-flex flex-column justify-content-center">
