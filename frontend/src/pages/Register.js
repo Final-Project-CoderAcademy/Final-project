@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button, Row, Col, Form, Container } from "react-bootstrap";
-
 import { register } from "../actions/userActions";
+import leftArrowIcon from "../icons/left.svg";
 
 const Register = () => {
   const [username, setUsername] = useState("");
@@ -79,9 +77,9 @@ const Register = () => {
       <Row className="justify-content-md-center">
         <Col xs={12} md={6}>
           <Link to="/">
-            <FontAwesomeIcon
-              icon={solid("arrow-left")}
-              style={{ width: 28, height: 23, color: "black" }}
+            <img
+              src={leftArrowIcon}
+              style={{ width: 28, height: 23 }}
               className="mt-5"
               variant="primary"
             />

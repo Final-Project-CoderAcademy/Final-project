@@ -4,10 +4,9 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { siteDetail, updateSite } from "../actions/siteActions";
 import { SITE_UPDATE_RESET } from "../contents/siteContents";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { solid } from "@fortawesome/fontawesome-svg-core/import.macro"; // <-- import styles to be used
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { Loader } from "@googlemaps/js-api-loader";
+import leftArrowIcon from "../icons/left.svg";
 
 const SiteEdit = () => {
   const { id: siteId } = useParams();
@@ -132,9 +131,9 @@ const SiteEdit = () => {
       <Row className="justify-content-md-center">
         <Col xs={12} md={6}>
           <Link to="/admin/sitelist">
-            <FontAwesomeIcon
-              icon={solid("arrow-left")}
-              style={{ width: 28, height: 23, color: "black" }}
+            <img
+              src={leftArrowIcon}
+              style={{ width: 28, height: 23 }}
               className="mt-5"
               variant="primary"
             />

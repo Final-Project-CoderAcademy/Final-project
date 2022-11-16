@@ -1,11 +1,13 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { solid } from "@fortawesome/fontawesome-svg-core/import.macro"; // <-- import styles to be used
 import { Container, Button } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
 import { listUsers, deleteUser } from "../actions/userActions";
+import leftArrowIcon from "../icons/left.svg";
+import tickIcon from "../icons/tick.png";
+import closeIcon from "../icons/close.png";
+import deleteIcon from "../icons/delete.png";
 
 const AdminUserList = () => {
   const navigate = useNavigate();
@@ -36,9 +38,9 @@ const AdminUserList = () => {
   return (
     <Container className="justify-content-md-center">
       <Link to="/">
-        <FontAwesomeIcon
-          icon={solid("arrow-left")}
-          style={{ width: 28, height: 23, color: "black" }}
+        <img
+          src={leftArrowIcon}
+          style={{ width: 28, height: 23 }}
           className="mt-5"
           variant="primary"
         />
@@ -71,17 +73,11 @@ const AdminUserList = () => {
                 <td className="p-3">{user.email}</td>
                 {user.isAdmin ? (
                   <td className="p-3">
-                    <FontAwesomeIcon
-                      icon={solid("check")}
-                      style={{ color: "green" }}
-                    />
+                    <img src={tickIcon} style={{ color: "green" }} />
                   </td>
                 ) : (
                   <td className="p-3">
-                    <FontAwesomeIcon
-                      icon={solid("xmark")}
-                      style={{ color: "red" }}
-                    />
+                    <img src={closeIcon} style={{ width: 28, height: 23 }} />
                   </td>
                 )}
                 {user.isAdmin ? (
@@ -93,7 +89,7 @@ const AdminUserList = () => {
                       className="btn-sm"
                       onClick={() => deleteHandler(user._id)}
                     >
-                      <FontAwesomeIcon icon={solid("trash-can")} />
+                      <img src={deleteIcon} style={{ width: 28, height: 23 }} />
                     </Button>
                   </td>
                 )}

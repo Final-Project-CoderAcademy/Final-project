@@ -2,9 +2,11 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { LinkContainer } from "react-router-bootstrap";
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { logOut } from "../actions/userActions";
+import leftArrowIcon from "../icons/left.svg";
+import logInIcon from "../icons/login.svg";
+import signUpIcon from "../icons/signup.svg";
+import logOutIcon from "../icons/logout.svg";
 
 const NavBar = () => {
   const dispatch = useDispatch();
@@ -45,22 +47,23 @@ const NavBar = () => {
                     <NavDropdown.Item>MyHome</NavDropdown.Item>
                   </LinkContainer>
                   <LinkContainer to="/login">
-                  <NavDropdown.Item onClick={logOutHandler}>
-                    
-                    <FontAwesomeIcon
-                      icon={solid("arrow-right-from-bracket")}
-                      className="me-2"
-                    />
-                    Log Out
-                  </NavDropdown.Item>
+                    <NavDropdown.Item onClick={logOutHandler}>
+                      <img
+                        src={logOutIcon}
+                        style={{ width: 28, height: 23 }}
+                        className="me-2"
+                      />
+                      Log Out
+                    </NavDropdown.Item>
                   </LinkContainer>
                 </NavDropdown>
               ) : (
                 <>
                   <LinkContainer to="/login">
                     <Nav.Link>
-                      <FontAwesomeIcon
-                        icon={solid("arrow-right-to-bracket")}
+                      <img
+                        src={logInIcon}
+                        style={{ width: 28, height: 23 }}
                         className="me-2"
                       />
                       LOG IN
@@ -68,7 +71,11 @@ const NavBar = () => {
                   </LinkContainer>
                   <LinkContainer to="/register">
                     <Nav.Link>
-                      <FontAwesomeIcon icon={solid("user")} className="me-2" />
+                      <img
+                        src={signUpIcon}
+                        style={{ width: 28, height: 23 }}
+                        className="me-2"
+                      />
                       SIGN UP
                     </Nav.Link>
                   </LinkContainer>

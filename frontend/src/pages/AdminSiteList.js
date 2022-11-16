@@ -1,12 +1,14 @@
 import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { solid } from "@fortawesome/fontawesome-svg-core/import.macro"; // <-- import styles to be used
 import { Container, Button } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
 import { allSites, createSite, deleteSite } from "../actions/siteActions";
 import { SITE_CREATE_RESET } from "../contents/siteContents";
 import { useDispatch, useSelector } from "react-redux";
+import leftArrowIcon from "../icons/left.svg";
+import editIcon from "../icons/edit.png";
+import deleteIcon from "../icons/delete.png";
+
 const AdminSiteList = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -54,9 +56,9 @@ const AdminSiteList = () => {
   return (
     <Container className="justify-content-md-center">
       <Link to="/">
-        <FontAwesomeIcon
-          icon={solid("arrow-left")}
-          style={{ width: 28, height: 23, color: "black" }}
+        <img
+          src={leftArrowIcon}
+          style={{ width: 28, height: 23 }}
           className="mt-5"
           variant="primary"
         />
@@ -96,7 +98,7 @@ const AdminSiteList = () => {
               <td className="p-3">
                 <Link to={`/sites/${site._id}/edit`}>
                   <Button variant="info" className="btn-sm">
-                    <FontAwesomeIcon icon={solid("pen-to-square")} />
+                    <img src={editIcon} style={{ width: 28, height: 23 }} />
                   </Button>
                 </Link>
                 <Button
@@ -104,7 +106,7 @@ const AdminSiteList = () => {
                   className="btn-sm"
                   onClick={() => deleteSitehandler(site._id)}
                 >
-                  <FontAwesomeIcon icon={solid("trash-can")} />
+                  <img src={deleteIcon} style={{ width: 28, height: 23 }} />
                 </Button>
               </td>
             </tr>

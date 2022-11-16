@@ -3,10 +3,9 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createBlog } from "../actions/blogActions";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { solid } from "@fortawesome/fontawesome-svg-core/import.macro"; // <-- import styles to be used
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { SITE_CREATE_RESET } from "../contents/siteContents";
+import leftArrowIcon from "../icons/left.svg";
 
 const BlogEdit = () => {
   const { id: userId } = useParams();
@@ -28,7 +27,7 @@ const BlogEdit = () => {
   } = blogCreate;
 
   useEffect(() => {
-    if (!userInfo || (userInfo._id !== userId)) {
+    if (!userInfo || userInfo._id !== userId) {
       navigate("/login");
     }
     if (successCreate) {
@@ -70,9 +69,9 @@ const BlogEdit = () => {
       <Row className="justify-content-md-center">
         <Col xs={12} md={6}>
           <Link to="/myhome/myBlogs">
-            <FontAwesomeIcon
-              icon={solid("arrow-left")}
-              style={{ width: 28, height: 23, color: "black" }}
+            <img
+              src={leftArrowIcon}
+              style={{ width: 28, height: 23 }}
               className="mt-5"
               variant="primary"
             />

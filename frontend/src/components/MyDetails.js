@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { solid } from "@fortawesome/fontawesome-svg-core/import.macro"; // <-- import styles to be used
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { createBlog, deleteBlog, userAllBlogs } from "../actions/blogActions";
+import { userAllBlogs } from "../actions/blogActions";
 import { getUserProfile, updateUserProfile } from "../actions/userActions";
 import { BLOG_CREATE_RESET } from "../contents/blogContents";
 import { USER_UPDATE_RESET } from "../contents/userContents";
+import leftArrowIcon from "../icons/left.svg";
 
 const MyDetails = () => {
   const dispatch = useDispatch();
@@ -68,8 +67,8 @@ const MyDetails = () => {
       <Row className="justify-content-md-center">
         <Col xs={12} md={6}>
           <Link to="/myhome">
-            <FontAwesomeIcon
-              icon={solid("arrow-left")}
+            <img
+              src={leftArrowIcon}
               style={{ width: 28, height: 23, color: "black" }}
               className="mt-5"
               variant="primary"

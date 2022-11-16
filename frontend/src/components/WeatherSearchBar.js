@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 // import dotenv from 'dotenv'
 import { Container, Form, Row, Col } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { solid } from "@fortawesome/fontawesome-svg-core/import.macro"; // <-- import styles to be used
 import { Loader } from "@googlemaps/js-api-loader";
+import searchIcon from "../icons/search.svg";
 
 const WeatherSearchBar = () => {
   // dotenv.config()
@@ -36,19 +35,18 @@ const WeatherSearchBar = () => {
   };
 
   const setForm = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     loader
-    .load()
-    .then(google => {
-      initAutocomplete(google)
-  })
-    .catch(e => {
-      console.log(e.message)
-    });
-  }
+      .load()
+      .then((google) => {
+        initAutocomplete(google);
+      })
+      .catch((e) => {
+        console.log(e.message);
+      });
+  };
 
   useEffect(() => {
-    
     loader
       .load()
       .then((google) => {
@@ -61,10 +59,13 @@ const WeatherSearchBar = () => {
 
   return (
     <Container>
-      <Form className="d-flex align-items-center justify-content-center mt-4 mb-3" onSubmit={setForm}>
-        <FontAwesomeIcon
-          icon={solid("magnifying-glass")}
-          style={{ width: 28, height: 23, color: "black" }}
+      <Form
+        className="d-flex align-items-center justify-content-center mt-4 mb-3"
+        onSubmit={setForm}
+      >
+        <img
+          src={searchIcon}
+          style={{ width: 28, height: 23 }}
           variant="primary"
           className="me-3"
         />
