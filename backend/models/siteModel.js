@@ -35,7 +35,7 @@ const siteSchema = mongoose.Schema({
     },
     rating: {
         type: Number,
-        required: true
+        required: false
     },
     comments: [commentSchema],
     numComments: {
