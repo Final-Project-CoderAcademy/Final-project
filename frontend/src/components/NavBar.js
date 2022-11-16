@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { LinkContainer } from "react-router-bootstrap";
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { logOut } from "../actions/userActions";
-import leftArrowIcon from "../icons/left.svg";
 import logInIcon from "../icons/login.svg";
 import signUpIcon from "../icons/signup.svg";
 import logOutIcon from "../icons/logout.svg";
