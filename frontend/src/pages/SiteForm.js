@@ -34,6 +34,7 @@ const SiteEdit = () => {
   const { error: errorUpdate, success: successUpdate } = siteUpdate;
 
   useEffect(() => {
+    
     loader
       .load()
       .then((google) => {
@@ -52,17 +53,7 @@ const SiteEdit = () => {
   }, [
     dispatch,
     navigate,
-    siteId,
-    site,
-    successUpdate,
-    lat,
-    lng,
-    name,
-    category,
-    description,
-    image,
-    // numComments,
-    // rating,
+    successUpdate
   ]);
 
   const submitHandler = (e) => {
@@ -73,8 +64,6 @@ const SiteEdit = () => {
           _id: siteId,
           name,
           description,
-          // rating,
-          // numComments,
           image,
           category,
           lat,
