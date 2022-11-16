@@ -48,17 +48,25 @@ const BlogList = () => {
       <Container>
         <h4 className="m-5 ps-3">All Posts</h4>
 
-        {(blogs === undefined || blogs.length === 0) ? (error && <p style={{ color: "lightgrey", textAlign: "center" }}>{error}</p>) : blogs.map((blog) => (
-          <Row key={blog._id} className="mt-4 d-flex justify-content-center">
-            <Col className="col-sm-4 mb-3" md="auto" key={blog._id}>
-              <Link to={`/blogs/${blog._id}`}>
-                <img
-                  src={blog.image}
-                  alt={blog.title}
-                  className="blogListImg mx-auto d-block"
-                />
-              </Link>
-            </Col>
+        {blogs === undefined || blogs.length === 0
+          ? error && (
+              <p style={{ color: "lightgrey", textAlign: "center" }}>{error}</p>
+            )
+          : blogs.map((blog) => (
+              <Row
+                key={blog._id}
+                className="mt-4 d-flex justify-content-center"
+              >
+                <Col className="col-sm-4 mb-3" md="auto" key={blog._id}>
+                  <Link to={`/blogs/${blog._id}`}>
+                    <img
+                      src={blog.image}
+                      alt={blog.title}
+                      className="blogListImg mx-auto d-block"
+                    />
+                  </Link>
+                </Col>
+
 
             { userInfo.isAdmin ? (
               <>

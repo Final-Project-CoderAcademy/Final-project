@@ -98,7 +98,7 @@ const AdminSiteList = () => {
               <td className="p-3">
                 <Link to={`/sites/${site._id}/edit`}>
                   <Button variant="info" className="btn-sm">
-                    <img src={editIcon} style={{ width: 28, height: 23 }} />
+                    <img src={editIcon} style={{ width: 20, height: 20 }} />
                   </Button>
                 </Link>
                 <Button
@@ -106,7 +106,7 @@ const AdminSiteList = () => {
                   className="btn-sm"
                   onClick={() => deleteSitehandler(site._id)}
                 >
-                  <img src={deleteIcon} style={{ width: 28, height: 23 }} />
+                  <img src={deleteIcon} style={{ width: 20, height: 20 }} />
                 </Button>
               </td>
             </tr>

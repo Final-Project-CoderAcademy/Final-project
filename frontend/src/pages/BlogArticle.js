@@ -99,6 +99,7 @@ const BlogArticle = () => {
       <div className="p-3 my-sm-5 text-sm-center commentContainer">
         <h5 className="mt-5 mb-3">COMMENTS</h5>
 
+
         {(blog.comments === undefined || blog.comments.length === 0) 
           ? (<p style={{color: "lightgrey"}}>No comment</p>)
           : blog.comments.map((comment) => (

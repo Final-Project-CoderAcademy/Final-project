@@ -73,11 +73,11 @@ const AdminUserList = () => {
                 <td className="p-3">{user.email}</td>
                 {user.isAdmin ? (
                   <td className="p-3">
-                    <img src={tickIcon} style={{ color: "green" }} />
+                    <img src={tickIcon} style={{ width: 20, height: 20 }} />
                   </td>
                 ) : (
                   <td className="p-3">
-                    <img src={closeIcon} style={{ width: 28, height: 23 }} />
+                    <img src={closeIcon} style={{ width: 20, height: 20 }} />
                   </td>
                 )}
                 {user.isAdmin ? (
@@ -89,7 +89,7 @@ const AdminUserList = () => {
                       className="btn-sm"
                       onClick={() => deleteHandler(user._id)}
                     >
-                      <img src={deleteIcon} style={{ width: 28, height: 23 }} />
+                      <img src={deleteIcon} style={{ width: 20, height: 20 }} />
                     </Button>
                   </td>
                 )}

@@ -6,7 +6,6 @@ import Message from "../components/Message";
 import { logIn } from "../actions/userActions";
 import leftArrowIcon from "../icons/left.svg";
 
-
 const Login = () => {
   const initialLoginForm = { email: "", password: "" };
   const [loginForm, setLoginForm] = useState(initialLoginForm);
