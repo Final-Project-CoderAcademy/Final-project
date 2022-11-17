@@ -20,6 +20,7 @@ import {
   USER_DELETE_REQUEST,
   USER_DELETE_SUCCESS,
   USER_DELETE_FAIL,
+  USER_REGISTER_RESET,
 } from "../contents/userContents";
 
 // register POST request actions
@@ -83,6 +84,7 @@ export const logOut = () => (dispatch) => {
   localStorage.removeItem("userInfo");
   dispatch({ type: USER_LOGOUT });
   dispatch({ type: USER_LIST_RESET });
+  dispatch({ type: USER_REGISTER_RESET });
 };
 
 // Get user profile info
