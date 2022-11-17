@@ -76,7 +76,12 @@ const Login = () => {
               />
             </Form.Group>
             <div className="d-grid gap-2 d-md-block">
-              <Button variant="primary" type="submit" className="px-5 ">
+              <Button
+                variant="primary"
+                type="submit"
+                className="px-5 "
+                id="login"
+              >
                 LOG IN
               </Button>
             </div>
