@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { Button, Container, Form } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,16 +16,16 @@ const BlogArticle = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const blogDetails = useSelector((state) => state.blogDetails);
-  const { error, blog } = blogDetails;
+  const { blog } = blogDetails;
   const userLogIn = useSelector((state) => state.userLogIn);
   const { userInfo } = userLogIn;
 
-  const blogDelete = useSelector((state) => state.blogDelete);
-  const { success: successDelete, error: errorDelete } = blogDelete;
+  // const blogDelete = useSelector((state) => state.blogDelete);
+  // const { success: successDelete, error: errorDelete } = blogDelete;
 
   const [comment, setComment] = useState("");
   const blogAddComment = useSelector((state) => state.blogAddComment);
-  const { success: successComment, error: errorProductReview } = blogAddComment;
+  const { success: successComment } = blogAddComment;
   const blogCommentDelete = useSelector((state) => state.blogCommentDelete);
   const { success: successCommentDelete } = blogCommentDelete;
   const blogCreate = useSelector((state) => state.blogCreate);
@@ -46,7 +46,7 @@ const BlogArticle = () => {
   }, [dispatch, id, comment, navigate, successComment, successCommentDelete]);
 
   const deleteBlogHandler = (id) => {
-    if (userInfo._id == blog.user && window.confirm("Are you sure?")) {
+    if (userInfo._id === blog.user && window.confirm("Are you sure?")) {
       dispatch(deleteBlog(id));
       navigate("/blogs")
     }
@@ -69,7 +69,7 @@ const BlogArticle = () => {
 
   const deleteComment = (commentId) => {
     if (
-      (userInfo._id == blog.user || userInfo.isAdmin) &&
+      (userInfo._id === blog.user || userInfo.isAdmin) &&
       window.confirm("Are you sure?")
     ) {
       dispatch(deleteCommentToOneBlog(id, commentId));

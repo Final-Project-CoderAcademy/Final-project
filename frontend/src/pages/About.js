@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 const About = () => {
   const dispatch = useDispatch();
   const sitesList = useSelector((state) => state.sitesList);
-  const { error, sites } = sitesList;
+  const { sites } = sitesList;
 
   const userLogIn = useSelector((state) => state.userLogIn);
   const { userInfo } = userLogIn;
