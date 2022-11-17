@@ -9,7 +9,7 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-
+  const [message, setMessage] = useState("");
   //validation
   const [usernameError, setUsernameError] = useState("");
   const [emailError, setEmailError] = useState("");
@@ -47,15 +47,13 @@ const Register = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     validation();
-    // if (password !== confirmPassword) {
-    //   setMessage("Password not match");
-    // } else {
-    //   // console.log(username)
-    //   dispatch(register(username, email, password));
-    // }
-
-    dispatch(register(username, email, password));
-
+    if (password !== confirmPassword) {
+      setMessage("Password not match");
+    } else {
+      // console.log(username)
+      setMessage("")
+      dispatch(register(username, email, password));
+    }
     if (error) {
       error.forEach((err) => {
         if (err.param === "name") {
