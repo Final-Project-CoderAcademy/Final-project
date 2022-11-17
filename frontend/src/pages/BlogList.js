@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Button } from "react-bootstrap";
 import blogTopImage from "../material/blogSection.jpg";
 import Row from "react-bootstrap/Row";
@@ -10,22 +10,30 @@ import { useDispatch, useSelector } from "react-redux";
 const BlogList = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [successDelete, setSuccessDelete] = useState(false);
   const blogsList = useSelector((state) => state.blogsList);
   const { error, blogs } = blogsList;
   const userLogIn = useSelector((state) => state.userLogIn);
   const { userInfo } = userLogIn;
+  const blogDelete = useSelector((state) => state.blogDelete);
+  const {success} = blogDelete
 
   useEffect(() => {
+    if (successDelete) {
+      setSuccessDelete(false);
+    }
     if (userInfo) {
       dispatch(allBlogs());
     } else {
       navigate("/login");
     }
     // eslint-disable-next-line
-  }, [dispatch, userInfo, navigate]);
+  }, [successDelete, dispatch, userInfo, navigate, success]);
+
   const deleteBlogHandler = (id) => {
     if (window.confirm("Are you sure?")) {
       dispatch(deleteBlog(id));
+      setSuccessDelete(success)
     }
   };
   return (
@@ -59,35 +67,44 @@ const BlogList = () => {
                   </Link>
                 </Col>
 
-                {userInfo.isAdmin ? (
-                  <Col className="col-sm-5 mb-3 text-center">
-                    <h5 className="pageTitle mb-sm-4">{blog.title}</h5>
-                    <Row className="d-flex  align-items-center text-sm-end">
-                      <p className="mb-0">{blog.updatedAt.slice(0, 10)}</p>
-                      <p className="mb-0">{blog.name}</p>
-                    </Row>
-                  </Col>
-                ) : (
-                  <Col className="col-sm-8 mb-3 text-center">
-                    <h5 className="pageTitle mb-sm-4">{blog.title}</h5>
-                    <Row className="d-flex  align-items-center text-sm-end">
-                      <p className="mb-0">{blog.updatedAt.slice(0, 10)}</p>
-                      <p className="mb-0">{blog.name}</p>
-                    </Row>
-                  </Col>
-                )}
-                {userInfo.isAdmin && (
-                  <Col className="col-sm-3 mb-3 text-center">
-                    <Button
-                      variant="outline-danger"
-                      onClick={() => deleteBlogHandler(blog._id)}
-                    >
-                      Delete
-                    </Button>
-                  </Col>
-                )}
-              </Row>
-            ))}
+
+            { userInfo.isAdmin ? (
+              <>
+              <Col className="col-sm-5 mb-3 text-center">
+                <h5 className="pageTitle mb-sm-4">{blog.title}</h5>
+                <Row className="d-flex  align-items-center text-sm-end">
+                  <p className="mb-0">{blog.updatedAt.slice(0, 10)}</p>
+                  <p className="mb-0">{blog.name}</p>
+                </Row>
+              </Col>
+              <Col className="col-sm-3 mb-3 text-center">
+                <Button variant="outline-danger" onClick={() => deleteBlogHandler(blog._id)}>Delete</Button>
+              </Col>
+              </>
+            ) : !(userInfo._id === blog.user) ? (
+              <Col className="col-sm-8 mb-3 text-center">
+                <h5 className="pageTitle mb-sm-4">{blog.title}</h5>
+                <Row className="d-flex  align-items-center text-sm-end">
+                  <p className="mb-0">{blog.updatedAt.slice(0, 10)}</p>
+                  <p className="mb-0">{blog.name}</p>
+                </Row>
+              </Col>
+            ) : (
+              <>
+              <Col className="col-sm-5 mb-3 text-center">
+                <h5 className="pageTitle mb-sm-4">{blog.title}</h5>
+                <Row className="d-flex  align-items-center text-sm-end">
+                  <p className="mb-0">{blog.updatedAt.slice(0, 10)}</p>
+                  <p className="mb-0">{blog.name}</p>
+                </Row>
+              </Col>
+              <Col className="col-sm-3 mb-3 text-center">
+                <Button variant="outline-danger" onClick={() => deleteBlogHandler(blog._id)}>Delete</Button>
+              </Col>
+              </>   
+              )}
+          </Row>
+        ))}
       </Container>
     </>
   );

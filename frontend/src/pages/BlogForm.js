@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { createBlog } from "../actions/blogActions";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
-import { SITE_CREATE_RESET } from "../contents/siteContents";
 import leftArrowIcon from "../icons/left.svg";
+import { BLOG_CREATE_RESET } from "../contents/blogContents";
 
 const BlogEdit = () => {
   const { id: userId } = useParams();
@@ -31,7 +31,7 @@ const BlogEdit = () => {
       navigate("/login");
     }
     if (successCreate) {
-      dispatch({ type: SITE_CREATE_RESET });
+      dispatch({ type: BLOG_CREATE_RESET });
       navigate("/blogs");
     }
   }, [dispatch, navigate, userId, newBlog, successCreate, userInfo]);

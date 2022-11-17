@@ -9,6 +9,7 @@ import {
   addCommentToOneBlog,
   deleteCommentToOneBlog,
 } from "../actions/blogActions";
+import { SITE_CREATE_RESET } from "../contents/siteContents";
 
 const BlogArticle = () => {
   const { id } = useParams();
@@ -27,8 +28,12 @@ const BlogArticle = () => {
   const { success: successComment, error: errorProductReview } = blogAddComment;
   const blogCommentDelete = useSelector((state) => state.blogCommentDelete);
   const { success: successCommentDelete } = blogCommentDelete;
-
+  const blogCreate = useSelector((state) => state.blogCreate);
+  const { success: successSiteCreate } = blogCreate
   useEffect(() => {
+    if (successSiteCreate) {
+      dispatch({type: SITE_CREATE_RESET})
+    }
     if (successComment) {
       setComment("");
     }
@@ -43,6 +48,7 @@ const BlogArticle = () => {
   const deleteBlogHandler = (id) => {
     if (userInfo._id == blog.user && window.confirm("Are you sure?")) {
       dispatch(deleteBlog(id));
+      navigate("/blogs")
     }
   };
 
@@ -86,48 +92,33 @@ const BlogArticle = () => {
         <p className="px-3 lh-lg fs-6 mb-1">{blog.article}</p>
         {userInfo._id === blog.user && (
           <div className="text-end my-3 ">
-            <Link to="/blogs/:id/edit">
-              <Button variant="light" className="btn-round px-3 mx-2">
-                Edit
-              </Button>
-            </Link>
-            <Button
-              variant="dark"
-              className="btn-round px-3"
-              onClick={() => deleteBlogHandler(blog._id)}
-            >
-              Delete
-            </Button>
+            <Button variant="outline-danger" onClick={() => deleteBlogHandler(blog._id)}>Delete</Button>
           </div>
         )}
       </div>
       <div className="p-3 my-sm-5 text-sm-center commentContainer">
         <h5 className="mt-5 mb-3">COMMENTS</h5>
 
-        {blog.comments === undefined || blog.comments.length === 0 ? (
-          <p style={{ color: "lightgrey" }}>No comment</p>
-        ) : (
-          blog.comments.map((comment) => (
-            <Card key={comment._id} className="mb-1 border-1 d-flex">
-              <Card.Body>
-                <Card.Text className="text-start mb-0">
-                  {comment.content}
-                </Card.Text>
-                <div className="text-end">{comment.name}</div>
-                {(comment.name === userInfo.name || userInfo.isAdmin) && (
-                  <div className="text-end">
-                    <Button
-                      className="btn-sm"
-                      onClick={() => deleteComment(comment._id)}
-                    >
-                      DELETE
-                    </Button>
-                  </div>
-                )}
-              </Card.Body>
-            </Card>
-          ))
-        )}
+
+        {(blog.comments === undefined || blog.comments.length === 0) 
+          ? (<p style={{color: "lightgrey"}}>No comment</p>)
+          : blog.comments.map((comment) => (
+              <Card key={comment._id} className="mb-1 border-1 d-flex">
+                <Card.Body>
+                  <Card.Text className="text-start mb-0">
+                    {comment.content}
+                  </Card.Text>
+                  <div className="text-end">{comment.name}</div>
+                  {(comment.name === userInfo.name || userInfo.isAdmin) && (
+                    <div className="text-end">
+                     <Button variant="outline-danger" onClick={() => deleteComment(comment._id)}>
+                        DELETE
+                      </Button>
+                    </div>
+                  )}
+                </Card.Body>
+              </Card>
+            ))}
 
         <h5 className="mt-5 mb-3">ADD COMMENT</h5>
         <div className="d-flex flex-column justify-content-center">
