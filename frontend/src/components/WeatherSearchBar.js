@@ -8,7 +8,7 @@ const WeatherSearchBar = () => {
   const [city, setCity] = useState("");
   const [weather, setWeather] = useState("");
   const loader = new Loader({
-    apiKey: "AIzaSyC_mJ_HcnWHVnTY4RmWl6U8t2C6r-jdJTY",
+    apiKey: "AIzaSyAI1thVh0FcREXtm-2zfheIoU9yBTNBZbE",
     libraries: ["places"],
   });
 

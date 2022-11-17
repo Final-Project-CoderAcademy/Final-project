@@ -14,34 +14,16 @@ import uploadRoutes from "./routes/uploadRoutes.js";
 
 dotenv.config();
 
-void process.on("unhandledRejection", (reason, p) => {
-  console.log(`BIG ERROR: \n`.red + p);
-  console.log(`That's because of: \n`.red + reason);
-});
-
 const app = express();
-
-// helmet protect
-app.use(helmet());
-app.use(helmet.permittedCrossDomainPolicies());
-app.use(helmet.referrerPolicy());
-app.use(
-  helmet.contentSecurityPolicy({
-    directives: {
-      defaultSrc: ["'self'"],
-    },
-  })
-);
-
+app.use(function (req, res, next) {
+  res.setHeader(
+    'Content-Security-Policy-Report-Only',
+    "default-src 'self'; font-src 'self'; img-src 'self' https://images.unsplash.com/photo-1515861461225-1488dfdaf0a8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80; script-src 'self' https://kit.fontawesome.com/56a258cb08.js https://maps.googleapis.com/maps/api/js?callback=__googleMapsCallback&key=AIzaSyC_mJ_HcnWHVnTY4RmWl6U8t2C6r-jdJTY&libraries=places; style-src 'self'; frame-src 'self'"
+  );
+  next();
+});
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-// configure cors
-var corsOptions = {
-  origin: ["http://localhost:3000"],
-  optionsSuccessStatus: 200
-};
-app.use(cors(corsOptions));
 
 app.use("/api/sites", siteRoutes);
 app.use("/api/users", userRoutes);
