@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Container, Form } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
@@ -11,7 +11,7 @@ const SiteDetail = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const siteDetails = useSelector((state) => state.siteDetails);
-  const { error, site } = siteDetails;
+  const { site } = siteDetails;
   const userLogIn = useSelector((state) => state.userLogIn);
   const { userInfo } = userLogIn
   const [comment, setComment] = useState("")
@@ -19,12 +19,12 @@ const SiteDetail = () => {
   const siteAddComment = useSelector((state) => state.siteAddComment)
   const {
     success: successComment,
-    error: errorProductReview,
   } = siteAddComment
   const siteCommentDelete = useSelector((state) => state.siteCommentDelete)
   const {
     success: successCommentDelete,
   } = siteCommentDelete
+
   useEffect(() => {
     if (successComment) {
       setComment('')
@@ -34,7 +34,7 @@ const SiteDetail = () => {
     } else {
       navigate("/login");
     }
-  }, [dispatch, id, comment, navigate, successComment, successCommentDelete]);
+  }, [dispatch, id, comment, navigate, successComment, successCommentDelete, userInfo]);
 
   const commentSubmitHandler = (e) => {
     e.preventDefault();
@@ -52,7 +52,7 @@ const SiteDetail = () => {
   };
 
   const deleteComment = (commentId) => {
-    if ((userInfo._id == site.user || userInfo.isAdmin) && window.confirm("Are you sure?")) {
+    if ((userInfo._id === site.user || userInfo.isAdmin) && window.confirm("Are you sure?")) {
       dispatch(deleteCommentToOneSite(id, commentId));
     }
   }

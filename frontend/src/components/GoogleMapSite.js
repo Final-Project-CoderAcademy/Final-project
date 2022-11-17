@@ -1,5 +1,4 @@
 import React, {useEffect} from 'react'
-import {Container} from 'react-bootstrap'
 import { Loader } from "@googlemaps/js-api-loader";
 
 const GoogleMapSite = (props) => {

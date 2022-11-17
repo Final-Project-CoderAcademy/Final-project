@@ -9,7 +9,6 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [message, setMessage] = useState("");
   //validation
   const [usernameError, setUsernameError] = useState("");
   const [emailError, setEmailError] = useState("");
@@ -48,10 +47,10 @@ const Register = () => {
     e.preventDefault();
     validation();
     if (password !== confirmPassword) {
-      setMessage("Password not match");
+      setConfirmError("password and confirm password must be the same")
     } else {
       // console.log(username)
-      setMessage("");
+
       dispatch(register(username, email, password));
     }
     if (error) {
@@ -113,7 +112,7 @@ const Register = () => {
                 {emailError}
               </Form.Control.Feedback>
             </Form.Group>
-
+            
             <Form.Group className="mb-4" controlId="password">
               <Form.Label>Password </Form.Label>
               <Form.Control
