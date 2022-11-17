@@ -62,7 +62,11 @@ const About = () => {
               make it your best Australia trip.
             </p>
             <Link to="/register">
-              <Button variant="info" className="btn-round px-4">
+              <Button
+                variant="info"
+                className="btn-round px-4"
+                id="aboutP-signup"
+              >
                 Let's start!
               </Button>
             </Link>
@@ -82,7 +86,11 @@ const About = () => {
                   to find the place you want to visit.
                 </Card.Text>
                 <Link to="/sites">
-                  <Button variant="primary" className="btn-round px-4">
+                  <Button
+                    variant="primary"
+                    className="btn-round px-4"
+                    id="aboutP-sites"
+                  >
                     Find Your Way
                   </Button>
                 </Link>
@@ -102,13 +110,21 @@ const About = () => {
                 </Card.Text>
                 {userInfo ? (
                   <Link to="/blogs">
-                    <Button variant="primary" className="btn-round px-4">
+                    <Button
+                      variant="primary"
+                      className="btn-round px-4"
+                      id="aboutP-blog"
+                    >
                       Visit Blog Page
                     </Button>
                   </Link>
                 ) : (
                   <Link to="/login">
-                    <Button variant="primary" className="btn-round px-4">
+                    <Button
+                      variant="primary"
+                      className="btn-round px-4"
+                      id="aboutP-login"
+                    >
                       Login Now
                     </Button>
                   </Link>
