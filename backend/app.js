@@ -43,14 +43,6 @@ var corsOptions = {
 };
 app.use(cors(corsOptions));
 
-// test server connection
-app.get("/", (req, res) => {
-  res.status(200);
-  res.json({ message: ">>>>>Server is connected<<<<<" });
-});
-
-
-
 app.use("/api/sites", siteRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/blogs", blogRoutes);
@@ -58,6 +50,19 @@ app.use('/api/upload', uploadRoutes)
 // upload folder used as static files folder 
 const __dirname = path.resolve()
 app.use('/upload', express.static(path.join(__dirname, '/upload')))
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '/frontend/build')))
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '/frontend/build/index.html'));
+  })
+} else {
+  // test server connection
+  app.get("/", (req, res) => {
+    res.status(200);
+    res.json({ message: ">>>>>Server is connected<<<<<" });
+  });
+}
 
 app.use(notFound);
 app.use(errorHandler);
