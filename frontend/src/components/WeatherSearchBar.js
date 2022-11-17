@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 // import dotenv from 'dotenv'
 import { Container, Form, Row, Col } from "react-bootstrap";
 import { Loader } from "@googlemaps/js-api-loader";
-import searchIcon from "../icons/search.svg";
 
 const WeatherSearchBar = () => {
   // dotenv.config()
@@ -63,12 +62,10 @@ const WeatherSearchBar = () => {
         className="d-flex align-items-center justify-content-center mt-4 mb-3"
         onSubmit={setForm}
       >
-        <img
-          src={searchIcon}
-          style={{ width: 28, height: 23 }}
-          variant="primary"
-          className="me-3"
-        />
+        <i
+          className="fa-solid fa-magnifying-glass me-3"
+          style={{ color: "black" }}
+        ></i>
 
         <Form.Control
           id="searchbar"

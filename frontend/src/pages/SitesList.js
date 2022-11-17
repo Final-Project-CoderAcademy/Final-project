@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import siteTopImage from "../material/sitesSection.jpg";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { Container } from "react-bootstrap";
@@ -31,7 +30,11 @@ const SitesList = () => {
   return (
     <>
       <figure className="position-relative">
-        <img src={siteTopImage} alt="sites" className="img-fluid pageImg" />
+        <img
+          src="https://images.unsplash.com/photo-1511225070737-5af5ac9a690d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+          alt="sites"
+          className="img-fluid pageImg"
+        />
         <figcaption>
           <h1>FIND YOUR WAY</h1>
         </figcaption>

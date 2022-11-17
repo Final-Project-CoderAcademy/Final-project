@@ -6,7 +6,6 @@ import { siteDetail, updateSite } from "../actions/siteActions";
 import { SITE_UPDATE_RESET } from "../contents/siteContents";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { Loader } from "@googlemaps/js-api-loader";
-import leftArrowIcon from "../icons/left.svg";
 
 const SiteEdit = () => {
   const { id: siteId } = useParams();
@@ -115,12 +114,10 @@ const SiteEdit = () => {
       <Row className="justify-content-md-center">
         <Col xs={12} md={6}>
           <Link to="/admin/sitelist">
-            <img
-              src={leftArrowIcon}
-              style={{ width: 28, height: 23 }}
-              className="mt-5"
-              variant="primary"
-            />
+            <i
+              className="fa-solid fa-arrow-left mt-5"
+              style={{ color: "black" }}
+            ></i>
           </Link>
           {site.name !== "name of the site" ? (
             <h2 className="mb-4 text-center">SITE UPDATE</h2>

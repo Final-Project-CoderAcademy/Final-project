@@ -7,8 +7,6 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import sunriseIcon from "../material/sunrise.png";
-import blogIcon from "../material/blogger.png";
 import { allSites } from "../actions/siteActions";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -76,11 +74,7 @@ const About = () => {
           {/* Find Your Way */}
           <Col className="col-md-6">
             <Card className="text-center p-4 m-3">
-              <Card.Img
-                variant="top"
-                src={sunriseIcon}
-                className="featureIcon mx-auto d-block"
-              />
+              <i className="fa-solid fa-map-location-dot fa-5x mx-auto d-block"></i>
               <Card.Body>
                 <Card.Text>
                   Are you wondering where to travel? Here you will find a list
@@ -99,11 +93,7 @@ const About = () => {
           {/* Blog */}
           <Col>
             <Card className="text-center p-4 m-3">
-              <Card.Img
-                variant="top"
-                src={blogIcon}
-                className="featureIcon mx-auto d-block"
-              />
+              <i className="fa-solid fa-camera-retro fa-5x mx-auto d-block"></i>
               <Card.Body>
                 <Card.Text>
                   Why not write a travel blog and share it with others or keep

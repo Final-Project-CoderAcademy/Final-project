@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { Row, Col, Button, Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { createBlog, deleteBlog, userAllBlogs } from "../actions/blogActions";
-import leftArrowIcon from "../icons/left.svg";
 
 const MyBlog = () => {
   const dispatch = useDispatch();
@@ -39,12 +38,10 @@ const MyBlog = () => {
     <Container>
       <div className="text-center">
         <Link to="/myhome">
-          <img
-            src={leftArrowIcon}
-            style={{ width: 28, height: 23 }}
-            className="mt-5 float-start"
-            variant="primary"
-          />
+          <i
+            className="fa-solid fa-arrow-left mt-5 float-start"
+            style={{ color: "black" }}
+          ></i>
         </Link>
         <h2 className="m-3">MY BLOG</h2>
 

@@ -6,7 +6,6 @@ import { userAllBlogs } from "../actions/blogActions";
 import { getUserProfile, updateUserProfile } from "../actions/userActions";
 import { BLOG_CREATE_RESET } from "../contents/blogContents";
 import { USER_UPDATE_RESET } from "../contents/userContents";
-import leftArrowIcon from "../icons/left.svg";
 
 const MyDetails = () => {
   const dispatch = useDispatch();
@@ -67,12 +66,10 @@ const MyDetails = () => {
       <Row className="justify-content-md-center">
         <Col xs={12} md={6}>
           <Link to="/myhome">
-            <img
-              src={leftArrowIcon}
-              style={{ width: 28, height: 23, color: "black" }}
-              className="mt-5"
-              variant="primary"
-            />
+            <i
+              className="fa-solid fa-arrow-left mt-5 float-start"
+              style={{ color: "black" }}
+            ></i>
           </Link>
           <h2 className="mb-4 text-center">MY DETAIL</h2>
           {successUpdate && (

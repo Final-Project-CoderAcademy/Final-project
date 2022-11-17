@@ -33,11 +33,6 @@ code {
   height: 250px;
 }
 
-.featureIcon {
-  width: 100px !important;
-  height: 100px;
-}
-
 figcaption {
   position: absolute;
   top: 50%;
@@ -61,5 +56,3 @@ figcaption {
     margin-right: 50px;
   }
 }
-
-

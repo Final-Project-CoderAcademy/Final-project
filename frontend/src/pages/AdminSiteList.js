@@ -5,9 +5,6 @@ import Table from "react-bootstrap/Table";
 import { allSites, createSite, deleteSite } from "../actions/siteActions";
 import { SITE_CREATE_RESET } from "../contents/siteContents";
 import { useDispatch, useSelector } from "react-redux";
-import leftArrowIcon from "../icons/left.svg";
-import editIcon from "../icons/edit.png";
-import deleteIcon from "../icons/delete.png";
 
 const AdminSiteList = () => {
   const dispatch = useDispatch();
@@ -56,12 +53,10 @@ const AdminSiteList = () => {
   return (
     <Container className="justify-content-md-center">
       <Link to="/">
-        <img
-          src={leftArrowIcon}
-          style={{ width: 28, height: 23 }}
-          className="mt-5"
-          variant="primary"
-        />
+        <i
+          className="fa-solid fa-arrow-left mt-5"
+          style={{ color: "black" }}
+        ></i>
       </Link>
       <div className="text-center">
         <h2 className="mb-4">SITE LIST</h2>
@@ -98,7 +93,7 @@ const AdminSiteList = () => {
               <td className="p-3">
                 <Link to={`/sites/${site._id}/edit`}>
                   <Button variant="info" className="btn-sm">
-                    <img src={editIcon} style={{ width: 20, height: 20 }} />
+                    <i className="fa-solid fa-pen-to-square"></i>
                   </Button>
                 </Link>
                 <Button
@@ -106,7 +101,7 @@ const AdminSiteList = () => {
                   className="btn-sm"
                   onClick={() => deleteSitehandler(site._id)}
                 >
-                  <img src={deleteIcon} style={{ width: 20, height: 20 }} />
+                  <i className="fa-solid fa-trash"></i>
                 </Button>
               </td>
             </tr>

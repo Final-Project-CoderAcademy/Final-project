@@ -4,7 +4,6 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button, Row, Col, Form, Container } from "react-bootstrap";
 import Message from "../components/Message";
 import { logIn } from "../actions/userActions";
-import leftArrowIcon from "../icons/left.svg";
 
 const Login = () => {
   const initialLoginForm = { email: "", password: "" };
@@ -45,12 +44,10 @@ const Login = () => {
       <Row className="justify-content-md-center">
         <Col xs={12} md={6}>
           <Link to="/">
-            <img
-              src={leftArrowIcon}
-              style={{ width: 28, height: 23 }}
-              className="mt-5"
-              variant="primary"
-            />
+            <i
+              className="fa-solid fa-arrow-left mt-5"
+              style={{ color: "black" }}
+            ></i>
           </Link>
           <h2 className="mb-4 text-center">LOG IN</h2>
           {error && <Message variant="danger">{error}</Message>}

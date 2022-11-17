@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { createBlog } from "../actions/blogActions";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
-import leftArrowIcon from "../icons/left.svg";
 import { BLOG_CREATE_RESET } from "../contents/blogContents";
 
 const BlogEdit = () => {
@@ -69,12 +68,10 @@ const BlogEdit = () => {
       <Row className="justify-content-md-center">
         <Col xs={12} md={6}>
           <Link to="/myhome/myBlogs">
-            <img
-              src={leftArrowIcon}
-              style={{ width: 28, height: 23 }}
-              className="mt-5"
-              variant="primary"
-            />
+            <i
+              className="fa-solid fa-arrow-left mt-5"
+              style={{ color: "black" }}
+            ></i>
           </Link>
           <h2 className="mb-4 text-center">BLOG POST</h2>
           {errorCreate && <p>{errorCreate}</p>}

@@ -3,9 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { LinkContainer } from "react-router-bootstrap";
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { logOut } from "../actions/userActions";
-import logInIcon from "../icons/login.svg";
-import signUpIcon from "../icons/signup.svg";
-import logOutIcon from "../icons/logout.svg";
 
 const NavBar = () => {
   const dispatch = useDispatch();
@@ -47,11 +44,10 @@ const NavBar = () => {
                   </LinkContainer>
                   <LinkContainer to="/login">
                     <NavDropdown.Item onClick={logOutHandler}>
-                      <img
-                        src={logOutIcon}
+                      <i
+                        className="fa-solid fa-right-from-bracket"
                         style={{ width: 23, height: 20 }}
-                        className="me-2"
-                      />
+                      ></i>
                       Log Out
                     </NavDropdown.Item>
                   </LinkContainer>
@@ -60,21 +56,19 @@ const NavBar = () => {
                 <>
                   <LinkContainer to="/login">
                     <Nav.Link>
-                      <img
-                        src={logInIcon}
+                      <i
+                        className="fa-solid fa-right-to-bracket"
                         style={{ width: 23, height: 20 }}
-                        className="me-2"
-                      />
+                      ></i>
                       LOG IN
                     </Nav.Link>
                   </LinkContainer>
                   <LinkContainer to="/register">
                     <Nav.Link>
-                      <img
-                        src={signUpIcon}
+                      <i
+                        className="fa-solid fa-user"
                         style={{ width: 23, height: 20 }}
-                        className="me-1"
-                      />
+                      ></i>
                       SIGN UP
                     </Nav.Link>
                   </LinkContainer>

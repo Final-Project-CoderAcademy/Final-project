@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Container, Row, Col, CardGroup, Card, Button } from "react-bootstrap";
-import leftArrowIcon from "../icons/left.svg";
 
 const MyHome = () => {
   return (
@@ -9,12 +8,10 @@ const MyHome = () => {
       <Row className="justify-content-md-center">
         <Col xs={12} md={12}>
           <Link to="/">
-            <img
-              src={leftArrowIcon}
-              style={{ width: 28, height: 23 }}
-              className="mt-5"
-              variant="primary"
-            />
+            <i
+              className="fa-solid fa-arrow-left mt-5"
+              style={{ color: "black" }}
+            ></i>
           </Link>
 
           <CardGroup>
