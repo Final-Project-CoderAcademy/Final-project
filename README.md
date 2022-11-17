@@ -1,4 +1,18 @@
 # MyWay
+## How to start 
+Before start this app in local side, there are some scripts need to be introduced. When this repo is cloned to the local side, `yarn install:all` need to be run. This is used to run install the packages both in root path and frontend/ path.  Then, some other scripts with the demonstration are shown below:  
+`yarn start` ----------run the backend server 
+
+`yarn server` ----------run the backend server with nodemon 
+
+`yarn client` ----------only run the react app in frontend/  
+
+***When you decide to run the script below, please make sure there is no useful information in the database.***  
+
+`yarn data:import` ----------clear the database and import some example data(you can check these data in backend/data)  
+
+`data:destroy` ----------destroy all the data in the database  
+
 ## About Application
 - **Purpose**  
 The purpose of this application is to help travelers make the best of their trip. It provides travelers with the best places to do what they want to do, and allows them to share and reflect on their memories by sharing blogs. It also has the ability to search the weather of a destination from any screen without logging in, which is not found in other applications.
