@@ -1,17 +1,26 @@
-# MyWay
+# MyWay---------Travel 
+### Github: https://github.com/Final-Project-CoderAcademy/Final-project
 ## How to start 
-Before start this app in local side, there are some scripts need to be introduced. When this repo is cloned to the local side, `yarn install:all` need to be run. This is used to run install the packages both in root path and frontend/ path.  Then, some other scripts with the demonstration are shown below:  
-`yarn start` ----------run the backend server 
+Before start this app in local side, there are some scripts need to be introduced. When this repo is cloned to the local side, `yarn install:all` need to be run. This is used to run install the packages both in root path and frontend/ path. Then, some other scripts with the demonstration are shown below:  
 
-`yarn server` ----------run the backend server with nodemon 
+- `yarn start` ----------run the backend server.js 
 
-`yarn client` ----------only run the react app in frontend/  
+- `yarn server` ----------run the backend server with nodemon 
+
+- `yarn client` ----------only run the react app in frontend/ path 
 
 ***When you decide to run the script below, please make sure there is no useful information in the database.***  
 
-`yarn data:import` ----------clear the database and import some example data(you can check these data in backend/data)  
+- `yarn data:import` ----------clear the database and import some example data(you can check these data in backend/data)  
 
-`data:destroy` ----------destroy all the data in the database  
+- `data:destroy` ----------destroy all the data in the database  
+
+Test scripts:
+- `yarn api:test` ----------to test great majority of the backend APIs 
+
+- `yarn frontend:test` ----------to test frontend code 
+
+For more details, please read the scripts in root path package.json
 
 ## About Application
 - **Purpose**  
@@ -43,26 +52,44 @@ The target audience is people who like to travel.
   3. In addition, admin users can manage all the normal users. If admin users find some normal users post illegal information in their blogs, they are able to delete normal users. 
   4. Admin users are able to delete blogs as well.    
 
----
       
 ## Dataflow Diagram
+<details>
+<summary>show image</summary>
+
+<summary>  
+
 ![dataflow diagram](./docs/Dataflow_Diagram.jpeg)   
+</details>  
+
   
 ---  
 
 ## Application Architecture Diagram
-![application architecture diagram](./docs/Application_Architecture_Diagram.jpeg)  
+<details>
+<summary>show image</summary>
+
+<summary>  
+
+![application architecture diagram](./docs/Application_Architecture_Diagram.jpeg)    
+</details> 
    
 ---
   
 ## User Stories  
 [Excel sheet for user story](https://onedrive.live.com/view.aspx?resid=6E0FC3D2BFB74104!129&ithint=file%2cxlsx&authkey=!AG1EELNirMpapYc)  
 All the user stories are start as a traveler. We assume that if we are a traveler, what we want to get from this web app. Then, we assume that if we are the owner of this app, how can we manage it. Finally, we add a few more features we'd like to see as a normal user. Here are the screenshot of the process of completing the user stories. You also can find the final excel from the link above.
+<details>
+<summary>click for more</summary>
+
+<summary>  
+
 ![user story](/docs/userStory/user_story_start.png)   
   
 ![user story](/docs/userStory/add_admin_to_user_story.png)   
 
 ![user story](/docs/userStory/final_user_story.png)  
+</details>  
 
 - As a traveler, I want to be able to securely log in, log out and change details of my account so my information only accessed for me.  
 - As a traveller, I want to know about the application and what the feature of it so that I know if this app is appropriate for my situation.
@@ -81,6 +108,12 @@ All the user stories are start as a traveler. We assume that if we are a travele
 ---  
   
 ## Wireframes   
+
+<details>
+<summary>show screenshots of wireframes</summary>
+
+<summary>  
+
 **Humburger menu for mobile**  
 - When the user hasn't log in  
 <img src="./docs/Wireframe/iPhone-humburger(when%20user%20didn't%20log%20in)%20.jpg" alt="humburger menu when user hasn't login" width="200"/>  
@@ -257,13 +290,20 @@ All the user stories are start as a traveler. We assume that if we are a travele
 
 
 - Desktop  
-<img src="./docs/Wireframe/Desktop%20-admin(USER%20LIST).jpg" alt="(For Admin) User management Page for desktop" width="500"/>   
+<img src="./docs/Wireframe/Desktop%20-admin(USER%20LIST).jpg" alt="(For Admin) User management Page for desktop" width="500"/>    
+</details>  
+
+
  
 
  ## Trello Board  
  [Trello Board link](https://trello.com/b/Uw6DU7pd/finalprojecta)  
 Yuka Toshima worked primarily on wireframe, while Xinzhe Yu worked on Dataflow and Application Architecture Diagram. We started on October 24, and in Trello, we put the cards we were working on in the "Doing" section and moved them to the "Done" section when the work was finished to share our progress. The cards were marked with the due date and the person in charge so that we knew who was supposed to do what by when.
 
+<details>
+<summary>click for more</summary>
+
+<summary>  
  - Day 1 (24th Oct)  
    **Start of the day**  
   <img src="./docs/Trello/24_Oct_2022.png" alt="24th Oct start" width="500"/>  
@@ -288,3 +328,5 @@ Yuka Toshima worked primarily on wireframe, while Xinzhe Yu worked on Dataflow a
 
 - Last Day (1st Nov)  
  <img src="./docs/Trello/1_Nov_2022.png" alt="1st Nov" width="500"/>   
+</details>  
+
