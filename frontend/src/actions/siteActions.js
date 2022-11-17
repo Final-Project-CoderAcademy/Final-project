@@ -146,7 +146,7 @@ export const addCommentToOneSite = (id, comment) => async (dispatch, getState) =
         Authorization: `Bearer ${userInfo.token}`
       },
     };
-    const {data} = await axios.post(`/api/sites/${id}/comments`, comment, config);
+    await axios.post(`/api/sites/${id}/comments`, comment, config);
     dispatch({ type: ADD_COMMENT_SUCCESS });
   } catch (error) {
     dispatch({
@@ -172,7 +172,7 @@ export const deleteCommentToOneSite = (id, commentId) => async (dispatch, getSta
         Authorization: `Bearer ${userInfo.token}`
       },
     };
-    const {data} = await axios.delete(`/api/sites/${id}/comments/${commentId}`, config);
+    await axios.delete(`/api/sites/${id}/comments/${commentId}`, config);
     dispatch({ type: DELETE_COMMENT_SUCCESS });
   } catch (error) {
     dispatch({

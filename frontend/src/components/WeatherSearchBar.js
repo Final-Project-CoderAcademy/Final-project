@@ -54,6 +54,7 @@ const WeatherSearchBar = () => {
       .catch((e) => {
         console.log(e.message);
       });
+      // eslint-disable-next-line
   }, [city, weather]);
 
   return (
