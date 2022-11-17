@@ -50,7 +50,7 @@ const Register = () => {
       setConfirmError("password and confirm password must be the same")
     } else {
       // console.log(username)
-      
+
       dispatch(register(username, email, password));
     }
     if (error) {

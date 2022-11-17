@@ -67,7 +67,7 @@ const MyDetails = () => {
         <Col xs={12} md={6}>
           <Link to="/myhome">
             <i
-              className="fa-solid fa-arrow-left mt-5 float-start"
+              className="fa-solid fa-arrow-left mt-5"
               style={{ color: "black" }}
             ></i>
           </Link>
