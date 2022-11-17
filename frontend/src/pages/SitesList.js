@@ -26,7 +26,7 @@ const SitesList = () => {
     return sliceText + "...";
   };
 
-  const Categories = ["All", "Mountain", "Beach", "Snow", "Other"];
+  // const Categories = ["All", "Mountain", "Beach", "Snow", "Other"];
   return (
     <>
       <figure className="position-relative">
@@ -43,11 +43,11 @@ const SitesList = () => {
       {error && <p style={{ color: "red" }}>{error}</p>}
 
       <Container>
-        {Categories.map((category, id) => (
+        {/* {Categories.map((category, id) => (
           <Button key={id} variant="light" className="btn-round mx-2 my-4 px-4">
             {category}
           </Button>
-        ))}
+        ))} */}
 
         <h4 className="m-4 text-center">RECCOMENDED SITES</h4>
 
