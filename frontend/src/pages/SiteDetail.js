@@ -56,11 +56,24 @@ const SiteDetail = () => {
       dispatch(deleteCommentToOneSite(id, commentId));
     }
   }
+
+
+  const showImage = async (title, name) => {
+    return await fetch(`https://myway-backend.herokuapp.com/api/image/download?url=${name}`).then((res) => {
+      return res.blob()
+    }).then((blob) => {
+      let blobUrl = URL.createObjectURL(blob);
+      if (blobUrl) {
+        document.getElementById(title).src = blobUrl
+      }
+    })
+  }
+  showImage(site.name, site.image)
   return (
     <Container className="px-sm-5 mt-5">
       <img
-        src={site.image}
-        alt={site.name}
+        src=""
+        id={site.name}
         className="my-sm-5 img-fluid d-block"
         style={{width: "60vw", margin: "0 auto"}}
       />

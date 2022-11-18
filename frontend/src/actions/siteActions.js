@@ -27,7 +27,7 @@ import axios from "axios";
 export const allSites = () => async (dispatch) => {
   try {
     dispatch({ type: SITES_LIST_REQUEST });
-    const { data } = await axios.get("/api/sites");
+    const { data } = await axios.get("https://myway-backend.herokuapp.com/api/sites");
     dispatch({ type: SITES_LIST_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
@@ -44,7 +44,7 @@ export const allSites = () => async (dispatch) => {
 export const siteDetail = (id) => async (dispatch) => {
   try {
     dispatch({ type: SITE_DETAIL_REQUEST });
-    const { data } = await axios.get(`/api/sites/${id}`);
+    const { data } = await axios.get(`https://myway-backend.herokuapp.com/api/sites/${id}`);
     dispatch({ type: SITE_DETAIL_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
@@ -69,7 +69,7 @@ export const createSite = () => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`
       },
     };
-    const { data } = await axios.post(`/api/sites`, {}, config);
+    const { data } = await axios.post(`https://myway-backend.herokuapp.com/api/sites`, {}, config);
     dispatch({ type: SITE_CREATE_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
@@ -95,7 +95,7 @@ export const updateSite = (site) => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    const { data } = await axios.put(`/api/sites/${site._id}`, site, config);
+    const { data } = await axios.put(`https://myway-backend.herokuapp.com/api/sites/${site._id}`, site, config);
     dispatch({ type: SITE_UPDATE_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
@@ -120,7 +120,7 @@ export const deleteSite = (id) => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    await axios.delete(`/api/sites/${id}`, config);
+    await axios.delete(`https://myway-backend.herokuapp.com/api/sites/${id}`, config);
     dispatch({ type: SITE_DELETE_SUCCESS });
   } catch (error) {
     dispatch({
@@ -146,7 +146,7 @@ export const addCommentToOneSite = (id, comment) => async (dispatch, getState) =
         Authorization: `Bearer ${userInfo.token}`
       },
     };
-    await axios.post(`/api/sites/${id}/comments`, comment, config);
+    await axios.post(`https://myway-backend.herokuapp.com/api/sites/${id}/comments`, comment, config);
     dispatch({ type: ADD_COMMENT_SUCCESS });
   } catch (error) {
     dispatch({
@@ -172,7 +172,7 @@ export const deleteCommentToOneSite = (id, commentId) => async (dispatch, getSta
         Authorization: `Bearer ${userInfo.token}`
       },
     };
-    await axios.delete(`/api/sites/${id}/comments/${commentId}`, config);
+    await axios.delete(`https://myway-backend.herokuapp.com/api/sites/${id}/comments/${commentId}`, config);
     dispatch({ type: DELETE_COMMENT_SUCCESS });
   } catch (error) {
     dispatch({

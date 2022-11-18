@@ -11,15 +11,14 @@
     "start": "node backend/server",
     "server": "nodemon backend/server",
     "install:frontend": "yarn --cwd frontend/ install",
-    "build:frontend": "yarn --cwd frontend/ build",
-    "install:all": "yarn install & yarn install:frontend",
+    "install:backend": "yarn --cwd backend/ install",
+    "install:all": "yarn install:frontend & yarn install:backend",
     "client": "yarn --cwd frontend/ start",
     "dev": "yarn server & yarn client",
-    "api:test": "jest backend/test/app.test.js",
+    "api:test": "yarn --cwd backend/ test",
     "frontend:test": "yarn --cwd frontend/ test",
-    "data:import": "node backend/seeder",
-    "data:destroy": "node backend/seeder -d",
-    "heroku-postbuild": "YARN_PRODUCTION=false yarn install:frontend && yarn build:frontend"
+    "data:import": "yarn --cwd backend/seeder data:import",
+    "data:destroy": "yarn --cwd backend/seeder data:destroy"
   },
   "repository": {
     "type": "git",

@@ -13,8 +13,20 @@ import blogRoutes from "./routes/blogRoutes.js";
 import uploadRoutes from "./routes/uploadRoutes.js";
 
 dotenv.config();
-
+void process.on('unhandledRejection', (reason, p) => {
+    console.log(`Here is the BIG ERROR: \n`.red + p)
+    console.log(`That's because of: \n`.red + reason)
+})
 const app = express();
+app.use(helmet())
+app.use(helmet.permittedCrossDomainPolicies())
+app.use(helmet.referrerPolicy())
+app.use(helmet.contentSecurityPolicy({
+    directives: {
+        defaultSrc: ["'self'"]
+    }
+}))
+
 app.use(function (req, res, next) {
   res.setHeader(
     'Content-Security-Policy-Report-Only',
@@ -22,29 +34,26 @@ app.use(function (req, res, next) {
   );
   next();
 });
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+// configure cors
+var corsOptions = {
+    origin: ["http://localhost:3000", "https://radiant-belekoy-ffd379.netlify.app"],
+    optionsSuccessStatus: 200
+}
+app.use(cors(corsOptions))
 
 app.use("/api/sites", siteRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/blogs", blogRoutes);
-app.use('/api/upload', uploadRoutes)
-// upload folder used as static files folder 
-const __dirname = path.resolve()
-app.use('/upload', express.static(path.join(__dirname, '/upload')))
+app.use('/api/image', uploadRoutes)
 
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '/frontend/build')))
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '/frontend/build/index.html'));
-  })
-} else {
-  // test server connection
-  app.get("/", (req, res) => {
-    res.status(200);
-    res.json({ message: ">>>>>Server is connected<<<<<" });
-  });
-}
+// // upload folder used as static files folder 
+// const __dirname = path.resolve()
+// app.use('/upload', express.static(path.join(__dirname, '/upload')))
+
+
 
 app.use(notFound);
 app.use(errorHandler);

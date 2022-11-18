@@ -5,4 +5,4 @@ describe("<App />", () => {
     test("link too register page by clicking the Let's start! button", () => {
       render(<App />);
     });
-  });
+});

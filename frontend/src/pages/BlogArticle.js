@@ -76,6 +76,19 @@ const BlogArticle = () => {
     }
   };
 
+    
+
+  const showImage = async (title, name) => {
+    return await fetch(`https://myway-backend.herokuapp.com/api/image/download?url=${name}`).then((res) => {
+      return res.blob()
+    }).then((blob) => {
+      let blobUrl = URL.createObjectURL(blob);
+      if (blobUrl) {
+        document.getElementById(title).src = blobUrl
+      }
+    })
+  }
+  showImage(blog.title, blog.image)
   return (
     <Container className="px-sm-5">
       <h3 className="mt-5 fw-bold">{blog.title}</h3>
@@ -84,8 +97,8 @@ const BlogArticle = () => {
         <p className="mb-0">{blog.name}</p>
       </div>
       <img
-        src={blog.image}
-        alt={blog.title}
+        src=""
+        id={blog.title}
         className="my-3 img-fluid mx-auto d-block"
       />
       <div>

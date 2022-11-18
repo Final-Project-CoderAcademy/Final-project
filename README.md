@@ -1,7 +1,9 @@
 # MyWay---------Travel 
 ### Github: https://github.com/Final-Project-CoderAcademy/Final-project
 ## How to start 
-Before start this app in local side, there are some scripts need to be introduced. When this repo is cloned to the local side, `yarn install:all` need to be run. This is used to run install the packages both in root path and frontend/ path. Then, some other scripts with the demonstration are shown below:  
+Before start this app in local side, there are some scripts need to be introduced. When this repo is cloned to the local side, `yarn install` need to be run. This is used to run install the packages both in root path and frontend/ path. Then, some other scripts with the demonstration are shown below:  
+
+- `yarn install:all` ----------run `yarn install` both in the folder of backend/ and frontend/
 
 - `yarn start` ----------run the backend server.js 
 
@@ -16,11 +18,11 @@ Before start this app in local side, there are some scripts need to be introduce
 - `data:destroy` ----------destroy all the data in the database  
 
 Test scripts:
-- `yarn api:test` ----------to test great majority of the backend APIs 
+- `yarn api:test` ----------to test great majority of the backend APIs with Jest
 
-- `yarn frontend:test` ----------to test frontend code 
+- `yarn frontend:test` ----------to test frontend code with cypress
 
-For more details, please read the scripts in root path package.json
+For more details, please read the scripts in package.json in different path
 
 ## About Application
 - **Purpose**  
