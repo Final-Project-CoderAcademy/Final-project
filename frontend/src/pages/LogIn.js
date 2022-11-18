@@ -50,7 +50,11 @@ const Login = () => {
             ></i>
           </Link>
           <h2 className="mb-4 text-center">LOG IN</h2>
-          {error && <Message variant="danger">{error}</Message>}
+          {error && (
+            <Message variant="danger" id="loginError">
+              {error}
+            </Message>
+          )}
           <Form onSubmit={submitHandler} noValidate>
             <Form.Group className="mb-3" controlId="email">
               <Form.Label>Email </Form.Label>
