@@ -12,4 +12,11 @@ module.exports = defineConfig({
     pageLoadTimeout: 60000,
     requestTimeout: 5000,
   },
+
+  component: {
+    devServer: {
+      framework: "create-react-app",
+      bundler: "webpack",
+    },
+  },
 });

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button, Row, Col, Form, Container } from "react-bootstrap";
 import { register } from "../actions/userActions";
+import Message from "../components/Message";
 
 const Register = () => {
   const [username, setUsername] = useState("");
@@ -50,7 +51,6 @@ const Register = () => {
       setConfirmError("password and confirm password must be the same")
     } else {
       // console.log(username)
-
       dispatch(register(username, email, password));
     }
     if (error) {
@@ -79,7 +79,7 @@ const Register = () => {
             ></i>
           </Link>
           <h2 className="mb-4 text-center">SIGN UP</h2>
-
+          {error && (<Message variant="danger">{error}</Message>)}
           <Form onSubmit={submitHandler} noValidate>
             <Form.Group className="mb-3" controlId="username">
               <Form.Label>Username </Form.Label>
