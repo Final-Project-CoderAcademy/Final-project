@@ -18,8 +18,7 @@
     "api:test": "jest backend/test/app.test.js",
     "frontend:test": "yarn --cwd frontend/ test",
     "data:import": "node backend/seeder",
-    "data:destroy": "node backend/seeder -d",
-    "heroku-postbuild": "YARN_PRODUCTION=false yarn install:frontend"
+    "data:destroy": "node backend/seeder -d"
   },
   "repository": {
     "type": "git",
