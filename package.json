@@ -19,7 +19,7 @@
     "frontend:test": "yarn --cwd frontend/ test",
     "data:import": "node backend/seeder",
     "data:destroy": "node backend/seeder -d",
-    "heroku-postbuild": "YARN_PRODUCTION=false yarn install:frontend && yarn build:frontend"
+    "heroku-postbuild": "YARN_PRODUCTION=false yarn install:frontend"
   },
   "repository": {
     "type": "git",
