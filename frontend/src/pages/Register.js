@@ -39,8 +39,6 @@ const Register = () => {
     if (!password || password === "") setPasswordError("Please enter password");
     if (!confirmPassword || confirmPassword === "")
       setConfirmError("Please enter confirm password");
-    if (password !== confirmPassword)
-      setConfirmError("password must be the same");
     return;
   };
 
@@ -48,23 +46,10 @@ const Register = () => {
     e.preventDefault();
     validation();
     if (password !== confirmPassword) {
-      setConfirmError("password and confirm password must be the same")
+      setConfirmError("password and confirm password must be the same");
     } else {
       // console.log(username)
       dispatch(register(username, email, password));
-    }
-    if (error) {
-      error.forEach((err) => {
-        if (err.param === "name") {
-          setUsernameError(err.msg);
-        }
-        if (err.param === "email") {
-          setEmailError("invalid email address");
-        }
-        if (err.param === "password") {
-          setPasswordError(err.msg);
-        }
-      });
     }
   };
 
@@ -79,12 +64,13 @@ const Register = () => {
             ></i>
           </Link>
           <h2 className="mb-4 text-center">SIGN UP</h2>
-          {error && (<Message variant="danger">{error}</Message>)}
-          <Form onSubmit={submitHandler} noValidate>
+          {error && <Message variant="danger">{error}</Message>}
+          <Form onSubmit={submitHandler} noValidate id="signupForm">
             <Form.Group className="mb-3" controlId="username">
               <Form.Label>Username </Form.Label>
               <Form.Control
                 type="username"
+                id="username"
                 placeholder="Jane"
                 value={username}
                 onChange={(e) => {
@@ -92,7 +78,7 @@ const Register = () => {
                 }}
                 isInvalid={usernameError}
               />
-              <Form.Control.Feedback type="invalid">
+              <Form.Control.Feedback type="invalid" data-error="username">
                 {usernameError}
               </Form.Control.Feedback>
             </Form.Group>
@@ -101,6 +87,7 @@ const Register = () => {
               <Form.Label>Email </Form.Label>
               <Form.Control
                 type="email"
+                id="email"
                 placeholder="example@gmail.com"
                 value={email}
                 onChange={(e) => {
@@ -108,15 +95,16 @@ const Register = () => {
                 }}
                 isInvalid={emailError}
               />
-              <Form.Control.Feedback type="invalid">
+              <Form.Control.Feedback type="invalid" data-error="email">
                 {emailError}
               </Form.Control.Feedback>
             </Form.Group>
-            
+
             <Form.Group className="mb-4" controlId="password">
               <Form.Label>Password </Form.Label>
               <Form.Control
                 type="password"
+                id="password"
                 placeholder="password"
                 value={password}
                 onChange={(e) => {
@@ -124,7 +112,7 @@ const Register = () => {
                 }}
                 isInvalid={passwordError}
               />
-              <Form.Control.Feedback type="invalid">
+              <Form.Control.Feedback type="invalid" data-error="password">
                 {passwordError}
               </Form.Control.Feedback>
             </Form.Group>
@@ -133,6 +121,7 @@ const Register = () => {
               <Form.Label>Confirm Password</Form.Label>
               <Form.Control
                 type="password"
+                id="confirmPassword"
                 placeholder="password"
                 value={confirmPassword}
                 onChange={(e) => {
@@ -140,13 +129,21 @@ const Register = () => {
                 }}
                 isInvalid={confirmError}
               />
-              <Form.Control.Feedback type="invalid">
+              <Form.Control.Feedback
+                type="invalid"
+                data-error="confirmPassword"
+              >
                 {confirmError}
               </Form.Control.Feedback>
             </Form.Group>
 
             <div className="d-grid gap-2 d-md-block">
-              <Button variant="primary" type="submit" className="px-5 ">
+              <Button
+                variant="primary"
+                type="submit"
+                className="px-5"
+                id="signUp"
+              >
                 SIGN UP
               </Button>
             </div>
