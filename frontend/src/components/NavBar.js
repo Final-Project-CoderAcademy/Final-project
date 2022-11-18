@@ -53,7 +53,7 @@ const NavBar = () => {
                   </LinkContainer>
                 </NavDropdown>
               ) : (
-                <div id="loginSignup">
+                <>
                   <LinkContainer to="/login">
                     <Nav.Link>
                       <i
@@ -72,7 +72,7 @@ const NavBar = () => {
                       SIGN UP
                     </Nav.Link>
                   </LinkContainer>
-                </div>
+                </>
               )}
 
               {userInfo && userInfo.isAdmin && (
