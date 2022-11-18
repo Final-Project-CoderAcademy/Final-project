@@ -41,11 +41,6 @@ export const register = (name, email, password) => async (dispatch) => {
     if (!data.errors) {
       dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
       localStorage.setItem("userInfo", JSON.stringify(data));
-    } else {
-      dispatch({
-        type: USER_REGISTER_FAIL,
-        payload: data.errors,
-      });
     }
   } catch (error) {
     dispatch({
@@ -56,7 +51,6 @@ export const register = (name, email, password) => async (dispatch) => {
           : error.message,
     });
   }
-
 };
 
 // login POST request actions
