@@ -17,7 +17,7 @@ describe("<About />", () => {
     cy.url().should("contain", "/login");
   });
   it("should visit blog page by clicking 'Visit Blog Page' button if the user is logged in", () => {
-    cy.login("yuka@example.com", "123456");
+    cy.userLogin();
     cy.get("#aboutP-blog").click();
     cy.url().should("contain", "/blogs");
   });
