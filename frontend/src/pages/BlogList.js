@@ -53,7 +53,9 @@ const BlogList = () => {
 
         {blogs === undefined || blogs.length === 0
           ? error && (
-              <p style={{ color: "lightgrey", textAlign: "center" }}>{error}</p>
+              <p id="error" style={{ color: "lightgrey", textAlign: "center" }}>
+                {error}
+              </p>
             )
           : blogs.map((blog) => (
               <Row
