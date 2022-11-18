@@ -33,7 +33,23 @@ const MyBlog = () => {
       dispatch(deleteBlog(id));
     }
   };
-
+  const imageShow = () => blogs.map(blog => {
+    showImage(blog.title, blog.image)
+  })
+  const showImage = async (title, name) => {
+    return await fetch(`https://myway-backend.herokuapp.com/api/image/download?url=${name}`).then((res) => {
+      return res.blob()
+    }).then((blob) => {
+      let blobUrl = URL.createObjectURL(blob);
+      if (blobUrl) {
+        document.getElementById(title).src = blobUrl
+      }
+    })
+  }
+  if (blogs && blogs.length !== 0) {
+    imageShow()
+  }
+  
   return (
     <Container>
       <div className="text-center">
@@ -59,8 +75,8 @@ const MyBlog = () => {
             <Col className="col-sm-3 mb-3" md="auto">
               <Link to={`/blogs/${blog._id}`}>
                 <img
-                  src={blog.image}
-                  alt={blog.title}
+                  src=""
+                  id={blog.title}
                   className="blogListImg mx-auto d-block"
                 />
               </Link>

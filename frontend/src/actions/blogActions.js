@@ -35,7 +35,7 @@ export const allBlogs = () => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    const { data } = await axios.get("/api/blogs", config);
+    const { data } = await axios.get("https://myway-backend.herokuapp.com/api/blogs", config);
     dispatch({ type: BLOGS_LIST_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
@@ -60,7 +60,7 @@ export const userAllBlogs = (userId) => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    const { data } = await axios.get(`/api/blogs/${userId}/all`, config);
+    const { data } = await axios.get(`https://myway-backend.herokuapp.com/api/blogs/${userId}/all`, config);
     dispatch({ type: USER_BLOGS_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
@@ -86,7 +86,7 @@ export const blogDetail = (id) => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    const { data } = await axios.get(`/api/blogs/${id}`, config);
+    const { data } = await axios.get(`https://myway-backend.herokuapp.com/api/blogs/${id}`, config);
     dispatch({ type: BLOG_DETAIL_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
@@ -112,7 +112,7 @@ export const createBlog = ({title, article, image}) => async (dispatch, getState
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    const { data } = await axios.post(`/api/blogs`, {title, article, image}, config);
+    const { data } = await axios.post(`https://myway-backend.herokuapp.com/api/blogs`, {title, article, image}, config);
     dispatch({ type: BLOG_CREATE_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
@@ -137,7 +137,7 @@ export const deleteBlog = (id) => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    await axios.delete(`/api/blogs/${id}`, config);
+    await axios.delete(`https://myway-backend.herokuapp.com/api/blogs/${id}`, config);
     dispatch({ type: BLOG_DELETE_SUCCESS });
   } catch (error) {
     dispatch({
@@ -165,7 +165,7 @@ export const addCommentToOneBlog =
         },
       };
       await axios.post(
-        `/api/blogs/${id}/comments`,
+        `https://myway-backend.herokuapp.com/api/blogs/${id}/comments`,
         comment,
         config
       );
@@ -195,7 +195,7 @@ export const deleteCommentToOneBlog =
         },
       };
       await axios.delete(
-        `/api/blogs/${id}/comments/${commentId}`,
+        `https://myway-backend.herokuapp.com/api/blogs/${id}/comments/${commentId}`,
         config
       );
       dispatch({ type: DELETE_COMMENT_SUCCESS });

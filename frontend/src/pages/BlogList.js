@@ -5,6 +5,7 @@ import Col from "react-bootstrap/Col";
 import { Link, useNavigate } from "react-router-dom";
 import { allBlogs, deleteBlog } from "../actions/blogActions";
 import { useDispatch, useSelector } from "react-redux";
+// import axios from "axios";
 
 const BlogList = () => {
   const dispatch = useDispatch();
@@ -35,6 +36,25 @@ const BlogList = () => {
       setSuccessDelete(success);
     }
   };
+
+  const imageShow = () => blogs.map(blog => {
+    showImage(blog.title, blog.image)
+  })
+  const showImage = async (title, name) => {
+    return await fetch(`https://myway-backend.herokuapp.com/api/image/download?url=${name}`).then((res) => {
+      return res.blob()
+    }).then((blob) => {
+      let blobUrl = URL.createObjectURL(blob);
+      if (blobUrl) {
+        document.getElementById(title).src = blobUrl
+      }
+    })
+  }
+  if (blogs && blogs.length !== 0){
+    imageShow()
+  }
+  
+  
   return (
     <>
       <figure className="position-relative">
@@ -63,8 +83,8 @@ const BlogList = () => {
                 <Col className="col-sm-4 mb-3" md="auto" key={blog._id}>
                   <Link to={`/blogs/${blog._id}`}>
                     <img
-                      src={blog.image}
-                      alt={blog.title}
+                      src=""
+                      id={blog.title}
                       className="blogListImg mx-auto d-block"
                     />
                   </Link>
