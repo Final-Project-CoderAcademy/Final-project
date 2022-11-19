@@ -56,6 +56,7 @@ const AdminSiteList = () => {
         <i
           className="fa-solid fa-arrow-left mt-5"
           style={{ color: "black" }}
+          data-id="back"
         ></i>
       </Link>
       <div className="text-center">
@@ -64,7 +65,12 @@ const AdminSiteList = () => {
         {errorDelete && <p style={{ color: "red" }}>{errorDelete}</p>}
         {error && <p style={{ color: "red" }}>{error}</p>}
 
-        <Button variant="info" className="px-4" onClick={createSiteHandler}>
+        <Button
+          data-button="create"
+          variant="info"
+          className="px-4"
+          onClick={createSiteHandler}
+        >
           CREATE A SITE
         </Button>
       </div>
