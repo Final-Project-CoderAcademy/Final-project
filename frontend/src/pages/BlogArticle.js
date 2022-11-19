@@ -99,6 +99,7 @@ const BlogArticle = () => {
       <img
         src=""
         id={blog.title}
+        alt={blog.title}
         className="my-3 img-fluid mx-auto d-block"
       />
       <div>

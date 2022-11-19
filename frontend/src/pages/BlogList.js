@@ -37,9 +37,9 @@ const BlogList = () => {
     }
   };
 
-  const imageShow = () => blogs.map(blog => {
+  const imageShow = () => blogs.map(blog => 
     showImage(blog.title, blog.image)
-  })
+  )
   const showImage = async (title, name) => {
     return await fetch(`https://myway-backend.herokuapp.com/api/image/download?url=${name}`).then((res) => {
       return res.blob()
@@ -87,6 +87,7 @@ const BlogList = () => {
                     <img
                       src=""
                       id={blog.title}
+                      alt={blog.title}
                       className="blogListImg mx-auto d-block"
                     />
                   </Link>
