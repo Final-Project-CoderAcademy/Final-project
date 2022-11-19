@@ -45,7 +45,7 @@ const SitesList = () => {
       }
     })
   }
-  if (sites && sites.length !== 0){
+  if (sites && sites.length !== 0 && sites[sites.length - 1].image !== undefined && sites[sites.length - 1].image.split("/")[1] !== "images"){
     imageShow()
   }
   // const Categories = ["All", "Mountain", "Beach", "Snow", "Other"];
