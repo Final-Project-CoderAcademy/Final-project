@@ -15,6 +15,7 @@ const SiteEdit = () => {
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
+  const [message, setMessage] = useState("");
   // future features not work now
   // const [rating, setRationg] = useState(0);
   // const [numComments, setNumComments] = useState(0);
@@ -52,21 +53,28 @@ const SiteEdit = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    if (!(lat === 0 && lng === 0)) {
-      dispatch(
-        updateSite({
-          _id: siteId,
-          name,
-          description,
-          image,
-          category,
-          lat,
-          lng,
-        })
-      );
+    if (image !== "" ) {
+      if (!(lat === 0 && lng === 0)) {
+        dispatch(
+          updateSite({
+            _id: siteId,
+            name,
+            description,
+            image,
+            category,
+            lat,
+            lng,
+          })
+        );
+        setMessage("")
+      } else {
+        alert("Location not found!");
+      }
     } else {
-      alert("Location not found!");
+      setMessage("something wrong with image uploading, please try again.")
+      alert("image not found");
     }
+    
   };
 
   // google map settings
@@ -102,13 +110,13 @@ const SiteEdit = () => {
           "Content-Type": "multerpart/form-data",
         },
       };
-      const { data } = await axios.post(
-        "https://myway-backend.herokuapp.com/api/image/upload",
-        formData,
-        config
-      );
-      console.log(data.originalname);
+
+      setMessage("please wait, the image is uploading...")
+      const { data } = await axios.post("https://myway-backend.herokuapp.com/api/image/upload", formData, config);
       setImage(data.originalname);
+      setInterval(() => {
+        setMessage("Image uploading successfully!")
+      }, 8000)
     } catch (err) {
       console.log(err);
     }
@@ -183,6 +191,7 @@ const SiteEdit = () => {
                 placeholder="insert image"
                 onChange={uploadFileHandler}
               ></Form.Control>
+              <p style={{ color: "lightgrey" }}>{message}</p>
             </Form.Group>
             <div className="d-grid gap-2 d-md-block">
               {site.name !== "name of the site" ? (

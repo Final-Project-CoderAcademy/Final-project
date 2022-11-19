@@ -24,6 +24,7 @@ Before start this app in local side, there are some scripts need to be introduce
 Test scripts:
 - `yarn api:test` ----------to test great majority of the backend APIs with Jest
 
+For frontend testing, please make sure run `yarn client` to start the frontend
 - `yarn frontend:test` ----------to test frontend code with cypress
 
 For more details, please read the scripts in package.json in different path

@@ -57,7 +57,6 @@ const SiteDetail = () => {
     }
   }
 
-
   const showImage = async (title, name) => {
     return await fetch(`https://myway-backend.herokuapp.com/api/image/download?url=${name}`).then((res) => {
       return res.blob()
@@ -68,8 +67,7 @@ const SiteDetail = () => {
       }
     })
   }
-  console.log(site.image)
-  if (site && site.image !== undefined ){
+  if (site && site.image !== undefined && site.image.split("/")[1] !== "images" ){
     showImage(site.name, site.image)
   }
   
@@ -88,6 +86,7 @@ const SiteDetail = () => {
         variant="top"
         src=""
         id={site.name}
+        alt={site.name}
         style={{width: "60vw", display: "block", margin: "0 auto"}}
       />
       ) : (
@@ -98,14 +97,11 @@ const SiteDetail = () => {
         style={{width: "60vw", display: "block", margin: "0 auto"}}
       />
       )}
-                  
-
-
       <h3 className="mt-5 fw-bold">{site.name}</h3>
       <p className="lh-lg fs-6">{site.description}</p>
       <div className="p-3 my-sm-5 text-sm-center commentContainer">
         <h5 style={{ textAlign: "left" }}>LOCATION</h5>
-        <GoogleMapSite lat={site.lat} lng={site.lng} />
+        {site && site.lat !== undefined && (<GoogleMapSite lat={site.lat} lng={site.lng} />)}
         <h5 className="mt-5 mb-3" style={{ textAlign: "left" }}>
           COMMENTS
         </h5>
