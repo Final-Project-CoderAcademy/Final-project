@@ -1,6 +1,10 @@
 # MyWay---------Travel 
-### Github: https://github.com/Final-Project-CoderAcademy/Final-project
-## How to start 
+### App URL (Netlify): https://radiant-belekoy-ffd379.netlify.app/
+- Frontend Github repo: https://github.com/Final-Project-CoderAcademy/Final-project/tree/main/frontend
+### Backend API URL (Heroku): https://myway-backend.herokuapp.com/
+- Backend Github repo: https://github.com/Final-Project-CoderAcademy/Final-project/tree/main/backend
+### Github repo: https://github.com/Final-Project-CoderAcademy/Final-project
+## How to start the app in local side
 Before start this app in local side, there are some scripts need to be introduced. When this repo is cloned to the local side, `yarn install` need to be run. This is used to run install the packages both in root path and frontend/ path. Then, some other scripts with the demonstration are shown below:  
 
 - `yarn install:all` ----------run `yarn install` both in the folder of backend/ and frontend/
@@ -23,6 +27,9 @@ Test scripts:
 - `yarn frontend:test` ----------to test frontend code with cypress
 
 For more details, please read the scripts in package.json in different path
+
+## Environment Variables  
+- This app need environment variables, for more please contact with the authors.  
 
 ## About Application
 - **Purpose**  
@@ -55,7 +62,7 @@ The target audience is people who like to travel.
   4. Admin users are able to delete blogs as well.    
 
       
-## Dataflow Diagram
+## Dataflow Diagram  
 <details>
 <summary>show image</summary>
 
