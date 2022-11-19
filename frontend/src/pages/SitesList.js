@@ -15,6 +15,7 @@ const SitesList = () => {
 
   useEffect(() => {
     dispatch(allSites());
+    // eslint-disable-next-line
   }, [dispatch]);
 
   const getOneSentence = (text) => {
@@ -26,11 +27,14 @@ const SitesList = () => {
     return sliceText + "...";
   };
 
-  const imageShow = () => sites.map(site => {
-    if (site.image.split("/")[1] !== "images") {
-      showImage(site.name, site.image)
-    }
-  })
+  const imageShow = () => {
+    sites.map(site => {
+      if (site.image.split("/")[1] !== "images") {
+        showImage(site.name, site.image)
+      }
+    })
+  }
+  
   const showImage = async (title, name) => {
     return await fetch(`https://myway-backend.herokuapp.com/api/image/download?url=${name}`).then((res) => {
       return res.blob()
@@ -83,6 +87,7 @@ const SitesList = () => {
                   variant="top"
                   src=""
                   id={site.name}
+                  alt={site.name}
                   style={{ width: "100%", height: 200 }}
                 />
                 )}
