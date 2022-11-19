@@ -15,17 +15,4 @@ describe("<AdminSiteList /> page", () => {
     const siteId = "637328652c48fb20ff1b324a";
     cy.url().should("eq", `http://localhost:3000/sites/${siteId}/edit`);
   });
-  it("should create a new site by 'CREATE A SITE' button and render to admin site list", () => {
-    cy.get('[data-button="create"]').click();
-    cy.get('[data-id="title"]').type("New recommended site");
-    cy.get('[data-id="category"]').type("new category");
-    cy.get('[data-id="description"]').type(
-      "This is a new site that we recomennded for you!"
-    );
-    cy.get('[data-id="image"]').selectFile("cypress/fixtures/testImage.jpg", {
-      force: true,
-    });
-    cy.get("#createSite").click();
-    cy.url().should("eq", "http://localhost:3000/admin/sitelist");
-  });
 });
