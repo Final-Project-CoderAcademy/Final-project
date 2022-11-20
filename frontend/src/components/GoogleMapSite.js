@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react'
 import { Loader } from "@googlemaps/js-api-loader";
+import {Container} from "react-bootstrap";
 
 const GoogleMapSite = (props) => {
     const {lat, lng} = props
@@ -29,7 +30,7 @@ const GoogleMapSite = (props) => {
       }, [mapOptions])
   return (
     
-        <div id="map" style={{margin:"auto", width:"800px", height:"600px"}}></div>
+        <Container id="map" style={{ margin:"auto 0", height:"40vh"}}></Container>
     
   )
 }
