@@ -72,13 +72,14 @@ const SiteDetail = () => {
   }
   
   return (
-    <Container style={{ textAlign: "center" }} className="px-sm-5 mt-5">
+    <Container style={{textAlign: "center" }}>
+      <Container style={{width: "80vw", margin: "0 auto"}}>
       {site && site.image !== undefined ? site.image.split("/")[1] === "images" ? (
         <img
             variant="top"
             src={site.image}
             alt={site.name}
-            style={{width: "60vw", display: "block", margin: "0 auto"}}
+            style={{width: "90%", margin: "0 auto"}}
           />
           
       ) : (
@@ -87,7 +88,7 @@ const SiteDetail = () => {
         src=""
         id={site.name}
         alt={site.name}
-        style={{width: "60vw", display: "block", margin: "0 auto"}}
+        style={{width: "40vw", margin: "0 auto"}}
       />
       ) : (
         <img
@@ -97,6 +98,8 @@ const SiteDetail = () => {
         style={{width: "60vw", display: "block", margin: "0 auto"}}
       />
       )}
+      </Container>
+      
       <h3 className="mt-5 fw-bold">{site.name}</h3>
       <p className="lh-lg fs-6">{site.description}</p>
       
