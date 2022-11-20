@@ -110,6 +110,7 @@ const SiteEdit = () => {
           "Content-Type": "multerpart/form-data",
         },
       };
+
       setMessage("please wait, the image is uploading...")
       const { data } = await axios.post("https://myway-backend.herokuapp.com/api/image/upload", formData, config);
       setImage(data.originalname);
@@ -156,6 +157,7 @@ const SiteEdit = () => {
             <Form.Group className="mb-3">
               <Form.Label>Title</Form.Label>
               <Form.Control
+                data-id="title"
                 type="string"
                 placeholder={site.name}
                 onChange={(e) => setName(e.target.value)}
@@ -164,6 +166,7 @@ const SiteEdit = () => {
             <Form.Group className="mb-3">
               <Form.Label>Category</Form.Label>
               <Form.Control
+                data-id="category"
                 type="string"
                 placeholder={site.category}
                 onChange={(e) => setCategory(e.target.value)}
@@ -172,6 +175,7 @@ const SiteEdit = () => {
             <Form.Group className="mb-3">
               <Form.Label>Description</Form.Label>
               <Form.Control
+                data-id="description"
                 as="textarea"
                 placeholder={site.description}
                 style={{ height: 250 }}
@@ -182,6 +186,7 @@ const SiteEdit = () => {
             <Form.Group>
               <Form.Label>Image: </Form.Label>
               <Form.Control
+                data-id="image"
                 type="file"
                 placeholder="insert image"
                 onChange={uploadFileHandler}
@@ -199,6 +204,7 @@ const SiteEdit = () => {
                 </Button>
               ) : (
                 <Button
+                  id="createSite"
                   variant="secondary"
                   type="submit"
                   className="my-3 px-5 "
