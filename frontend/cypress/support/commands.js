@@ -29,7 +29,6 @@ Cypress.Commands.add("userLogin", () => {
   cy.get("#email").type("yuka@example.com");
   cy.get("#password").type("123456");
   cy.get("#login").click();
-  cy.url().should("contain", "/");
 });
 
 Cypress.Commands.add("adminLogin", () => {
@@ -37,5 +36,4 @@ Cypress.Commands.add("adminLogin", () => {
   cy.get("#email").type("admin@example.com");
   cy.get("#password").type("123456");
   cy.get("#login").click();
-  cy.url().should("contain", "/");
 });

@@ -53,7 +53,7 @@ const SiteEdit = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    if (image !== "" ) {
+    if (image !== "") {
       if (!(lat === 0 && lng === 0)) {
         dispatch(
           updateSite({
@@ -66,15 +66,14 @@ const SiteEdit = () => {
             lng,
           })
         );
-        setMessage("")
+        setMessage("");
       } else {
         alert("Location not found!");
       }
     } else {
-      setMessage("something wrong with image uploading, please try again.")
+      setMessage("something wrong with image uploading, please try again.");
       alert("image not found");
     }
-    
   };
 
   // google map settings
@@ -111,12 +110,16 @@ const SiteEdit = () => {
         },
       };
 
-      setMessage("please wait, the image is uploading...")
-      const { data } = await axios.post("https://myway-backend.herokuapp.com/api/image/upload", formData, config);
+      setMessage("please wait, the image is uploading...");
+      const { data } = await axios.post(
+        "https://myway-backend.herokuapp.com/api/image/upload",
+        formData,
+        config
+      );
       setImage(data.originalname);
       setInterval(() => {
-        setMessage("Image uploading successfully!")
-      }, 8000)
+        setMessage("Image uploading successfully!");
+      }, 8000);
     } catch (err) {
       console.log(err);
     }
@@ -157,7 +160,7 @@ const SiteEdit = () => {
             <Form.Group className="mb-3">
               <Form.Label>Title</Form.Label>
               <Form.Control
-                data-id="title"
+                id="siteTitle"
                 type="string"
                 placeholder={site.name}
                 onChange={(e) => setName(e.target.value)}
@@ -166,7 +169,7 @@ const SiteEdit = () => {
             <Form.Group className="mb-3">
               <Form.Label>Category</Form.Label>
               <Form.Control
-                data-id="category"
+                id="siteCategory"
                 type="string"
                 placeholder={site.category}
                 onChange={(e) => setCategory(e.target.value)}
@@ -175,7 +178,7 @@ const SiteEdit = () => {
             <Form.Group className="mb-3">
               <Form.Label>Description</Form.Label>
               <Form.Control
-                data-id="description"
+                id="siteDescription"
                 as="textarea"
                 placeholder={site.description}
                 style={{ height: 250 }}
@@ -186,7 +189,7 @@ const SiteEdit = () => {
             <Form.Group>
               <Form.Label>Image: </Form.Label>
               <Form.Control
-                data-id="image"
+                id="siteImage"
                 type="file"
                 placeholder="insert image"
                 onChange={uploadFileHandler}
