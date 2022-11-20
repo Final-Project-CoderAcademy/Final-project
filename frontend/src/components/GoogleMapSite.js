@@ -30,7 +30,7 @@ const GoogleMapSite = (props) => {
       }, [mapOptions])
   return (
     
-        <Container id="map" style={{ margin:"auto 0", height:"40vh"}}></Container>
+        <Container id="map" style={{ margin:"auto 0", height:"60vh"}}></Container>
     
   )
 }
