@@ -56,7 +56,11 @@ const BlogEdit = () => {
           "Content-Type": "multerpart/form-data",
         },
       };
-      const { data } = await axios.post("https://myway-backend.herokuapp.com/api/image/upload", formData, config);
+      const { data } = await axios.post(
+        "https://myway-backend.herokuapp.com/api/image/upload",
+        formData,
+        config
+      );
       setImage(data.originalname);
     } catch (err) {
       console.log(err);

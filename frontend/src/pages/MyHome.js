@@ -9,6 +9,7 @@ const MyHome = () => {
         <Col xs={12} md={12}>
           <Link to="/">
             <i
+              data-id="back"
               className="fa-solid fa-arrow-left mt-5"
               style={{ color: "black" }}
             ></i>

@@ -59,6 +59,7 @@ const Register = () => {
         <Col xs={12} md={6}>
           <Link to="/">
             <i
+              data-id="back"
               className="fa-solid fa-arrow-left mt-5"
               style={{ color: "black" }}
             ></i>
