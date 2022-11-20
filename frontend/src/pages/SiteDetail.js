@@ -72,7 +72,7 @@ const SiteDetail = () => {
   }
   
   return (
-    <Container className="px-sm-5 mt-5">
+    <Container style={{ textAlign: "center" }} className="px-sm-5 mt-5">
       {site && site.image !== undefined ? site.image.split("/")[1] === "images" ? (
         <img
             variant="top"
@@ -99,9 +99,12 @@ const SiteDetail = () => {
       )}
       <h3 className="mt-5 fw-bold">{site.name}</h3>
       <p className="lh-lg fs-6">{site.description}</p>
-      <div className="p-3 my-sm-5 text-sm-center commentContainer">
+      
         <h5 style={{ textAlign: "left" }}>LOCATION</h5>
-        {site && site.lat !== undefined && (<GoogleMapSite lat={site.lat} lng={site.lng} />)}
+        {site && site.lat !== undefined && (
+          <GoogleMapSite lat={site.lat} lng={site.lng} />
+        )}
+        <div className="p-3 my-sm-5 text-sm-center commentContainer">
         <h5 className="mt-5 mb-3" style={{ textAlign: "left" }}>
           COMMENTS
         </h5>
