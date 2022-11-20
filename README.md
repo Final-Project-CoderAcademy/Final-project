@@ -1,4 +1,4 @@
-# MyWay---------Travel 
+# MyWay---------Travel Blog APP 
 ### App URL (Netlify): https://radiant-belekoy-ffd379.netlify.app/
 - Frontend Github repo: https://github.com/Final-Project-CoderAcademy/Final-project/tree/main/frontend
 ### Backend API URL (Heroku): https://myway-backend.herokuapp.com/
