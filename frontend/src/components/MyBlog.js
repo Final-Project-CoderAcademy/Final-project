@@ -33,23 +33,26 @@ const MyBlog = () => {
       dispatch(deleteBlog(id));
     }
   };
-  const imageShow = () => blogs.map(blog => 
-    showImage(blog.title, blog.image)
-  )
+  const imageShow = () =>
+    blogs.map((blog) => showImage(blog.title, blog.image));
   const showImage = async (title, name) => {
-    return await fetch(`https://myway-backend.herokuapp.com/api/image/download?url=${name}`).then((res) => {
-      return res.blob()
-    }).then((blob) => {
-      let blobUrl = URL.createObjectURL(blob);
-      if (blobUrl) {
-        document.getElementById(title).src = blobUrl
-      }
-    })
-  }
+    return await fetch(
+      `https://myway-backend.herokuapp.com/api/image/download?url=${name}`
+    )
+      .then((res) => {
+        return res.blob();
+      })
+      .then((blob) => {
+        let blobUrl = URL.createObjectURL(blob);
+        if (blobUrl) {
+          document.getElementById(title).src = blobUrl;
+        }
+      });
+  };
   if (blogs && blogs.length !== 0) {
-    imageShow()
+    imageShow();
   }
-  
+
   return (
     <Container>
       <div className="text-center">

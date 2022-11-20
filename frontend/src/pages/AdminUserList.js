@@ -35,6 +35,7 @@ const AdminUserList = () => {
     <Container className="justify-content-md-center">
       <Link to="/">
         <i
+          data-id="back"
           className="fa-solid fa-arrow-left mt-5"
           style={{ color: "black" }}
         ></i>
@@ -64,7 +65,9 @@ const AdminUserList = () => {
               <tr key={user._id}>
                 <td className="p-3">{user._id}</td>
                 <td className="p-3">{user.name}</td>
-                <td className="p-3">{user.email}</td>
+                <td className="p-3" id="userEmail">
+                  {user.email}
+                </td>
                 {user.isAdmin ? (
                   <td className="p-3">
                     <i
@@ -85,6 +88,7 @@ const AdminUserList = () => {
                 ) : (
                   <td className="p-3">
                     <Button
+                      id="userdelete"
                       variant="danger"
                       className="btn-sm"
                       onClick={() => deleteHandler(user._id)}
