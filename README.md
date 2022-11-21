@@ -1,7 +1,7 @@
 # MyWay---------Travel 
 ### App URL (Netlify): https://radiant-belekoy-ffd379.netlify.app/
 - Frontend Github repo: https://github.com/Final-Project-CoderAcademy/Final-project/tree/main/frontend
-### Backend API URL (Heroku): https://myway-backend.herokuapp.com/
+### Backend API URL (Heroku): https://myway-backend.herokuapp.com/ For more please read the repo below
 - Backend Github repo: https://github.com/Final-Project-CoderAcademy/Final-project/tree/main/backend
 ### Github repo: https://github.com/Final-Project-CoderAcademy/Final-project
 ## How to start the app in local side
