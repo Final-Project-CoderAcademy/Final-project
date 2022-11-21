@@ -49,6 +49,7 @@ const BlogList = () => {
         document.getElementById(title).src = blobUrl
       }
     })
+
   }
   if (blogs && blogs.length !== 0){
     imageShow()
@@ -85,7 +86,7 @@ const BlogList = () => {
                 <Col className="col-sm-4 mb-3" md="auto" key={blog._id}>
                   <Link to={`/blogs/${blog._id}`}>
                     <img
-                      src=""
+                      src="text/plain"
                       id={blog.title}
                       alt={blog.title}
                       className="blogListImg mx-auto d-block"

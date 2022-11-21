@@ -32,6 +32,19 @@ For more details, please read the scripts in package.json in different path
 ## Environment Variables  
 - This app need environment variables, for more please contact with the authors.  
 
+## Testing  
+
+- Backend testing:  
+  The Jest and supertest are used for backend testing. Here is the result of backend test. For more, please use `yarn api:test` in root path.  
+
+<details>
+<summary>Backend testing result screenshot</summary>
+
+<summary>  
+
+![dataflow diagram](./docs/backend-testing-result.png)   
+</details>  
+
 ## About Application
 - **Purpose**  
 The purpose of this application is to help travelers make the best of their trip. It provides travelers with the best places to do what they want to do, and allows them to share and reflect on their memories by sharing blogs. It also has the ability to search the weather of a destination from any screen without logging in, which is not found in other applications.
