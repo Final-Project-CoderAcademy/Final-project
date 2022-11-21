@@ -1,7 +1,5 @@
 /// <reference types="cypress" />
 
-import "cypress-file-upload";
-
 describe("<AdminSiteList /> page", () => {
   beforeEach(() => {
     cy.visit("/");
