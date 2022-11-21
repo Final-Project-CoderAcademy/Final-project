@@ -21,18 +21,16 @@ describe("<AdminSiteList /> page", () => {
   });
 
   it("should create a site post from CREATE A SITE button", () => {
+    const firstNumOfUser = 6;
     cy.get("#createSiteButton").click();
     cy.get("#createSite").click();
     cy.get('[data-id="back"]').click();
     cy.url().should("eq", "http://localhost:3000/admin/sitelist");
-    cy.get(":nth-child(6) > :nth-child(2)").should(
-      "have.text",
-      "name of the site"
-    );
+    cy.get("table tr").should("have.length", firstNumOfUser + 1);
   });
-
+  const firstNumOfUser = 7;
   it("should delete the site when the user click the delete button", () => {
     cy.get(":nth-child(6) > :nth-child(4) > #deleteSiteButton").click();
-    cy.get(":nth-child(6) > :nth-child(2)").should("not.exist");
+    cy.get("table tr").should("have.length", firstNumOfUser - 1);
   });
 });
