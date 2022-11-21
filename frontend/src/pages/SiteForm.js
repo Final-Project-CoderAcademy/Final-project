@@ -131,6 +131,7 @@ const SiteEdit = () => {
         <Col xs={12} md={6}>
           <Link to="/admin/sitelist">
             <i
+              data-id="back"
               className="fa-solid fa-arrow-left mt-5"
               style={{ color: "black" }}
             ></i>
