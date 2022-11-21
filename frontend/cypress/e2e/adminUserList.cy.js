@@ -2,7 +2,6 @@
 
 describe("<AdminUserList /> page", () => {
   beforeEach(() => {
-    // login as an admin user
     cy.visit("/");
     cy.adminLogin();
     cy.get("#adminmenu").click();

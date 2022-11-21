@@ -9,10 +9,7 @@ module.exports = defineConfig({
     },
     baseUrl: "http://localhost:3000/",
     excludeSpecPattern: "**/example/*",
-    pageLoadTimeout: 60000,
-    requestTimeout: 5000,
   },
-
   component: {
     devServer: {
       framework: "create-react-app",

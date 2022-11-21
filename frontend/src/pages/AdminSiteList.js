@@ -66,7 +66,7 @@ const AdminSiteList = () => {
         {error && <p style={{ color: "red" }}>{error}</p>}
 
         <Button
-          data-button="create"
+          id="createSiteButton"
           variant="info"
           className="px-4"
           onClick={createSiteHandler}
@@ -103,6 +103,7 @@ const AdminSiteList = () => {
                   </Button>
                 </Link>
                 <Button
+                  id="deleteSiteButton"
                   variant="danger"
                   className="btn-sm"
                   onClick={() => deleteSitehandler(site._id)}
