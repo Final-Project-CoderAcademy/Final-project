@@ -13,7 +13,6 @@ describe("<AdminUserList /> page", () => {
   });
   it("should delete the user when the user click the delete button", async () => {
     // create the user who is deleted here
-
     cy.request({
       method: "POST",
       url: "http://localhost:1010/api/users/register",
@@ -24,6 +23,7 @@ describe("<AdminUserList /> page", () => {
         confirmPassword: "123456",
       },
     });
+    // click the delete button and delete the user who created above
     cy.get(":nth-child(6) > :nth-child(5) > #userdelete").click();
     expect(":nth-child(6) > #userEmail").to.not.equal("test@example.com");
   });

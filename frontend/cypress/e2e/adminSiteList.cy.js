@@ -1,4 +1,7 @@
 /// <reference types="cypress" />
+
+import "cypress-file-upload";
+
 describe("<AdminSiteList /> page", () => {
   beforeEach(() => {
     cy.visit("/");
@@ -10,9 +13,26 @@ describe("<AdminSiteList /> page", () => {
     cy.get('[data-id="back"]').click();
     cy.url().should("eq", "http://localhost:3000/");
   });
-  it("should render to edit page with id, when the user click the edit button", () => {
+  it("should render to 'The BIG BANANA in Coffs Harbour' edit page, when the user click the edit button", () => {
     cy.get(":nth-child(1) > :nth-child(4) > a > .btn-sm").click();
-    const siteId = "637328652c48fb20ff1b324a";
-    cy.url().should("eq", `http://localhost:3000/sites/${siteId}/edit`);
+    cy.get("#siteTitle")
+      .invoke("attr", "placeholder")
+      .should("contain", "The BIG BANANA in Coffs Harbour");
+  });
+
+  it("should create a site post from CREATE A SITE button", () => {
+    cy.get("#createSiteButton").click();
+    cy.get("#createSite").click();
+    cy.get('[data-id="back"]').click();
+    cy.url().should("eq", "http://localhost:3000/admin/sitelist");
+    cy.get(":nth-child(6) > :nth-child(2)").should(
+      "have.text",
+      "name of the site"
+    );
+  });
+
+  it("should delete the site when the user click the delete button", () => {
+    cy.get(":nth-child(6) > :nth-child(4) > #deleteSiteButton").click();
+    cy.get(":nth-child(6) > :nth-child(2)").should("not.exist");
   });
 });
