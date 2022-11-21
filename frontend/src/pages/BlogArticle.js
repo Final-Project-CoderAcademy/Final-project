@@ -97,7 +97,7 @@ const BlogArticle = () => {
         <p className="mb-0">{blog.name}</p>
       </div>
       <img
-        src=""
+        src="text/plain"
         id={blog.title}
         alt={blog.title}
         className="my-3 img-fluid mx-auto d-block"

@@ -1,4 +1,4 @@
-# MyWay---------Travel 
+# MyWay---------Travel Blog APP 
 ### App URL (Netlify): https://radiant-belekoy-ffd379.netlify.app/
 - Frontend Github repo: https://github.com/Final-Project-CoderAcademy/Final-project/tree/main/frontend
 ### Backend API URL (Heroku): https://myway-backend.herokuapp.com/ For more please read the repo below
@@ -31,6 +31,19 @@ For more details, please read the scripts in package.json in different path
 
 ## Environment Variables  
 - This app need environment variables, for more please contact with the authors.  
+
+## Testing  
+
+- Backend testing:  
+  The Jest and supertest are used for backend testing. Here is the result of backend test. For more, please use `yarn api:test` in root path.  
+
+<details>
+<summary>Backend testing result screenshot</summary>
+
+<summary>  
+
+![dataflow diagram](./docs/backend-testing-result.png)   
+</details>  
 
 ## About Application
 - **Purpose**  
