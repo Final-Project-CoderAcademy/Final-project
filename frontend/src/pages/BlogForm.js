@@ -14,6 +14,7 @@ const BlogEdit = () => {
   const [title, setTitle] = useState("");
   const [article, setArticle] = useState("");
   const [image, setImage] = useState("");
+  const [message, setMessage] = useState("");
 
   const userLogIn = useSelector((state) => state.userLogIn);
   const { userInfo } = userLogIn;
@@ -26,6 +27,9 @@ const BlogEdit = () => {
   } = blogCreate;
 
   useEffect(() => {
+    if (image !== "") {
+      setMessage("successfully upload the image")
+    }
     if (!userInfo || userInfo._id !== userId) {
       navigate("/login");
     }
@@ -33,17 +37,23 @@ const BlogEdit = () => {
       dispatch({ type: BLOG_CREATE_RESET });
       navigate("/blogs");
     }
-  }, [dispatch, navigate, userId, newBlog, successCreate, userInfo]);
+  }, [dispatch, navigate, userId, newBlog, successCreate, userInfo, image]);
 
   const submitBlogHandler = (e) => {
     e.preventDefault();
-    dispatch(
-      createBlog({
-        title,
-        article,
-        image,
-      })
-    );
+    if (image !== "") {
+      dispatch(
+        createBlog({
+          title,
+          article,
+          image,
+        })
+      );
+    } else {
+      setMessage("something wrong with image uploading, please try again.");
+      alert("image not found");
+    }
+
   };
 
   const uploadFileHandler = async (e) => {
@@ -88,6 +98,7 @@ const BlogEdit = () => {
                 placeholder="insert image"
                 onChange={uploadFileHandler}
               ></Form.Control>
+              <p style={{ color: "lightgrey" }}>{message}</p>
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="title">
