@@ -392,3 +392,7 @@ At the end, we did user testing for frontend.
 <img src="./docs/Trello-B/frontend-testing-list.png" alt="frontend-testing-list" width="200"/>
 
 </details>
+
+## Features for the future work
+
+We had planned in Part A a feature whereby recommended sites are displayed by category. However, in building the app, we would like to do this feature as future work, due to the time and the size of the task involved. So there are no category button in the sites list page(Find Your Way page).
