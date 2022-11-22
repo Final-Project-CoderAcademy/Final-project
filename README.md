@@ -45,16 +45,24 @@ For more details, please read the scripts in package.json in different path
 ## Testing
 
 - Backend testing:  
-  The Jest and supertest are used for backend testing. Here is the result of backend test. For more, please use `yarn api:test` in root path.
+  The Jest and supertest are used for backend testing. Here is the result of backend test. For more, please use `yarn run api:test` in root path.
+  <details>
+  <summary>Backend testing result screenshot</summary>
 
-<details>
-<summary>Backend testing result screenshot</summary>
+  <summary>
 
-<summary>
+  ![dataflow diagram](./docs/backend-testing-result.png)
 
-![dataflow diagram](./docs/backend-testing-result.png)
+  </details>
 
-</details>
+- User testing (development environment):  
+  For user testing in the development environment, a testing framework called Cypress was used. For more, please use `yarn run frontend:test` in root path after running `yarn run dev`.
+
+- User testing (production environment):  
+  For production environment user testing, we used manual testing by client user and the results are summarised in the spreadsheet. Also, we fixed the failed testing problem.  
+  [Here is a link for the spreadsheet: ](https://docs.google.com/spreadsheets/d/1XP-CVkNlFWM_INf1QLRGMDf-FS5OfmJuNzIzQ52CLyY/edit#gid=1838308451)  
+  There are 4 testing sheets as you can see:  
+  ![test-list](./docs/testing-list.png)
 
 ## About Application
 
