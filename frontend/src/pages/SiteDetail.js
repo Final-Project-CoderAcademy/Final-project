@@ -5,6 +5,7 @@ import { Button, Container, Form } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import { addCommentToOneSite, siteDetail, deleteCommentToOneSite } from "../actions/siteActions";
 import GoogleMapSite from "../components/GoogleMapSite";
+import { ADD_COMMENT_RESET, DELETE_COMMENT_RESET } from "../contents/siteContents";
 
 const SiteDetail = () => {
   const { id } = useParams();
@@ -15,6 +16,7 @@ const SiteDetail = () => {
   const userLogIn = useSelector((state) => state.userLogIn);
   const { userInfo } = userLogIn
   const [comment, setComment] = useState("")
+
 
   const siteAddComment = useSelector((state) => state.siteAddComment)
   const {
@@ -28,6 +30,11 @@ const SiteDetail = () => {
   useEffect(() => {
     if (successComment) {
       setComment('')
+      dispatch({type: ADD_COMMENT_RESET})
+    }
+    if (successCommentDelete) {
+      setComment('')
+      dispatch({type: DELETE_COMMENT_RESET})
     }
     if (userInfo) {
       dispatch(siteDetail(id));
@@ -39,20 +46,21 @@ const SiteDetail = () => {
   const commentSubmitHandler = (e) => {
     e.preventDefault();
     if (!(e.target[0].value === "")) {
+      console.log(id, comment)
       dispatch(
         addCommentToOneSite(id, {
           content: comment,
         })
       );
       alert("successfully comment!");
-      navigate(`/sites/${id}`);
+      
     } else {
       alert("The comment is empty!");
     }
   };
 
-  const deleteComment = (commentId) => {
-    if ((userInfo._id === site.user || userInfo.isAdmin) && window.confirm("Are you sure?")) {
+  const deleteComment = (comment, commentId) => {
+    if ((userInfo._id === comment.user || userInfo.isAdmin === true) && window.confirm("Are you sure?")) {
       dispatch(deleteCommentToOneSite(id, commentId));
     }
   }
@@ -122,7 +130,7 @@ const SiteDetail = () => {
                   <div className="text-end">{comment.name}</div>
                   {(comment.name === userInfo.name || userInfo.isAdmin) && (
                     <div className="text-end">
-                      <Button variant="outline-danger" onClick={() => deleteComment(comment._id)}>delete</Button>
+                      <Button variant="outline-danger" onClick={() => deleteComment(comment, comment._id)}>delete</Button>
                     </div>
                   )}
                 </Card.Body>

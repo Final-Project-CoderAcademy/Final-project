@@ -22,6 +22,8 @@ import {
   DELETE_COMMENT_REQUEST,
   DELETE_COMMENT_SUCCESS,
   DELETE_COMMENT_FAIL,
+  ADD_COMMENT_RESET,
+  DELETE_COMMENT_RESET,
 } from "../contents/blogContents";
 
 // reducer to get all the blogs
@@ -124,6 +126,8 @@ export const commentBlogAddReducer = (state = {}, action) => {
       return { success: true };
     case ADD_COMMENT_FAIL:
       return { error: action.payload };
+    case ADD_COMMENT_RESET:
+      return {};
     default:
       return state;
   }
@@ -138,6 +142,8 @@ export const commentBlogDeleteReducer = (state = {}, action) => {
       return { success: true };
     case DELETE_COMMENT_FAIL:
       return { error: action.payload };
+    case DELETE_COMMENT_RESET:
+      return {};
     default:
       return state;
   }

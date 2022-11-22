@@ -10,6 +10,7 @@ import {
   deleteCommentToOneBlog,
 } from "../actions/blogActions";
 import { SITE_CREATE_RESET } from "../contents/siteContents";
+import { ADD_COMMENT_RESET, DELETE_COMMENT_RESET } from "../contents/blogContents";
 
 const BlogArticle = () => {
   const { id } = useParams();
@@ -36,6 +37,11 @@ const BlogArticle = () => {
     }
     if (successComment) {
       setComment("");
+      dispatch({type: ADD_COMMENT_RESET})
+    }
+    if (successCommentDelete) {
+      setComment("");
+      dispatch({type: DELETE_COMMENT_RESET})
     }
     if (userInfo) {
       dispatch(blogDetail(id));
@@ -43,7 +49,7 @@ const BlogArticle = () => {
       navigate("/login");
     }
     // eslint-disable-next-line
-  }, [dispatch, id, comment, navigate, successComment, successCommentDelete]);
+  }, [dispatch, id, comment, navigate, successComment, successCommentDelete, userInfo]);
 
   const deleteBlogHandler = (id) => {
     if (userInfo._id === blog.user && window.confirm("Are you sure?")) {
@@ -67,11 +73,8 @@ const BlogArticle = () => {
     }
   };
 
-  const deleteComment = (commentId) => {
-    if (
-      (userInfo._id === blog.user || userInfo.isAdmin) &&
-      window.confirm("Are you sure?")
-    ) {
+  const deleteComment = (comment, commentId) => {
+    if ((userInfo._id === comment.user || userInfo.isAdmin) && window.confirm("Are you sure?")) {
       dispatch(deleteCommentToOneBlog(id, commentId));
     }
   };
@@ -125,7 +128,7 @@ const BlogArticle = () => {
                   <div className="text-end">{comment.name}</div>
                   {(comment.name === userInfo.name || userInfo.isAdmin) && (
                     <div className="text-end">
-                     <Button variant="outline-danger" onClick={() => deleteComment(comment._id)}>
+                     <Button variant="outline-danger" onClick={() => deleteComment(comment, comment._id)}>
                         DELETE
                       </Button>
                     </div>
