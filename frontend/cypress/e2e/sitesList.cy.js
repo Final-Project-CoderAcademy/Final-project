@@ -29,4 +29,11 @@ describe("<SitesList />", () => {
       "test comment"
     );
   });
+  it("should delete the comment when the user click the delete button", () => {
+    cy.userLogin();
+    cy.get('#basic-navbar-nav > [href="/sites"]').click();
+    cy.get(":nth-child(1) > .m-3 > .card-body > a > .text-end").click();
+    cy.get(":nth-child(3) > .btn").click();
+    cy.get(".card-body").should("not.exist");
+  });
 });
