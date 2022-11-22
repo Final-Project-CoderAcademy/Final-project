@@ -112,7 +112,12 @@ const BlogEdit = () => {
             </Form.Group>
 
             <div className="d-grid gap-2 d-md-block">
-              <Button variant="secondary" type="submit" className="my-3 px-5 ">
+              <Button
+                id="blogPost"
+                variant="secondary"
+                type="submit"
+                className="my-3 px-5 "
+              >
                 POST
               </Button>
             </div>
