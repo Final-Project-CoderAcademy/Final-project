@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Container, Button } from "react-bootstrap";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+import { Container, Button, Card } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { allBlogs, deleteBlog } from "../actions/blogActions";
 import { useDispatch, useSelector } from "react-redux";
@@ -71,7 +69,6 @@ const BlogList = () => {
 
       <Container>
         <h4 className="m-5 ps-3">All Posts</h4>
-
         {blogs === undefined || blogs.length === 0
           ? error && (
               <p id="error" style={{ color: "lightgrey", textAlign: "center" }}>
@@ -79,67 +76,45 @@ const BlogList = () => {
               </p>
             )
           : blogs.map((blog) => (
-              <Row
-                key={blog._id}
-                className="mt-4 d-flex justify-content-center"
-              >
-                <Col className="col-sm-4 mb-3" md="auto" key={blog._id}>
-                  <Link to={`/blogs/${blog._id}`}>
-                    <img
-                      src="text/plain"
-                      id={blog.title}
-                      alt={blog.title}
-                      className="blogListImg mx-auto d-block"
-                    />
-                  </Link>
-                </Col>
+              <>
+                <Link to={`/blogs/${blog._id}`}>
+                    <Card style={{margin: "3vh auto", textAlign: "right", borderRadius: "10px"}} className="bg-dark text-white">
+                    <Card.Img src="text/plain" id={blog.title} alt={blog.title} />
+                    <Card.ImgOverlay>
+                      <Card.Title style={{position: "absolute", top: "2vh", right: "1vw"}}>
+                        {blog.title}
+                        <br/>
+                        <br/>
+                        {blog.name}
+                        <br/>
+                        {blog.updatedAt.slice(0, 10)}
+                        </Card.Title>
+                      {userInfo.isAdmin ? (
+                              <Button
+                                style={{position: "absolute", bottom: "2vh", right: "1vw"}}
+                                variant="danger"
+                                onClick={() => deleteBlogHandler(blog._id)}
+                              >
+                                Delete
+                              </Button>
+                        ) : !(userInfo._id === blog.user) ? (
+                          <></>
+                        ) : (
+                              <Button
+                                style={{position: "absolute", bottom: "2vh", right: "1vw"}}
+                                variant="danger"
+                                onClick={() => deleteBlogHandler(blog._id)}
+                              >
+                                Delete
+                              </Button>
+                        )}  
+                    </Card.ImgOverlay>
+                  </Card>
+                </Link>
 
-                {userInfo.isAdmin ? (
-                  <>
-                    <Col className="col-sm-5 mb-3 text-center">
-                      <h5 className="pageTitle mb-sm-4">{blog.title}</h5>
-                      <Row className="d-flex  align-items-center text-sm-end">
-                        <p className="mb-0">{blog.updatedAt.slice(0, 10)}</p>
-                        <p className="mb-0">{blog.name}</p>
-                      </Row>
-                    </Col>
-                    <Col className="col-sm-3 mb-3 text-center">
-                      <Button
-                        variant="outline-danger"
-                        onClick={() => deleteBlogHandler(blog._id)}
-                      >
-                        Delete
-                      </Button>
-                    </Col>
-                  </>
-                ) : !(userInfo._id === blog.user) ? (
-                  <Col className="col-sm-8 mb-3 text-center">
-                    <h5 className="pageTitle mb-sm-4">{blog.title}</h5>
-                    <Row className="d-flex  align-items-center text-sm-end">
-                      <p className="mb-0">{blog.updatedAt.slice(0, 10)}</p>
-                      <p className="mb-0">{blog.name}</p>
-                    </Row>
-                  </Col>
-                ) : (
-                  <>
-                    <Col className="col-sm-5 mb-3 text-center">
-                      <h5 className="pageTitle mb-sm-4">{blog.title}</h5>
-                      <Row className="d-flex  align-items-center text-sm-end">
-                        <p className="mb-0">{blog.updatedAt.slice(0, 10)}</p>
-                        <p className="mb-0">{blog.name}</p>
-                      </Row>
-                    </Col>
-                    <Col className="col-sm-3 mb-3 text-center">
-                      <Button
-                        variant="outline-danger"
-                        onClick={() => deleteBlogHandler(blog._id)}
-                      >
-                        Delete
-                      </Button>
-                    </Col>
-                  </>
-                )}
-              </Row>
+              </>
+  
+              
             ))}
       </Container>
     </>

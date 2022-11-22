@@ -45,16 +45,24 @@ For more details, please read the scripts in package.json in different path
 ## Testing
 
 - Backend testing:  
-  The Jest and supertest are used for backend testing. Here is the result of backend test. For more, please use `yarn api:test` in root path.
+  The Jest and supertest are used for backend testing. Here is the result of backend test. For more, please use `yarn run api:test` in root path.
+  <details>
+  <summary>Backend testing result screenshot</summary>
 
-<details>
-<summary>Backend testing result screenshot</summary>
+  <summary>
 
-<summary>
+  ![dataflow diagram](./docs/backend-testing-result.png)
 
-![dataflow diagram](./docs/backend-testing-result.png)
+  </details>
 
-</details>
+- User testing (development environment):  
+  For user testing in the development environment, a testing framework called Cypress was used. For more, please use `yarn run frontend:test` in root path after running `yarn run dev`.
+
+- User testing (production environment):  
+  For production environment user testing, we used manual testing by client user and the results are summarised in the spreadsheet. Also, we fixed the failed testing problem.  
+  [Here is a link for the spreadsheet: ](https://docs.google.com/spreadsheets/d/1XP-CVkNlFWM_INf1QLRGMDf-FS5OfmJuNzIzQ52CLyY/edit#gid=1838308451)  
+  There are 4 testing sheets as you can see:  
+  ![test-list](./docs/testing-list.png)
 
 ## Libraries
 
@@ -321,25 +329,21 @@ All the user stories are start as a traveler. We assume that if we are a travele
 
 ## Trello Board
 
-[Trello Board link](https://trello.com/b/Uw6DU7pd/finalprojecta)  
+[Trello Board (A) link](https://trello.com/b/Uw6DU7pd/finalprojecta)  
 Yuka Toshima worked primarily on wireframe, while Xinzhe Yu worked on Dataflow and Application Architecture Diagram. We started on October 24, and in Trello, we put the cards we were working on in the "Doing" section and moved them to the "Done" section when the work was finished to share our progress. The cards were marked with the due date and the person in charge so that we knew who was supposed to do what by when.
 
 <details>
 <summary>click for more</summary>
 
-<summary>  
-<<<<<<< HEAD
- - Day 1 (24th Oct)  
-   **Start of the day**  
-<img src="./docs/Trello-A/24_Oct_2022.png" alt="24th Oct start" width="500"/>
-=======
-- Day 1 (24th Oct)  
- **Start of the day**   
-  <img src="./docs/Trello-A/24_Oct_2022.png" alt="24th Oct start" width="500"/>
->>>>>>> remote/main
+<summary>
 
-**End of the day**  
- <img src="./docs/Trello-A/24-Oct-2022(2).png" alt="24th Oct end" width="500"/>
+- Day 1 (24th Oct)
+
+  **Start of the day**  
+  <img src="./docs/Trello-A/24_Oct_2022.png" alt="24th Oct start" width="500"/>
+
+  **End of the day**  
+  <img src="./docs/Trello-A/24-Oct-2022(2).png" alt="24th Oct end" width="500"/>
 
 - Day 2 (25th Oct)  
   <img src="./docs/Trello-A/25-Oct-2022.png" alt="25th Oct" width="500"/>
@@ -359,3 +363,47 @@ Yuka Toshima worked primarily on wireframe, while Xinzhe Yu worked on Dataflow a
 - Last Day (1st Nov)  
  <img src="./docs/Trello-A/1_Nov_2022.png" alt="1st Nov" width="500"/>
 </details>
+
+[Trello Board (B) link](https://trello.com/b/pRALiec2/finalprojectb)  
+In the project part B, Xinzhe Yu worked on application setting, backend and some front-end, while Yuka worked on pages and components styling using BootStrap and some front-end too. He started backend part first, and then she started frontend styling a little later.
+
+<details>
+<summary>click for more</summary>
+
+<summary>
+
+We prioritised smaller tasks at an earlier stage and over a shorter period of time. Smaller tasks are labelled in blue. These are tasks that get done relatively quickly.  
+This is an application setting screenshot. As you can see, there are many blue tasks at the beginning.
+
+<img src="./docs/Trello-B/small-task(back).png" alt="small-task(back)" width="200"/>  
+  
+These are some front-end task screenshots. At beginning, the front end also started with small tasks.
+
+<img src="./docs/Trello-B/small-task(front).png" alt="small-task(front)" width="200"/>
+<img src="./docs/Trello-B/small-task(front)2.png" alt="small-task(front)2" width="200"/>
+
+We then did medium tasks. These are labelled yellow.  
+These are backend and frontend tasks that were done after the small task. Many of the tasks are relatively time-consuming.
+
+- backend  
+  <img src="./docs/Trello-B/medium-task(back).png" alt="medium-task(back)" width="200"/>
+
+- frontend  
+  <img src="./docs/Trello-B/medium-task(front).png" alt="medium-task(front)" width="200"/>
+
+Then we did the large tasks, which are relatively time-consuming, in the middle to late stages of the project. These are labelled red.
+
+- backend  
+  <img src="./docs/Trello-B/large-task(back).png" alt="large-task(back)" width="200"/>
+
+- frontend  
+  <img src="./docs/Trello-B/large-task(front).png" alt="large-task(front).png" width="200"/>
+
+At the end, we did user testing for frontend.  
+<img src="./docs/Trello-B/frontend-testing-list.png" alt="frontend-testing-list" width="200"/>
+
+</details>
+
+## Features for the future work
+
+We had planned in Part A a feature whereby recommended sites are displayed by category. However, in building the app, we would like to do this feature as future work, due to the time and the size of the task involved. So there are no category button in the sites list page(Find Your Way page).
