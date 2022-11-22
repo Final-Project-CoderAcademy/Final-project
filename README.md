@@ -64,6 +64,17 @@ For more details, please read the scripts in package.json in different path
   There are 4 testing sheets as you can see:  
   ![test-list](./docs/testing-list.png)
 
+## Libraries
+
+### Backend
+
+-
+-
+
+### Frontend
+
+- @googlemaps/js-api-loader:
+
 ## About Application
 
 - **Purpose**  
