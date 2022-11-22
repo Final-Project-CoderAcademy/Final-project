@@ -11,11 +11,11 @@ describe("<AdminSiteList /> page", () => {
     cy.get('[data-id="back"]').click();
     cy.url().should("eq", "http://localhost:3000/");
   });
-  it("should render to 'The BIG BANANA in Coffs Harbour' edit page, when the user click the edit button", () => {
+  it("should render to 'Hiking in Tasmania' edit page, when the user click the edit button", () => {
     cy.get(":nth-child(1) > :nth-child(4) > a > .btn-sm").click();
     cy.get("#siteTitle")
       .invoke("attr", "placeholder")
-      .should("contain", "The BIG BANANA in Coffs Harbour");
+      .should("contain", "Hiking in Tasmania");
   });
 
   it("should create a site post from CREATE A SITE button", () => {
