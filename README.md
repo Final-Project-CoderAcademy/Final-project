@@ -346,4 +346,41 @@ Yuka Toshima worked primarily on wireframe, while Xinzhe Yu worked on Dataflow a
 </details>
 
 [Trello Board (B) link](https://trello.com/b/pRALiec2/finalprojectb)  
-In the project part B, Xinzhe Yu worked on backend and some front-end while Yuka worked on pages and components styling using BootStrap and some front-end too. We used Trello as sharing of progress.
+In the project part B, Xinzhe Yu worked on application setting, backend and some front-end, while Yuka worked on pages and components styling using BootStrap and some front-end too. He started backend part first, and then she started frontend styling a little later.
+
+<details>
+<summary>click for more</summary>
+
+<summary>
+
+We prioritised smaller tasks at an earlier stage and over a shorter period of time. Smaller tasks are labelled in blue. These are tasks that get done relatively quickly.  
+This is an application setting screenshot. As you can see, there are many blue tasks at the beginning.
+
+<img src="./docs/Trello-B/small-task(back).png" alt="small-task(back)" width="200"/>  
+  
+These are some front-end task screenshots. At beginning, the front end also started with small tasks.
+
+<img src="./docs/Trello-B/small-task(front).png" alt="small-task(front)" width="200"/>
+<img src="./docs/Trello-B/small-task(front)2.png" alt="small-task(front)2" width="200"/>
+
+We then did medium tasks. These are labelled yellow.  
+These are backend and frontend tasks that were done after the small task. Many of the tasks are relatively time-consuming.
+
+- backend  
+  <img src="./docs/Trello-B/medium-task(back).png" alt="medium-task(back)" width="200"/>
+
+- frontend  
+  <img src="./docs/Trello-B/medium-task(front).png" alt="medium-task(front)" width="200"/>
+
+Then we did the large tasks, which are relatively time-consuming, in the middle to late stages of the project. These are labelled red.
+
+- backend  
+  <img src="./docs/Trello-B/large-task(back).png" alt="large-task(back)" width="200"/>
+
+- frontend  
+  <img src="./docs/Trello-B/large-task(front).png" alt="large-task(front).png" width="200"/>
+
+At the end, we did user testing for frontend.  
+<img src="./docs/Trello-B/frontend-testing-list.png" alt="frontend-testing-list" width="200"/>
+
+</details>
