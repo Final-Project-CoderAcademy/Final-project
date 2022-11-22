@@ -71,7 +71,6 @@ const Register = () => {
               <Form.Label>Username </Form.Label>
               <Form.Control
                 type="username"
-                id="username"
                 placeholder="Jane"
                 value={username}
                 onChange={(e) => {
@@ -88,7 +87,6 @@ const Register = () => {
               <Form.Label>Email </Form.Label>
               <Form.Control
                 type="email"
-                id="email"
                 placeholder="example@gmail.com"
                 value={email}
                 onChange={(e) => {
@@ -105,7 +103,6 @@ const Register = () => {
               <Form.Label>Password </Form.Label>
               <Form.Control
                 type="password"
-                id="password"
                 placeholder="password"
                 value={password}
                 onChange={(e) => {
@@ -122,7 +119,6 @@ const Register = () => {
               <Form.Label>Confirm Password</Form.Label>
               <Form.Control
                 type="password"
-                id="confirmPassword"
                 placeholder="password"
                 value={confirmPassword}
                 onChange={(e) => {

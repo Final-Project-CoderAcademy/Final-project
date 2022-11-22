@@ -27,7 +27,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "cypress open",
+    "test": "nyc mocha",
+    "test-cypress": "cypress open",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -51,6 +52,7 @@
   "devDependencies": {
     "@cypress/code-coverage": "^3.10.0",
     "babel-plugin-istanbul": "^6.1.1",
-    "cypress": "^11.1.0"
+    "cypress": "^11.1.0",
+    "nyc": "^15.1.0"
   }
 }

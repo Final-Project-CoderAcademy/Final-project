@@ -31,7 +31,9 @@ const MyHome = () => {
                   You can change your account information here!
                 </Card.Text>
                 <Link to="/myhome/myDetails">
-                  <Button variant="primary">To myDetails</Button>
+                  <Button variant="primary" id="myDetailButton">
+                    To myDetails
+                  </Button>
                 </Link>
               </Card.Body>
             </Card>
@@ -48,7 +50,9 @@ const MyHome = () => {
                 <Card.Title>MyBlogs</Card.Title>
                 <Card.Text>You can manage your blogs here!</Card.Text>
                 <Link to="/myhome/myBlogs">
-                  <Button variant="primary">To myBlogs</Button>
+                  <Button variant="primary" id="myBlogButton">
+                    To myBlogs
+                  </Button>
                 </Link>
               </Card.Body>
             </Card>
