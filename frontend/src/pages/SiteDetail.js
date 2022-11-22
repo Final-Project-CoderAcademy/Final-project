@@ -3,7 +3,11 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Container, Form } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
-import { addCommentToOneSite, siteDetail, deleteCommentToOneSite } from "../actions/siteActions";
+import {
+  addCommentToOneSite,
+  siteDetail,
+  deleteCommentToOneSite,
+} from "../actions/siteActions";
 import GoogleMapSite from "../components/GoogleMapSite";
 import { ADD_COMMENT_RESET, DELETE_COMMENT_RESET } from "../contents/siteContents";
 
@@ -14,9 +18,8 @@ const SiteDetail = () => {
   const siteDetails = useSelector((state) => state.siteDetails);
   const { site } = siteDetails;
   const userLogIn = useSelector((state) => state.userLogIn);
-  const { userInfo } = userLogIn
-  const [comment, setComment] = useState("")
-
+  const { userInfo } = userLogIn;
+  const [comment, setComment] = useState("");
 
   const siteAddComment = useSelector((state) => state.siteAddComment)
   const {
@@ -35,13 +38,22 @@ const SiteDetail = () => {
     if (successCommentDelete) {
       setComment('')
       dispatch({type: DELETE_COMMENT_RESET})
+
     }
     if (userInfo) {
       dispatch(siteDetail(id));
     } else {
       navigate("/login");
     }
-  }, [dispatch, id, comment, navigate, successComment, successCommentDelete, userInfo]);
+  }, [
+    dispatch,
+    id,
+    comment,
+    navigate,
+    successComment,
+    successCommentDelete,
+    userInfo,
+  ]);
 
   const commentSubmitHandler = (e) => {
     e.preventDefault();
@@ -63,59 +75,70 @@ const SiteDetail = () => {
     if ((userInfo._id === comment.user || userInfo.isAdmin === true) && window.confirm("Are you sure?")) {
       dispatch(deleteCommentToOneSite(id, commentId));
     }
-  }
+  };
 
   const showImage = async (title, name) => {
-    return await fetch(`https://myway-backend.herokuapp.com/api/image/download?url=${name}`).then((res) => {
-      return res.blob()
-    }).then((blob) => {
-      let blobUrl = URL.createObjectURL(blob);
-      if (blobUrl) {
-        document.getElementById(title).src = blobUrl
-      }
-    })
+    return await fetch(
+      `https://myway-backend.herokuapp.com/api/image/download?url=${name}`
+    )
+      .then((res) => {
+        return res.blob();
+      })
+      .then((blob) => {
+        let blobUrl = URL.createObjectURL(blob);
+        if (blobUrl) {
+          document.getElementById(title).src = blobUrl;
+        }
+      });
+  };
+  if (
+    site &&
+    site.image !== undefined &&
+    site.image.split("/")[1] !== "images"
+  ) {
+    showImage(site.name, site.image);
   }
-  if (site && site.image !== undefined && site.image.split("/")[1] !== "images" ){
-    showImage(site.name, site.image)
-  }
-  
+
   return (
-    <Container style={{textAlign: "center" }}>
-      <Container style={{width: "80vw", margin: "0 auto"}}>
-      {site && site.image !== undefined ? site.image.split("/")[1] === "images" ? (
-        <img
+    <Container style={{ textAlign: "center" }}>
+      <Container style={{ width: "80vw", margin: "0 auto" }}>
+        {site && site.image !== undefined ? (
+          site.image.split("/")[1] === "images" ? (
+            <img
+              variant="top"
+              src={site.image}
+              alt={site.name}
+              style={{ width: "90%", margin: "0 auto" }}
+            />
+          ) : (
+            <img
+              variant="top"
+              src=""
+              id={site.name}
+              alt={site.name}
+              style={{ width: "40vw", margin: "0 auto" }}
+            />
+          )
+        ) : (
+          <img
             variant="top"
             src={site.image}
             alt={site.name}
-            style={{width: "90%", margin: "0 auto"}}
+            style={{ width: "60vw", display: "block", margin: "0 auto" }}
           />
-          
-      ) : (
-        <img
-        variant="top"
-        src=""
-        id={site.name}
-        alt={site.name}
-        style={{width: "40vw", margin: "0 auto"}}
-      />
-      ) : (
-        <img
-        variant="top"
-        src={site.image}
-        alt={site.name}
-        style={{width: "60vw", display: "block", margin: "0 auto"}}
-      />
-      )}
-      </Container>
-      
-      <h3 className="mt-5 fw-bold">{site.name}</h3>
-      <p className="lh-lg fs-6">{site.description}</p>
-      
-        <h5 style={{ textAlign: "left" }}>LOCATION</h5>
-        {site && site.lat !== undefined && (
-          <GoogleMapSite lat={site.lat} lng={site.lng} />
         )}
-        <div className="p-3 my-sm-5 text-sm-center commentContainer">
+      </Container>
+
+      <h3 className="mt-5 fw-bold" id="siteTitle">
+        {site.name}
+      </h3>
+      <p className="lh-lg fs-6">{site.description}</p>
+
+      <h5 style={{ textAlign: "left" }}>LOCATION</h5>
+      {site && site.lat !== undefined && (
+        <GoogleMapSite lat={site.lat} lng={site.lng} />
+      )}
+      <div className="p-3 my-sm-5 text-sm-center commentContainer">
         <h5 className="mt-5 mb-3" style={{ textAlign: "left" }}>
           COMMENTS
         </h5>
@@ -150,6 +173,7 @@ const SiteDetail = () => {
             </Form.Group>
             <div className="text-end my-1">
               <Button
+                id="commentPost"
                 type="submit"
                 variant="secondary"
                 className="btn-round px-3 mx-2"

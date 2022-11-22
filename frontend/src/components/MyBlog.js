@@ -65,7 +65,12 @@ const MyBlog = () => {
         <h2 className="m-3">MY BLOG</h2>
 
         <Link to={`/blogs/${userInfo._id}/create`}>
-          <Button variant="info" className="px-4" onClick={createBlogHandler}>
+          <Button
+            id="createBlogButton"
+            variant="info"
+            className="px-4"
+            onClick={createBlogHandler}
+          >
             CREATE A POST
           </Button>
         </Link>

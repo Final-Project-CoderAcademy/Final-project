@@ -26,7 +26,7 @@
 
 Cypress.Commands.add("userLogin", () => {
   cy.visit("/login");
-  cy.get("#email").type("yuka@example.com");
+  cy.get("#email").type("todd@example.com");
   cy.get("#password").type("123456");
   cy.get("#login").click();
 });
