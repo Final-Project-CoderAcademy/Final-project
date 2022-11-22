@@ -101,6 +101,7 @@ const BlogList = () => {
                           <></>
                         ) : (
                               <Button
+                                style={{position: "absolute", bottom: "2vh", right: "1vw"}}
                                 variant="danger"
                                 onClick={() => deleteBlogHandler(blog._id)}
                               >
