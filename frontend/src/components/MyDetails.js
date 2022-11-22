@@ -128,7 +128,12 @@ const MyDetails = () => {
             </Form.Group>
 
             <div className="d-grid gap-2 d-md-block">
-              <Button variant="primary" type="submit" className="my-1 px-5 ">
+              <Button
+                id="updateButton"
+                variant="primary"
+                type="submit"
+                className="my-1 px-5 "
+              >
                 UPDATE
               </Button>
             </div>
