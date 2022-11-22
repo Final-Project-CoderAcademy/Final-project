@@ -310,25 +310,21 @@ All the user stories are start as a traveler. We assume that if we are a travele
 
 ## Trello Board
 
-[Trello Board link](https://trello.com/b/Uw6DU7pd/finalprojecta)  
+[Trello Board (A) link](https://trello.com/b/Uw6DU7pd/finalprojecta)  
 Yuka Toshima worked primarily on wireframe, while Xinzhe Yu worked on Dataflow and Application Architecture Diagram. We started on October 24, and in Trello, we put the cards we were working on in the "Doing" section and moved them to the "Done" section when the work was finished to share our progress. The cards were marked with the due date and the person in charge so that we knew who was supposed to do what by when.
 
 <details>
 <summary>click for more</summary>
 
-<summary>  
-<<<<<<< HEAD
- - Day 1 (24th Oct)  
-   **Start of the day**  
-<img src="./docs/Trello-A/24_Oct_2022.png" alt="24th Oct start" width="500"/>
-=======
-- Day 1 (24th Oct)  
- **Start of the day**   
-  <img src="./docs/Trello-A/24_Oct_2022.png" alt="24th Oct start" width="500"/>
->>>>>>> remote/main
+<summary>
 
-**End of the day**  
- <img src="./docs/Trello-A/24-Oct-2022(2).png" alt="24th Oct end" width="500"/>
+- Day 1 (24th Oct)
+
+  **Start of the day**  
+  <img src="./docs/Trello-A/24_Oct_2022.png" alt="24th Oct start" width="500"/>
+
+  **End of the day**  
+  <img src="./docs/Trello-A/24-Oct-2022(2).png" alt="24th Oct end" width="500"/>
 
 - Day 2 (25th Oct)  
   <img src="./docs/Trello-A/25-Oct-2022.png" alt="25th Oct" width="500"/>
@@ -348,3 +344,6 @@ Yuka Toshima worked primarily on wireframe, while Xinzhe Yu worked on Dataflow a
 - Last Day (1st Nov)  
  <img src="./docs/Trello-A/1_Nov_2022.png" alt="1st Nov" width="500"/>
 </details>
+
+[Trello Board (B) link](https://trello.com/b/pRALiec2/finalprojectb)  
+In the project part B, Xinzhe Yu worked on backend and some front-end while Yuka worked on pages and components styling using BootStrap and some front-end too. We used Trello as sharing of progress.
