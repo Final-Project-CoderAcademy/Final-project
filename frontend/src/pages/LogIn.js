@@ -45,7 +45,7 @@ const Login = () => {
         <Col xs={12} md={6}>
           <Link to="/">
             <i
-            data-id="back"
+              data-id="back"
               className="fa-solid fa-arrow-left mt-5"
               style={{ color: "black" }}
             ></i>
@@ -56,7 +56,6 @@ const Login = () => {
             <Form.Group className="mb-3" controlId="email">
               <Form.Label>Email </Form.Label>
               <Form.Control
-                type="email"
                 placeholder="example@gmail.com"
                 value={email}
                 onChange={(e) => {
