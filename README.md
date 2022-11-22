@@ -56,6 +56,17 @@ For more details, please read the scripts in package.json in different path
 
 </details>
 
+## Libraries
+
+### Backend
+
+-
+-
+
+### Frontend
+
+- @googlemaps/js-api-loader:
+
 ## About Application
 
 - **Purpose**  
