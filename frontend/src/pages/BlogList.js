@@ -76,8 +76,7 @@ const BlogList = () => {
               </p>
             )
           : blogs.map((blog) => (
-              <>
-                <Link to={`/blogs/${blog._id}`}>
+                <Link key={blog._id} to={`/blogs/${blog._id}`}>
                     <Card style={{margin: "3vh auto", textAlign: "right", borderRadius: "10px"}} className="bg-dark text-white">
                     <Card.Img src="text/plain" id={blog.title} alt={blog.title} />
                     <Card.ImgOverlay>
@@ -111,10 +110,6 @@ const BlogList = () => {
                     </Card.ImgOverlay>
                   </Card>
                 </Link>
-
-              </>
-  
-              
             ))}
       </Container>
     </>
