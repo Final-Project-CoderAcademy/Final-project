@@ -67,27 +67,40 @@ For more details, please read the scripts in package.json in different path
 ## Libraries
 
 ### Backend
-
--
--
-
+- "aws-sdk": used to set aws SDK, but the time is limited, the AWS feature will be added in the future
+- "bcryptjs": secret the passwords
+- "colors": make the server beautiful and show some hints more clearly
+- "cors": set the visiting permission for different address
+- "dotenv": environment variables using
+- "express": build server
+- "express-async-handler": automatically catch the error during using async functions
+- "express-validator": a set of express.js middlewares that wraps validator.js validator and sanitizer functions
+- "helmet": use to secure the Express server
+- "jest-environment-jsdom": for jest testing
+- "jsonwebtoken": for creating tokens
+- "mongoose": for creating the model schema for the objects which will be created in the app
+- "multer": uploading and download image
+- "nodemon": automatically update the app changes when modify some codes
+- "supertest": for testing and is used with jest
+- "jest": for testing
+- "@babel/plugin-transform-modules-commonjs": babel settings for commonJS
 ### Frontend
 
-- react: The UI creation for this application uses react, a JavaScript library specialising in UI creation.
-- react-dom: It is used to reflect the React virtual DOM in the browser DOM.
-- react-redux・redux: The action from the user is dispatched to the store and the dispatched action and state are passed to the Reducer. Redux is used to manage the state of the UI handled by ReactJS.
+- "react": The UI creation for this application uses react, a JavaScript library specialising in UI creation.
+- "react-dom": It is used to reflect the React virtual DOM in the browser DOM.
+- "react-redux"・"redux": The action from the user is dispatched to the store and the dispatched action and state are passed to the Reducer. Redux is used to manage the state of the UI handled by ReactJS.
 - react-router-dom: It is used to route based on the path of the URL accessed by the browser and display the components associated with the path. This allows components such as <Link /> to be used.
 
-- redux-devtools-extension: It is used to visualise Redux state management from a browser extension.
-- redux-thunk: It is used as middleware to implement asynchronous processing in Redux's Action Creator.
-- web-vitals: It is a key indicator of a site's health and is used for SEO and to enhance the user experience on the site.
+- "redux-devtools-extension": It is used to visualise Redux state management from a browser extension.
+- "redux-thunk": It is used as middleware to implement asynchronous processing in Redux's Action Creator.
+- "web-vitals": It is a key indicator of a site's health and is used for SEO and to enhance the user experience on the site.
 
-- @googlemaps/js-api-loader: For dynamically loading Google Maps JavaScript API scripts.
-- axios: Promise-based HTTP Client library used to retrieve data from the server using GET and POST HTTP requests, and to add, update and delete data through sending data to the server.
+- "@googlemaps/js-api-loader": For dynamically loading Google Maps JavaScript API scripts.
+- "axios": Promise-based HTTP Client library used to retrieve data from the server using GET and POST HTTP requests, and to add, update and delete data through sending data to the server.
 
-- bootstrap・react-bootstrap: Front-end web application framework for creating websites and web applications. It's used for designing and styling this websites.
+- "bootstrap・react-bootstrap": Front-end web application framework for creating websites and web applications. It's used for designing and styling this websites.
 
-- cypress: It is a front-end testing tool in JavaScript, which is used to perform E2E testing.
+- "cypress": It is a front-end testing tool in JavaScript, which is used to perform E2E testing.
 
 ## About Application
 
