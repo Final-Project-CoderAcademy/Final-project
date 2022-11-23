@@ -70,20 +70,35 @@ For more details, please read the scripts in package.json in different path
   - Authorization testing  
     ![frontend-testing](./docs/Frontend-test-screenshots/Authorization.png)
 
+    [Click here to watch video](./frontend/cypress/videos/Authorization.cy.js.mp4)
+
   - NavBar testing
     ![frontend-testing](./docs/Frontend-test-screenshots/NavBar.png)
+
+    [Click here to watch video](./frontend/cypress/videos/navbar.cy.js.mp4)
 
   - About (Home top page testing)  
     ![frontend-testing](<./docs/Frontend-test-screenshots/About(TopPage).png>)
 
+    [Click here to watch video](./frontend/cypress/videos/topPage.cy.js.mp4)
+
   - Admin menu testing  
     ![frontend-testing](./docs/Frontend-test-screenshots/AdminMenu.png)
+
+    [Click here to watch video](./frontend/cypress/videos/AdminMenu.cy.js.mp4)
 
   - Sites testing (Find Your Way page)
     ![frontend-testing](./docs/Frontend-test-screenshots/SiteListPage.png)
 
+    [Click here to watch video](./frontend/cypress/videos/sitesList.cy.js.mp4)
+
   - User menu testing  
     ![frontend-testing](./docs/Frontend-test-screenshots/MyHome.png)
+
+    [Click here to watch video](./frontend/cypress/videos/MyHome.cy.js.mp4)
+
+  - All result  
+    ![frontend-testing](./docs/Frontend-test-screenshots/result.png)
 
   </details>
 
