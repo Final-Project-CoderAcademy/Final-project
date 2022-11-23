@@ -73,7 +73,21 @@ For more details, please read the scripts in package.json in different path
 
 ### Frontend
 
-- @googlemaps/js-api-loader:
+- react: The UI creation for this application uses react, a JavaScript library specialising in UI creation.
+- react-dom: It is used to reflect the React virtual DOM in the browser DOM.
+- react-redux・redux: The action from the user is dispatched to the store and the dispatched action and state are passed to the Reducer. Redux is used to manage the state of the UI handled by ReactJS.
+- react-router-dom: It is used to route based on the path of the URL accessed by the browser and display the components associated with the path. This allows components such as <Link /> to be used.
+
+- redux-devtools-extension: It is used to visualise Redux state management from a browser extension.
+- redux-thunk: It is used as middleware to implement asynchronous processing in Redux's Action Creator.
+- web-vitals: It is a key indicator of a site's health and is used for SEO and to enhance the user experience on the site.
+
+- @googlemaps/js-api-loader: For dynamically loading Google Maps JavaScript API scripts.
+- axios: Promise-based HTTP Client library used to retrieve data from the server using GET and POST HTTP requests, and to add, update and delete data through sending data to the server.
+
+- bootstrap・react-bootstrap: Front-end web application framework for creating websites and web applications. It's used for designing and styling this websites.
+
+- cypress: It is a front-end testing tool in JavaScript, which is used to perform E2E testing.
 
 ## About Application
 
