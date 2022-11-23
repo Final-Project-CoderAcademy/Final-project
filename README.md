@@ -1,18 +1,20 @@
 # MyWay---------Travel Blog APP
+### Developing github repo: https://github.com/Final-Project-CoderAcademy/Final-project  
 
 ### App URL (Netlify): https://radiant-belekoy-ffd379.netlify.app/
 
-- Frontend Github repo: https://github.com/Final-Project-CoderAcademy/Final-project/tree/main/frontend
+- Frontend Github repo: https://github.com/Todd0554/myway-frontend
 
-### Backend API URL (Heroku): https://myway-backend.herokuapp.com/ For more please read the repo below
+### Backend API URL (Heroku): https://myway-backend.herokuapp.com/   
+For more please read the repo below
 
 - Backend Github repo: https://github.com/Final-Project-CoderAcademy/Final-project/tree/main/backend
 
-### Github repo: https://github.com/Final-Project-CoderAcademy/Final-project
+### Presentation Youtube video: https://www.youtube.com/watch?v=Mr58dk1vJyI
 
 ## How to start the app in local side
 
-Before start this app in local side, there are some scripts need to be introduced. When this repo is cloned to the local side, `yarn install` need to be run. This is used to run install the packages both in root path and frontend/ path. Then, some other scripts with the demonstration are shown below:
+This app use yarn to control the package.json. Before start this app in local side, there are some scripts need to be introduced. When this repo is cloned to the local side, `yarn install` need to be run. Then, some other scripts with the demonstration are shown below:
 
 - `yarn install:all` ----------run `yarn install` both in the folder of backend/ and frontend/
 
@@ -20,7 +22,8 @@ Before start this app in local side, there are some scripts need to be introduce
 
 - `yarn server` ----------run the backend server with nodemon
 
-- `yarn client` ----------only run the react app in frontend/ path
+- `yarn client` ----------only run the react app in frontend/ path  
+- `yarn dev` ----------run both `yarn server` and `yarn client` only for developing, after the frontend start to use heroku API, this script can be ignored.
 
 **_When you decide to run the script below, please make sure there is no useful information in the database._**
 
@@ -67,7 +70,7 @@ For more details, please read the scripts in package.json in different path
 ## Libraries
 
 ### Backend
-- "aws-sdk": used to set aws SDK, but the time is limited, the AWS feature will be added in the future
+- "aws-sdk": used to set aws SDK, but the time is limited, the AWS feature will be added in the future. I decide to connect aws with multer for uploading the image.  
 - "bcryptjs": secret the passwords
 - "colors": make the server beautiful and show some hints more clearly
 - "cors": set the visiting permission for different address

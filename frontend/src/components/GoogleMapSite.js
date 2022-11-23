@@ -3,12 +3,13 @@ import { Loader } from "@googlemaps/js-api-loader";
 import {Container} from "react-bootstrap";
 
 const GoogleMapSite = (props) => {
+  // use the googlemap apiKey and set the places library
     const {lat, lng} = props
     const loader = new Loader({
         apiKey: "AIzaSyAI1thVh0FcREXtm-2zfheIoU9yBTNBZbE",
         libraries: ["places"]
     });
-
+  // set the lng and lat which will be passed from props for a place, and then the zoom is 15 
     const mapOptions = {
         center: {
             lat: parseFloat(lat), 
