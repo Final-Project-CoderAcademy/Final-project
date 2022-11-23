@@ -1,11 +1,13 @@
 # MyWay---------Travel Blog APP
-### Developing github repo: https://github.com/Final-Project-CoderAcademy/Final-project  
+
+### Developing github repo: https://github.com/Final-Project-CoderAcademy/Final-project
 
 ### App URL (Netlify): https://radiant-belekoy-ffd379.netlify.app/
 
 - Frontend Github repo: https://github.com/Todd0554/myway-frontend
 
-### Backend API URL (Heroku): https://myway-backend.herokuapp.com/   
+### Backend API URL (Heroku): https://myway-backend.herokuapp.com/
+
 For more please read the repo below
 
 - Backend Github repo: https://github.com/Final-Project-CoderAcademy/Final-project/tree/main/backend
@@ -22,7 +24,7 @@ This app use yarn to control the package.json. Before start this app in local si
 
 - `yarn server` ----------run the backend server with nodemon
 
-- `yarn client` ----------only run the react app in frontend/ path  
+- `yarn client` ----------only run the react app in frontend/ path
 - `yarn dev` ----------run both `yarn server` and `yarn client` only for developing, after the frontend start to use heroku API, this script can be ignored.
 
 **_When you decide to run the script below, please make sure there is no useful information in the database._**
@@ -54,12 +56,33 @@ For more details, please read the scripts in package.json in different path
 
   <summary>
 
-  ![dataflow diagram](./docs/backend-testing-result.png)
+  ![backend testing](./docs/backend-testing-result.png)
 
   </details>
 
 - User testing (development environment):  
-  For user testing in the development environment, a testing framework called Cypress was used. For more, please use `yarn run frontend:test` in root path after running `yarn run dev`.
+  For user testing in the development environment, a testing framework called Cypress was used. For more, please use `yarn run frontend:test` in root path after running `yarn run dev` in the root path or `yarn start` in the frontend folder.
+  <details>
+  <summary>E2E testing result screenshot</summary>
+
+  <summary>
+
+  - NavBar testing
+    ![frontend-testing](./docs/Frontend-test-screenshots/NavBar.png)
+
+  - About (Home top page testing)  
+    ![frontend-testing](<./docs/Frontend-test-screenshots/About(TopPage).png>)
+
+  - Admin menu testing  
+    ![frontend-testing](./docs/Frontend-test-screenshots/AdminMenu.png)
+
+  - Sites testing (Find Your Way page)
+    ![frontend-testing](./docs/Frontend-test-screenshots/SiteListPage.png)
+
+  - User menu testing  
+    ![frontend-testing](./docs/Frontend-test-screenshots/MyHome.png)
+
+  </details>
 
 - User testing (production environment):  
   For production environment user testing, we used manual testing by client user and the results are summarised in the spreadsheet. Also, we fixed the failed testing problem.  
@@ -70,7 +93,8 @@ For more details, please read the scripts in package.json in different path
 ## Libraries
 
 ### Backend
-- "aws-sdk": used to set aws SDK, but the time is limited, the AWS feature will be added in the future. I decide to connect aws with multer for uploading the image.  
+
+- "aws-sdk": used to set aws SDK, but the time is limited, the AWS feature will be added in the future. I decide to connect aws with multer for uploading the image.
 - "bcryptjs": secret the passwords
 - "colors": make the server beautiful and show some hints more clearly
 - "cors": set the visiting permission for different address
@@ -87,6 +111,7 @@ For more details, please read the scripts in package.json in different path
 - "supertest": for testing and is used with jest
 - "jest": for testing
 - "@babel/plugin-transform-modules-commonjs": babel settings for commonJS
+
 ### Frontend
 
 - "react": The UI creation for this application uses react, a JavaScript library specialising in UI creation.
