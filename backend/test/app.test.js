@@ -4,9 +4,6 @@ import mongoose from 'mongoose'
 import Site from '../models/siteModel.js'
 import User from '../models/userModel.js'
 import Blog from '../models/blogModel.js'
-import { JsonWebTokenError } from 'jsonwebtoken'
-
-jest.mock('axios')
 
 beforeAll(async () => {
   await mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true })
