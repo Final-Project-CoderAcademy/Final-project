@@ -9,36 +9,38 @@ import {
   deleteCommentToOneSite,
 } from "../actions/siteActions";
 import GoogleMapSite from "../components/GoogleMapSite";
-import { ADD_COMMENT_RESET, DELETE_COMMENT_RESET } from "../contents/siteContents";
+import {
+  ADD_COMMENT_RESET,
+  DELETE_COMMENT_RESET,
+} from "../contents/siteContents";
 
 const SiteDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  // get site detail state from store
   const siteDetails = useSelector((state) => state.siteDetails);
   const { site } = siteDetails;
+  //get login user state from store
   const userLogIn = useSelector((state) => state.userLogIn);
   const { userInfo } = userLogIn;
+  // initialize comment state
   const [comment, setComment] = useState("");
-
-  const siteAddComment = useSelector((state) => state.siteAddComment)
-  const {
-    success: successComment,
-  } = siteAddComment
-  const siteCommentDelete = useSelector((state) => state.siteCommentDelete)
-  const {
-    success: successCommentDelete,
-  } = siteCommentDelete
+  // get the state when added comment in the site state form store
+  const siteAddComment = useSelector((state) => state.siteAddComment);
+  const { success: successComment } = siteAddComment;
+  // get the state when comment deleted in the site from store
+  const siteCommentDelete = useSelector((state) => state.siteCommentDelete);
+  const { success: successCommentDelete } = siteCommentDelete;
 
   useEffect(() => {
     if (successComment) {
-      setComment('')
-      dispatch({type: ADD_COMMENT_RESET})
+      setComment("");
+      dispatch({ type: ADD_COMMENT_RESET });
     }
     if (successCommentDelete) {
-      setComment('')
-      dispatch({type: DELETE_COMMENT_RESET})
-
+      setComment("");
+      dispatch({ type: DELETE_COMMENT_RESET });
     }
     if (userInfo) {
       dispatch(siteDetail(id));
@@ -55,28 +57,32 @@ const SiteDetail = () => {
     userInfo,
   ]);
 
+  // submit comment function
   const commentSubmitHandler = (e) => {
     e.preventDefault();
     if (!(e.target[0].value === "")) {
-      console.log(id, comment)
+      console.log(id, comment);
       dispatch(
         addCommentToOneSite(id, {
           content: comment,
         })
       );
       alert("successfully comment!");
-      
     } else {
       alert("The comment is empty!");
     }
   };
-
+  // delete comment function
   const deleteComment = (comment, commentId) => {
-    if ((userInfo._id === comment.user || userInfo.isAdmin === true) && window.confirm("Are you sure?")) {
+    if (
+      (userInfo._id === comment.user || userInfo.isAdmin === true) &&
+      window.confirm("Are you sure?")
+    ) {
       dispatch(deleteCommentToOneSite(id, commentId));
     }
   };
 
+  // functionto show the site image
   const showImage = async (title, name) => {
     return await fetch(
       `https://myway-backend.herokuapp.com/api/image/download?url=${name}`
@@ -153,7 +159,12 @@ const SiteDetail = () => {
                   <div className="text-end">{comment.name}</div>
                   {(comment.name === userInfo.name || userInfo.isAdmin) && (
                     <div className="text-end">
-                      <Button variant="outline-danger" onClick={() => deleteComment(comment, comment._id)}>delete</Button>
+                      <Button
+                        variant="outline-danger"
+                        onClick={() => deleteComment(comment, comment._id)}
+                      >
+                        delete
+                      </Button>
                     </div>
                   )}
                 </Card.Body>

@@ -12,37 +12,50 @@ import { useDispatch, useSelector } from "react-redux";
 
 const About = () => {
   const dispatch = useDispatch();
+  // get sites list state from store
   const sitesList = useSelector((state) => state.sitesList);
   const { sites } = sitesList;
-
+  //get login user state from store
   const userLogIn = useSelector((state) => state.userLogIn);
   const { userInfo } = userLogIn;
 
   const selectFiveSites = sites.slice(sites.length - 5, 6);
+
+  // get all the sites info
   useEffect(() => {
     dispatch(allSites());
     // eslint-disable-next-line
   }, [dispatch]);
 
   const imageShow = () => {
-    sites.map(site => {
+    sites.map((site) => {
       if (site.image.split("/")[1] !== "images") {
-        showImage(site.name, site.image)
+        showImage(site.name, site.image);
       }
-    })
-  }
+    });
+  };
+
   const showImage = async (title, name) => {
-    return await fetch(`https://myway-backend.herokuapp.com/api/image/download?url=${name}`).then((res) => {
-      return res.blob()
-    }).then((blob) => {
-      let blobUrl = URL.createObjectURL(blob);
-      if (blobUrl) {
-        document.getElementById(title).src = blobUrl
-      }
-    })
-  }
-  if (sites && sites.length !== 0 && sites[sites.length - 1].image !== undefined && sites[sites.length - 1].image.split("/")[1] !== "images"){
-    imageShow()
+    return await fetch(
+      `https://myway-backend.herokuapp.com/api/image/download?url=${name}`
+    )
+      .then((res) => {
+        return res.blob();
+      })
+      .then((blob) => {
+        let blobUrl = URL.createObjectURL(blob);
+        if (blobUrl) {
+          document.getElementById(title).src = blobUrl;
+        }
+      });
+  };
+  if (
+    sites &&
+    sites.length !== 0 &&
+    sites[sites.length - 1].image !== undefined &&
+    sites[sites.length - 1].image.split("/")[1] !== "images"
+  ) {
+    imageShow();
   }
   return (
     <>
@@ -54,22 +67,21 @@ const About = () => {
             </Carousel.Caption>
             <Link to={`/sites/${site._id}`}>
               {site.image.slice("/")[1] === "image" ? (
-                  <img
+                <img
                   className="d-block w-100"
                   style={{ height: "58vh", objectFit: "cover" }}
                   src={site.image}
                   alt={site.name}
-                  />
+                />
               ) : (
                 <img
-                className="d-block w-100"
-                style={{ height: "58vh", objectFit: "cover" }}
-                src={site.image}
-                id={site.name}
-                alt={site.name}
+                  className="d-block w-100"
+                  style={{ height: "58vh", objectFit: "cover" }}
+                  src={site.image}
+                  id={site.name}
+                  alt={site.name}
                 />
               )}
-
             </Link>
           </Carousel.Item>
         ))}

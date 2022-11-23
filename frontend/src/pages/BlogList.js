@@ -3,16 +3,22 @@ import { Container, Button, Card } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { allBlogs, deleteBlog } from "../actions/blogActions";
 import { useDispatch, useSelector } from "react-redux";
-// import axios from "axios";
 
 const BlogList = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  // delete success state
   const [successDelete, setSuccessDelete] = useState(false);
+
+  // get blog list state from store
   const blogsList = useSelector((state) => state.blogsList);
   const { error, blogs } = blogsList;
+
+  //get login user state from store
   const userLogIn = useSelector((state) => state.userLogIn);
   const { userInfo } = userLogIn;
+
+  // get the state when blog deleted from store
   const blogDelete = useSelector((state) => state.blogDelete);
   const { success } = blogDelete;
 
@@ -28,6 +34,7 @@ const BlogList = () => {
     // eslint-disable-next-line
   }, [successDelete, dispatch, userInfo, navigate, success]);
 
+  // delete blog function
   const deleteBlogHandler = (id) => {
     if (window.confirm("Are you sure?")) {
       dispatch(deleteBlog(id));
@@ -35,25 +42,27 @@ const BlogList = () => {
     }
   };
 
-  const imageShow = () => blogs.map(blog => 
-    showImage(blog.title, blog.image)
-  )
+  // function to show the blog images from state
+  const imageShow = () =>
+    blogs.map((blog) => showImage(blog.title, blog.image));
   const showImage = async (title, name) => {
-    return await fetch(`https://myway-backend.herokuapp.com/api/image/download?url=${name}`).then((res) => {
-      return res.blob()
-    }).then((blob) => {
-      let blobUrl = URL.createObjectURL(blob);
-      if (blobUrl) {
-        document.getElementById(title).src = blobUrl
-      }
-    })
+    return await fetch(
+      `https://myway-backend.herokuapp.com/api/image/download?url=${name}`
+    )
+      .then((res) => {
+        return res.blob();
+      })
+      .then((blob) => {
+        let blobUrl = URL.createObjectURL(blob);
+        if (blobUrl) {
+          document.getElementById(title).src = blobUrl;
+        }
+      });
+  };
+  if (blogs && blogs.length !== 0) {
+    imageShow();
+  }
 
-  }
-  if (blogs && blogs.length !== 0){
-    imageShow()
-  }
-  
-  
   return (
     <>
       <figure className="position-relative">
@@ -76,40 +85,57 @@ const BlogList = () => {
               </p>
             )
           : blogs.map((blog) => (
-                <Link key={blog._id} to={`/blogs/${blog._id}`}>
-                    <Card style={{margin: "3vh auto", textAlign: "right", borderRadius: "10px"}} className="bg-dark text-white">
-                    <Card.Img src="text/plain" id={blog.title} alt={blog.title} />
-                    <Card.ImgOverlay>
-                      <Card.Title style={{position: "absolute", top: "2vh", right: "1vw"}}>
-                        {blog.title}
-                        <br/>
-                        <br/>
-                        {blog.name}
-                        <br/>
-                        {blog.updatedAt.slice(0, 10)}
-                        </Card.Title>
-                      {userInfo.isAdmin ? (
-                              <Button
-                                style={{position: "absolute", bottom: "2vh", right: "1vw"}}
-                                variant="danger"
-                                onClick={() => deleteBlogHandler(blog._id)}
-                              >
-                                Delete
-                              </Button>
-                        ) : !(userInfo._id === blog.user) ? (
-                          <></>
-                        ) : (
-                              <Button
-                                style={{position: "absolute", bottom: "2vh", right: "1vw"}}
-                                variant="danger"
-                                onClick={() => deleteBlogHandler(blog._id)}
-                              >
-                                Delete
-                              </Button>
-                        )}  
-                    </Card.ImgOverlay>
-                  </Card>
-                </Link>
+              <Link key={blog._id} to={`/blogs/${blog._id}`}>
+                <Card
+                  style={{
+                    margin: "3vh auto",
+                    textAlign: "right",
+                    borderRadius: "10px",
+                  }}
+                  className="bg-dark text-white"
+                >
+                  <Card.Img src="text/plain" id={blog.title} alt={blog.title} />
+                  <Card.ImgOverlay>
+                    <Card.Title
+                      style={{ position: "absolute", top: "2vh", right: "1vw" }}
+                    >
+                      {blog.title}
+                      <br />
+                      <br />
+                      {blog.name}
+                      <br />
+                      {blog.updatedAt.slice(0, 10)}
+                    </Card.Title>
+                    {userInfo.isAdmin ? (
+                      <Button
+                        style={{
+                          position: "absolute",
+                          bottom: "2vh",
+                          right: "1vw",
+                        }}
+                        variant="danger"
+                        onClick={() => deleteBlogHandler(blog._id)}
+                      >
+                        Delete
+                      </Button>
+                    ) : !(userInfo._id === blog.user) ? (
+                      <></>
+                    ) : (
+                      <Button
+                        style={{
+                          position: "absolute",
+                          bottom: "2vh",
+                          right: "1vw",
+                        }}
+                        variant="danger"
+                        onClick={() => deleteBlogHandler(blog._id)}
+                      >
+                        Delete
+                      </Button>
+                    )}
+                  </Card.ImgOverlay>
+                </Card>
+              </Link>
             ))}
       </Container>
     </>

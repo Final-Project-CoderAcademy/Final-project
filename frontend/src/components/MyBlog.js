@@ -35,6 +35,7 @@ const MyBlog = () => {
     }
   };
 
+  // blog images to show in the page
   const imageShow = () =>
     blogs.map((blog) => showImage(blog.title, blog.image));
   const showImage = async (title, name) => {

@@ -9,13 +9,16 @@ import { useDispatch, useSelector } from "react-redux";
 const AdminSiteList = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  // get sites list state from store
   const sitesList = useSelector((state) => state.sitesList);
   const { error, sites } = sitesList;
+  //get login user state from store
   const userLogIn = useSelector((state) => state.userLogIn);
   const { userInfo } = userLogIn;
+  // get site delete state from store
   const siteDelete = useSelector((state) => state.siteDelete);
   const { success: successDelete, error: errorDelete } = siteDelete;
-
+  // get site create state from store
   const siteCreate = useSelector((state) => state.siteCreate);
   const {
     error: errorCreate,
@@ -25,25 +28,26 @@ const AdminSiteList = () => {
 
   useEffect(() => {
     dispatch({ type: SITE_CREATE_RESET });
-    if (!userInfo.isAdmin) {
-      navigate("/login");
-    }
-    if (successCreate) {
-      navigate(`/sites/${newSite._id}/edit`);
-    } else {
-      dispatch(allSites());
-    }
+    // if user is admin, get all the sites, otherwise navigate to login page
     if (userInfo && userInfo.isAdmin) {
       dispatch(allSites());
     } else {
       navigate("/login");
     }
+    // if site created successfully, then navigate to edit page, but if not, take the user to list page
+    if (successCreate) {
+      navigate(`/sites/${newSite._id}/edit`);
+    } else {
+      dispatch(allSites());
+    }
   }, [dispatch, navigate, userInfo, successDelete, successCreate, newSite]);
 
+  // create site action
   const createSiteHandler = () => {
     dispatch(createSite());
   };
 
+  //delete site action
   const deleteSitehandler = (id) => {
     if (window.confirm("Are you sure?")) {
       dispatch(deleteSite(id));
