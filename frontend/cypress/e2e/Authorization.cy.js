@@ -91,4 +91,21 @@ describe("<Register /> page", () => {
       "password and confirm password must be the same"
     );
   });
+  it("should get an error if the password is less than 6 characters", () => {
+    cy.get("#signupForm").within(() => {
+      cy.get("#username").type("yuka");
+      cy.get("#email").type("yuka@example.com");
+      cy.get("#password").type("11111");
+      cy.get("#confirmPassword").type("11111");
+    });
+    cy.get("#signUp").click();
+    cy.get('[data-error="password"]').should(
+      "have.text",
+      "the number of password character must be at least 6!"
+    );
+    cy.get('[data-error="confirmPassword"]').should(
+      "have.text",
+      "the number of password character must be at least 6!"
+    );
+  });
 });

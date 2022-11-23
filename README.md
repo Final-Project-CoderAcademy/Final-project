@@ -67,6 +67,9 @@ For more details, please read the scripts in package.json in different path
 
   <summary>
 
+  - Authorization testing  
+    ![frontend-testing](./docs/Frontend-test-screenshots/Authorization.png)
+
   - NavBar testing
     ![frontend-testing](./docs/Frontend-test-screenshots/NavBar.png)
 
