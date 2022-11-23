@@ -9,6 +9,7 @@ const NavBar = () => {
   const userLogIn = useSelector((state) => state.userLogIn);
   const { userInfo } = userLogIn;
 
+  // logout action
   const logOutHandler = (e) => {
     dispatch(logOut());
   };

@@ -5,20 +5,24 @@ import { createBlog } from "../actions/blogActions";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { BLOG_CREATE_RESET } from "../contents/blogContents";
+import Message from "../components/Message";
 
 const BlogEdit = () => {
   const { id: userId } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
+  // initialize title state
   const [title, setTitle] = useState("");
+  // initialize article state
   const [article, setArticle] = useState("");
+  // initialize image state
   const [image, setImage] = useState("");
+  // initialize message state
   const [message, setMessage] = useState("");
-
+  //get login user state from store
   const userLogIn = useSelector((state) => state.userLogIn);
   const { userInfo } = userLogIn;
-
+  // get blog create state from state
   const blogCreate = useSelector((state) => state.blogCreate);
   const {
     success: successCreate,
@@ -26,9 +30,10 @@ const BlogEdit = () => {
     blog: newBlog,
   } = blogCreate;
 
+  //validation
   useEffect(() => {
     if (image !== "") {
-      setMessage("successfully upload the image")
+      setMessage("successfully upload the image");
     }
     if (!userInfo || userInfo._id !== userId) {
       navigate("/login");
@@ -39,6 +44,7 @@ const BlogEdit = () => {
     }
   }, [dispatch, navigate, userId, newBlog, successCreate, userInfo, image]);
 
+  // submit function inc image validation
   const submitBlogHandler = (e) => {
     e.preventDefault();
     if (image !== "") {
@@ -53,9 +59,9 @@ const BlogEdit = () => {
       setMessage("something wrong with image uploading, please try again.");
       alert("image not found");
     }
-
   };
 
+  // image upload function
   const uploadFileHandler = async (e) => {
     const file = e.target.files[0];
     const formData = new FormData();
@@ -88,7 +94,7 @@ const BlogEdit = () => {
             ></i>
           </Link>
           <h2 className="mb-4 text-center">BLOG POST</h2>
-          {errorCreate && <p>{errorCreate}</p>}
+          {errorCreate && <Message variant="danger">{errorCreate}</Message>}
 
           <Form onSubmit={submitBlogHandler}>
             <Form.Group controlId="image" className="mb-3">

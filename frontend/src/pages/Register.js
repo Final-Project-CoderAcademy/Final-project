@@ -6,19 +6,29 @@ import { register } from "../actions/userActions";
 import Message from "../components/Message";
 
 const Register = () => {
+  // initialize username state
   const [username, setUsername] = useState("");
+  // initialize email state
   const [email, setEmail] = useState("");
+  // initialize password state
   const [password, setPassword] = useState("");
+  // initialize confirm password state
   const [confirmPassword, setConfirmPassword] = useState("");
-  //validation
+
+  //validation error state for username
   const [usernameError, setUsernameError] = useState("");
+  //validation error state for email
   const [emailError, setEmailError] = useState("");
+  //validation error state for password
   const [passwordError, setPasswordError] = useState("");
+  //validation error state for confirm password
   const [confirmError, setConfirmError] = useState("");
 
   // dispatch action
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  //get signup user state from store
   const userRegister = useSelector((state) => state.userRegister);
   const { error, userInfo } = userRegister;
 
@@ -37,18 +47,18 @@ const Register = () => {
       setEmailError("");
     }
     if (password !== "" && password.length < 6) {
-      setPasswordError("the number of password character must be at least 6!")
+      setPasswordError("the number of password character must be at least 6!");
     } else if (password.length >= 6) {
-      setPasswordError("")
+      setPasswordError("");
     }
 
     if (confirmPassword !== "" && confirmPassword.length < 6) {
-      setConfirmError("the number of password character must be at least 6!")
+      setConfirmError("the number of password character must be at least 6!");
     } else if (password.length >= 6) {
-      if (confirmPassword === password){
-        setConfirmError("")
-      }else {
-        setConfirmError("confirmPassword must be same as password!")
+      if (confirmPassword === password) {
+        setConfirmError("");
+      } else {
+        setConfirmError("confirmPassword must be same as password!");
       }
     }
   }, [

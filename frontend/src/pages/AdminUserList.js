@@ -9,13 +9,17 @@ const AdminUserList = () => {
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
+  //get all users state from store
   const userList = useSelector((state) => state.userList);
   const { error, users } = userList;
+  //get login user state from store
   const userLogIn = useSelector((state) => state.userLogIn);
   const { userInfo } = userLogIn;
+  // get user delete state from store
   const userDelete = useSelector((state) => state.userDelete);
   const { success: successDelete } = userDelete;
 
+  // if the user is admin, get all the users, otherwise navigate to the login page
   useEffect(() => {
     if (userInfo && userInfo.isAdmin) {
       dispatch(listUsers());

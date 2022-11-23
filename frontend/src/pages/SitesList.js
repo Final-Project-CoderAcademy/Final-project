@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 const SitesList = () => {
   const dispatch = useDispatch();
+  // get all sites list state from store
   const sitesList = useSelector((state) => state.sitesList);
   const { error, sites } = sitesList;
 
@@ -18,15 +19,17 @@ const SitesList = () => {
     // eslint-disable-next-line
   }, [dispatch]);
 
+  // get some sentence for show in the card
   const getOneSentence = (text) => {
     const sliceText = text.slice(0, 160);
     return sliceText + "...";
   };
+  // get some line for show in the card
   const getOneLine = (text) => {
     const sliceText = text.slice(0, 30);
     return sliceText + "...";
   };
-
+  // function to show the site image
   const imageShow = () => {
     sites.map((site) => {
       if (site.image.split("/")[1] !== "images") {
@@ -57,7 +60,7 @@ const SitesList = () => {
   ) {
     imageShow();
   }
-  // const Categories = ["All", "Mountain", "Beach", "Snow", "Other"];
+
   return (
     <>
       <figure className="position-relative">

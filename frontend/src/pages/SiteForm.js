@@ -6,34 +6,38 @@ import { siteDetail, updateSite } from "../actions/siteActions";
 import { SITE_UPDATE_RESET } from "../contents/siteContents";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { Loader } from "@googlemaps/js-api-loader";
+import Message from "../components/Message";
 
 const SiteEdit = () => {
   const { id: siteId } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  // initial name state
   const [name, setName] = useState("");
+  // initial category state
   const [category, setCategory] = useState("");
+  // initial description state
   const [description, setDescription] = useState("");
+  // initial image state
   const [image, setImage] = useState("");
+  // initial message state
   const [message, setMessage] = useState("");
-  // future features not work now
-  // const [rating, setRationg] = useState(0);
-  // const [numComments, setNumComments] = useState(0);
-  //
+  // for google map API
   const [lat, setLat] = useState(0);
   const [lng, setLng] = useState(0);
   const loader = new Loader({
     apiKey: "AIzaSyAI1thVh0FcREXtm-2zfheIoU9yBTNBZbE",
     libraries: ["places"],
   });
-
+  // get site detail state from store
   const siteDetails = useSelector((state) => state.siteDetails);
   const { error, site } = siteDetails;
-
+  // get the state when update a site from store
   const siteUpdate = useSelector((state) => state.siteUpdate);
   const { error: errorUpdate, success: successUpdate } = siteUpdate;
 
   useEffect(() => {
+    // google map
     loader
       .load()
       .then((google) => {
@@ -42,6 +46,7 @@ const SiteEdit = () => {
       .catch((e) => {
         console.log(e.message);
       });
+    // update
     if (successUpdate) {
       dispatch({ type: SITE_UPDATE_RESET });
       navigate("/admin/sitelist");
@@ -51,6 +56,7 @@ const SiteEdit = () => {
     // eslint-disable-next-line
   }, [dispatch, navigate, successUpdate]);
 
+  // submit form function
   const submitHandler = (e) => {
     e.preventDefault();
     if (image !== "") {
@@ -87,6 +93,7 @@ const SiteEdit = () => {
     });
   };
 
+  // google autocomplete function
   const setMapForm = (e) => {
     e.preventDefault();
     loader
@@ -99,6 +106,7 @@ const SiteEdit = () => {
       });
   };
 
+  // file upload function
   const uploadFileHandler = async (e) => {
     const file = e.target.files[0];
     const formData = new FormData();
@@ -142,8 +150,8 @@ const SiteEdit = () => {
             <h2 className="mb-4 text-center">SITE POST</h2>
           )}
 
-          {errorUpdate && <p>{errorUpdate}</p>}
-          {error && <p>{error}</p>}
+          {errorUpdate && <Message variant="danger">{errorUpdate}</Message>}
+          {error && <Message variant="danger">{error}</Message>}
           <br />
           <Form onSubmit={setMapForm}>
             <Form.Group>

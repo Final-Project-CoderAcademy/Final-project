@@ -6,6 +6,7 @@ import Message from "../components/Message";
 import { logIn } from "../actions/userActions";
 
 const Login = () => {
+  // initial login form
   const initialLoginForm = { email: "", password: "" };
   const [loginForm, setLoginForm] = useState(initialLoginForm);
   const { email, password } = loginForm;
@@ -21,6 +22,7 @@ const Login = () => {
   // dispatch action
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  //get login user state from store
   const userLogIn = useSelector((state) => state.userLogIn);
   const { error, userInfo } = userLogIn;
 
@@ -28,12 +30,14 @@ const Login = () => {
 
   const redirect = search ? search.split("=")[1] : "/";
 
+  // check if the user info is exist
   useEffect(() => {
     if (userInfo) {
       navigate(redirect);
     }
   }, [navigate, userInfo, redirect]);
 
+  // login submit function
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(logIn(email, password, error));
