@@ -1,11 +1,11 @@
 # MyWay---------Travel Blog APP
-### Developing github repo: https://github.com/Final-Project-CoderAcademy/Final-project  
+### Github repo of developing: https://github.com/Final-Project-CoderAcademy/Final-project  
 
-### App URL (Netlify): https://radiant-belekoy-ffd379.netlify.app/
+### App URL (deployed by Netlify): https://radiant-belekoy-ffd379.netlify.app/
+Unfortunately, Netlify is not free for customer domain name, for making sure that the App's URL is continuously working, we use the random Netlify URL.  
+- Deployed Frontend Github repo: https://github.com/Todd0554/myway-frontend
 
-- Frontend Github repo: https://github.com/Todd0554/myway-frontend
-
-### Backend API URL (Heroku): https://myway-backend.herokuapp.com/   
+### Backend API URL (deployed by Heroku): https://myway-backend.herokuapp.com/   
 For more please read the repo below
 
 - Backend Github repo: https://github.com/Final-Project-CoderAcademy/Final-project/tree/main/backend
@@ -14,7 +14,7 @@ For more please read the repo below
 
 ## How to start the app in local side
 
-This app use yarn to control the package.json. Before start this app in local side, there are some scripts need to be introduced. When this repo is cloned to the local side, `yarn install` need to be run. Then, some other scripts with the demonstration are shown below:
+This app uses yarn to control the package.json. There is a package.json in the root path to control both backend and frontend folder. Before start this app in local side, there are some scripts need to be introduced. When this repo is cloned to the local side, `yarn install` need to be run. Then, some other scripts with the demonstration are shown below:
 
 - `yarn install:all` ----------run `yarn install` both in the folder of backend/ and frontend/
 
@@ -27,8 +27,10 @@ This app use yarn to control the package.json. Before start this app in local si
 
 **_When you decide to run the script below, please make sure there is no useful information in the database._**
 
-- `yarn data:import` ----------clear the database and import some example data(you can check these data in backend/data)
-
+- `yarn data:import` ----------clear the database and import some example data(you can check these data in backend/data)  
+***The initial data can be found in backend/data/ folder.*** Admin users can't be registered directly, and they only can be set in backend or database, so please use the default admin user to test admin functionality.  
+`email: admin@example.com`  
+`password: 123456`
 - `data:destroy` ----------destroy all the data in the database
 
 Test scripts:
@@ -39,11 +41,11 @@ For frontend testing, please make sure run `yarn client` to start the frontend
 
 - `yarn frontend:test` ----------to test frontend code with cypress
 
-For more details, please read the scripts in package.json in different path
+For more details, please read the scripts in package.json in different path.  
 
-## Environment Variables
+## Environment Variables  
 
-- This app need environment variables, for more please contact with the authors.
+- This app need environment variables, for more please contact with the authors. 
 
 ## Testing
 
