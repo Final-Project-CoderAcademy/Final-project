@@ -28,25 +28,34 @@ const SitesList = () => {
   };
 
   const imageShow = () => {
-    sites.map(site => {
+    sites.map((site) => {
       if (site.image.split("/")[1] !== "images") {
-        showImage(site.name, site.image)
+        showImage(site.name, site.image);
       }
-    })
-  }
-  
+    });
+  };
+
   const showImage = async (title, name) => {
-    return await fetch(`https://myway-backend.herokuapp.com/api/image/download?url=${name}`).then((res) => {
-      return res.blob()
-    }).then((blob) => {
-      let blobUrl = URL.createObjectURL(blob);
-      if (blobUrl) {
-        document.getElementById(title).src = blobUrl
-      }
-    })
-  }
-  if (sites && sites.length !== 0 && sites[sites.length - 1].image !== undefined && sites[sites.length - 1].image.split("/")[1] !== "images"){
-    imageShow()
+    return await fetch(
+      `https://myway-backend.herokuapp.com/api/image/download?url=${name}`
+    )
+      .then((res) => {
+        return res.blob();
+      })
+      .then((blob) => {
+        let blobUrl = URL.createObjectURL(blob);
+        if (blobUrl) {
+          document.getElementById(title).src = blobUrl;
+        }
+      });
+  };
+  if (
+    sites &&
+    sites.length !== 0 &&
+    sites[sites.length - 1].image !== undefined &&
+    sites[sites.length - 1].image.split("/")[1] !== "images"
+  ) {
+    imageShow();
   }
   // const Categories = ["All", "Mountain", "Beach", "Snow", "Other"];
   return (
@@ -77,19 +86,21 @@ const SitesList = () => {
           {sites.map((site) => (
             <Col key={site._id} className="col-md-6 col-lg-4 mb-3" md="auto">
               <Card className="m-3">
-                {site.image.split("/")[1] === "images" ? (<Card.Img
-                  variant="top"
-                  src={site.image}
-                  alt={site.name}
-                  style={{ width: "100%", height: 200 }}
-                />) : (
+                {site.image.split("/")[1] === "images" ? (
                   <Card.Img
-                  variant="top"
-                  src=""
-                  id={site.name}
-                  alt={site.name}
-                  style={{ width: "100%", height: 200 }}
-                />
+                    variant="top"
+                    src={site.image}
+                    alt={site.name}
+                    style={{ width: "100%", height: 200 }}
+                  />
+                ) : (
+                  <Card.Img
+                    variant="top"
+                    src=""
+                    id={site.name}
+                    alt={site.name}
+                    style={{ width: "100%", height: 200 }}
+                  />
                 )}
 
                 <Card.Body>
@@ -97,7 +108,11 @@ const SitesList = () => {
                   <Card.Text>{getOneSentence(`${site.description}`)}</Card.Text>
                   <Link to={`/sites/${site._id}`}>
                     <div className="text-end">
-                      <Button variant="primary" className="btn-round px-3">
+                      <Button
+                        id="ReadMore"
+                        variant="primary"
+                        className="btn-round px-3"
+                      >
                         Read More
                       </Button>
                     </div>
