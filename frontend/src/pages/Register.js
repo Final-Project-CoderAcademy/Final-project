@@ -30,19 +30,29 @@ const Register = () => {
     if (userInfo && !userInfo.errors) {
       navigate(redirect);
     }
-    if (username !== ""){
-      setUsernameError("")
+    if (username !== "") {
+      setUsernameError("");
     }
-    if (email !== ""){
-      setEmailError("")
+    if (email !== "") {
+      setEmailError("");
     }
     if (password !== "" && password.length < 6) {
-      setPasswordError("the number of password character must be at least 6!")
-    } 
+      setPasswordError("the number of password character must be at least 6!");
+    }
     if (confirmPassword !== "" && confirmPassword.length < 6) {
-      setPasswordError("the number of password character must be at least 6!")
-    } 
-  }, [navigate, userInfo, redirect, password, username, confirmPassword, email, setPasswordError, setUsernameError]);
+      setPasswordError("the number of password character must be at least 6!");
+    }
+  }, [
+    navigate,
+    userInfo,
+    redirect,
+    password,
+    username,
+    confirmPassword,
+    email,
+    setPasswordError,
+    setUsernameError,
+  ]);
 
   const validation = () => {
     if (!username || username === "")
