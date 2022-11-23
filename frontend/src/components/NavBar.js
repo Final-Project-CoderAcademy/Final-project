@@ -42,8 +42,8 @@ const NavBar = () => {
                   <LinkContainer to="/myhome">
                     <NavDropdown.Item>MyHome</NavDropdown.Item>
                   </LinkContainer>
-                  <LinkContainer to="/login">
-                    <NavDropdown.Item onClick={logOutHandler}>
+                  <LinkContainer to="/">
+                    <NavDropdown.Item onClick={logOutHandler} id="logout">
                       <i
                         className="fa-solid fa-right-from-bracket"
                         style={{ width: 23, height: 20 }}
