@@ -377,6 +377,28 @@ All the user stories are start as a traveler. We assume that if we are a travele
 - Desktop  
   <img src="./docs/Wireframe/Desktop-My%20HOME.jpg" alt="My Home Page for desktop" width="500"/>
 
+**My Detail Page**
+
+- mobile  
+  <img src="./docs/Wireframe/iPhone-My-Detail.jpg" alt="My Home Page for movile" width="200"/>
+
+- Tablet  
+  <img src="./docs/Wireframe/iPad-My-Detail.jpg" alt="My Home Page for tablet" width="300"/>
+
+- Desktop  
+  <img src="./docs/Wireframe/Desktop-My-Detail.jpg" alt="My Home Page for desktop" width="500"/>
+
+**My Detail Page**
+
+- mobile  
+  <img src="./docs/Wireframe/iPhone-My-Blog.jpg" alt="My Home Page for movile" width="200"/>
+
+- Tablet  
+  <img src="./docs/Wireframe/iPad-My-Blog.jpg" alt="My Home Page for tablet" width="300"/>
+
+- Desktop  
+  <img src="./docs/Wireframe/Desktop-My-Blog.jpg" alt="My Home Page for desktop" width="500"/>
+
 **(For Admin) Site management Page**
 
 - mobile  
