@@ -37,10 +37,19 @@ const Register = () => {
       setEmailError("");
     }
     if (password !== "" && password.length < 6) {
-      setPasswordError("the number of password character must be at least 6!");
+      setPasswordError("the number of password character must be at least 6!")
+    } else if (password.length >= 6) {
+      setPasswordError("")
     }
+
     if (confirmPassword !== "" && confirmPassword.length < 6) {
-      setPasswordError("the number of password character must be at least 6!");
+      setConfirmError("the number of password character must be at least 6!")
+    } else if (password.length >= 6) {
+      if (confirmPassword === password){
+        setConfirmError("")
+      }else {
+        setConfirmError("confirmPassword must be same as password!")
+      }
     }
   }, [
     navigate,
