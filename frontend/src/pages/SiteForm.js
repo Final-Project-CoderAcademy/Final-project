@@ -120,7 +120,7 @@ const SiteEdit = () => {
 
       setMessage("please wait, the image is uploading...");
       const { data } = await axios.post(
-        "https://myway-backend.herokuapp.com/api/image/upload",
+        "https://myway-backend-railway-production.up.railway.app/api/image/upload",
         formData,
         config
       );
