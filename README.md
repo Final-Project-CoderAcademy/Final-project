@@ -6,11 +6,13 @@
 Unfortunately, Netlify is not free for custom domain name, for making sure that the App's URL is continuously working, we use the random Netlify URL.  
 - Deployed Frontend Github repo: https://github.com/Todd0554/myway-frontend
 
-### Backend API URL (deployed by Heroku): https://myway-backend.herokuapp.com/   
+### ~~Backend API URL (deployed by Heroku): https://myway-backend.herokuapp.com/~~   
 
+### Redeploy by using Railway:
+URL: https://myway-backend-railway-production.up.railway.app/  
 For more please read the repo below
 
-- Backend Github repo: https://github.com/Final-Project-CoderAcademy/Final-project/tree/main/backend
+- Backend Github repo: https://github.com/Todd0554/myway-backend-railway
 
 ### Presentation Youtube video: https://www.youtube.com/watch?v=Mr58dk1vJyI
 
